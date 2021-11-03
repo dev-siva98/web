@@ -3,7 +3,7 @@ import './Navbar.css'
 import { MdFingerprint } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
-import { BsPersonCircle } from 'react-icons/bs'
+// import { BsPersonCircle } from 'react-icons/bs'
 function Navbar() {
 
     const [click, setClick] = useState(false)

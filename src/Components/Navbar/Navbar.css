@@ -66,6 +66,16 @@
   width: 90px;
 }
 
+.avatar {
+  height: 40px;
+  border-radius: 50%;
+  
+}
+
+.nav-items.active{
+  font-size: 2rem;
+  padding-top: 7px;
+}
 
 
 
@@ -124,5 +134,9 @@
     border: none;
   }
 
+  .avatar-mob{
+    padding-left: 7px;
+    padding-bottom: 7px;
+  }
   
 }

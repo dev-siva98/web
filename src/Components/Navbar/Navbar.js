@@ -36,8 +36,8 @@ function Navbar() {
                         Shop
                     </Link>
                     <div className="navigation" >
-                        <div className="menu-icon" onClick={handleClick} >
-                            {click ? <BsPersonCircle /> : <FaBars />}
+                        <div className="menu-icon avatar-mob" onClick={handleClick} >
+                            {click ? <img className='avatar' src="images/avatar.png" alt="NA" /> : <FaBars />}
                         </div>
 
                         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
@@ -61,9 +61,9 @@ function Navbar() {
                                     About Us
                                 </Link>
                             </li>
-                            <li style={{ fontSize: '2rem' }} className="nav-items active">
+                            <li className="nav-items active">
                                 <div to='/about' className="nav-link">
-                                    <BsPersonCircle />
+                                <img className='avatar' src="images/avatar.png" alt="NA" />
                                 </div>
                             </li>
                         </ul>

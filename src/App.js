@@ -6,7 +6,7 @@ import Home from "./Components/Pages/Home/Home";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Navbar />
         <Switch>
@@ -14,9 +14,9 @@ function App() {
             <Home/>
           </Route>
         </Switch>
+      <Footer />
       </Router>
 
-      <Footer />
     </div>
   );
 }

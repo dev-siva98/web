@@ -29,7 +29,7 @@ function Navbar() {
 
     return (
         <div>
-            <nav className="navbar">
+            <nav className={click ? "navbar active" : "navbar"}>
                 <div className="nav-container" ref={ref}>
                     <Link to='/' className='nav-brand'>
                         <MdFingerprint className='nav-icon' />

@@ -1,6 +1,11 @@
 
 .hero-section {
+    position: relative;
     background-color: #fff;
     color: brown;
-    height: 80vh;
+    top: 80px;
+    height: 260px;
+    /* height: 100px; */
+    padding: 20px;
+    /* z-index: 1; */
 }

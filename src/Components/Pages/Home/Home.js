@@ -5,7 +5,9 @@ function Home() {
     return (
         <div>
             <div className="hero-section">
-                <h1>Helloo Guyssssss</h1>
+                <div className="her-container">
+                    <h1>Hey</h1>
+                </div>
             </div>
         </div>
     )

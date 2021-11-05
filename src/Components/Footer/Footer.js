@@ -39,8 +39,9 @@ function Footer() {
                         </ul>
                         <div className="footer-social">
                             <a href="http://facebook.com"><GrFacebook className='footer-social-icons' /></a>
-                            <a href="https://instagram.com"><BsInstagram className='footer-social-icons' /></a>
                             <a href="https://youtube.com"><BsYoutube className='footer-social-icons' /></a>
+                            <a href="https://instagram.com"><BsInstagram className='footer-social-icons' /></a>
+                            
                         </div>
                     </div>
                     {/* quick links */}
@@ -79,7 +80,7 @@ function Footer() {
                         <h2 className='foot-header'>News Letter</h2>
                         <p>Sign up to get notified on new deals and offers from us !!</p>
                         <form action="#" className='foot-form'>
-                            <input type="text" className='foot-input' placeholder='E-mail' />
+                            <input type="email" className='foot-input' placeholder='E-mail' />
                             <input className='btn blue' type="submit" value='Sign up' />
                         </form>
                     </div>

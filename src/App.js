@@ -11,10 +11,10 @@ function App() {
         <Navbar />
         <Switch>
           <Route path='/'>
-            <Home/>
+            <Home />
           </Route>
         </Switch>
-      <Footer />
+        <Footer />
       </Router>
 
     </div>

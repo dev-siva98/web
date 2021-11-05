@@ -5,6 +5,8 @@ import { FiChevronRight } from 'react-icons/fi'
 import { MdLocationOn } from 'react-icons/md'
 import { GoMail } from 'react-icons/go'
 import { IoCall } from 'react-icons/io5'
+import { BsInstagram, BsYoutube } from 'react-icons/bs'
+import { GrFacebook } from 'react-icons/gr'
 
 function Footer() {
     return (
@@ -35,9 +37,12 @@ function Footer() {
                                 </a>
                             </li>
                         </ul>
-
+                        <div className="footer-social">
+                            <a href="http://facebook.com"><GrFacebook className='footer-social-icons' /></a>
+                            <a href="https://instagram.com"><BsInstagram className='footer-social-icons' /></a>
+                            <a href="https://youtube.com"><BsYoutube className='footer-social-icons' /></a>
+                        </div>
                     </div>
-
                     {/* quick links */}
                     <div className="foot-section">
                         <h2 className='foot-header'>Quick Links</h2>
@@ -69,7 +74,6 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-
                     {/* news letter */}
                     <div className="foot-section">
                         <h2 className='foot-header'>News Letter</h2>
@@ -83,9 +87,8 @@ function Footer() {
             </div>
             {/* copyright */}
             <div className="bottom-section">
-                <p>&copy; MakeMyCake | All Rights Reserved | Designed By Siva</p>
+                <p>&copy; MakeMyCake | All Rights Reserved | Designed By <a href="https://instagram.com" style={{color:'#fff'}}>Siva</a></p>
             </div>
-
         </div>
     )
 }

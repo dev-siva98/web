@@ -9,7 +9,7 @@
   height: 80px;
   width: 100%;
   background-color: #fff;
-  color: #1c2237;
+  color: #02050f;
   text-decoration: none;
   top: 0;
   border: 1px solid transparent;
@@ -66,9 +66,9 @@
 
 .nav-link {
   text-decoration: none;
-  
   padding: 0.5rem 1rem;
   width: 90px;
+  color: #02050f;
 }
 
 .avatar {

@@ -17,6 +17,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     padding-top: 10px;
+    padding-bottom: 20px;
     position: relative;
 }
 
@@ -58,6 +59,7 @@
 .foot-links {
     text-decoration: none;
     color: #fff;
+    padding-left: 3px;
 }
 
 

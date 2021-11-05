@@ -51,19 +51,19 @@ function Footer() {
                             </li>
                             <li className='foot-item'>
                                 <FiChevronRight />
-                                <Link to='/' className='foot-links'>
+                                <Link to='/about' className='foot-links'>
                                     About us
                                 </Link>
                             </li>
                             <li className='foot-item'>
                                 <FiChevronRight />
-                                <Link to='/' className='foot-links'>
+                                <Link to='/what-people-say' className='foot-links'>
                                     What people say
                                 </Link>
                             </li>
                             <li className='foot-item'>
                                 <FiChevronRight />
-                                <Link to='/' className='foot-links'>
+                                <Link to='/gallery' className='foot-links'>
                                     Gallery
                                 </Link>
                             </li>

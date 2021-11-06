@@ -5,7 +5,7 @@
     right: 0;
     bottom: 0;
     position: relative;
-    z-index: 1;
+    top: 80px;
 }
 
 .footer-container {
@@ -86,18 +86,24 @@
 
 .btn {
     border: 1px  solid transparent;
+    vertical-align: middle;
     line-height: 1.5;
     text-align: center;
     font-size: 1rem;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0.25rem;
     color: #fff;
     padding-left: 1rem;
     padding-right: 1rem;
     cursor: pointer;
     background-color: #0d6efd;
+    transition: all 0.5s;
 }
 
-.btn:hover {
+.btn-blue {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.btn-blue:hover {
     background-color: #0b5ed7;
     border-color: #0a58ca;
 }
@@ -122,6 +128,11 @@
 
 .footer-social {
     text-align: center;
+    padding-top: 20px;
+}
+
+.footer-social-icons:hover {
+    transform: scale(1.09);
 }
 
 .footer-social-icons {

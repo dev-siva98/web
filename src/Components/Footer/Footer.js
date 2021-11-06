@@ -38,9 +38,9 @@ function Footer() {
                             </li>
                         </ul>
                         <div className="footer-social">
-                            <a href="http://facebook.com"><GrFacebook className='footer-social-icons' /></a>
-                            <a href="https://youtube.com"><BsYoutube className='footer-social-icons' /></a>
-                            <a href="https://instagram.com"><BsInstagram className='footer-social-icons' /></a>
+                            <a href="http://facebook.com" target='_blank' rel="noreferrer"><GrFacebook className='footer-social-icons' /></a>
+                            <a href="https://youtube.com" target='_blank' rel="noreferrer" ><BsYoutube className='footer-social-icons' /></a>
+                            <a href="https://instagram.com" target='_blank' rel="noreferrer"><BsInstagram className='footer-social-icons' /></a>
                             
                         </div>
                     </div>
@@ -81,7 +81,7 @@ function Footer() {
                         <p>Sign up to get notified on new deals and offers from us !!</p>
                         <form action="#" className='foot-form'>
                             <input type="email" className='foot-input' placeholder='E-mail' />
-                            <input className='btn blue' type="submit" value='Sign up' />
+                            <input className='btn btn-blue' type="submit" value='Sign up' />
                         </form>
                     </div>
                 </div>

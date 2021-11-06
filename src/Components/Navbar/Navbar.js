@@ -30,7 +30,7 @@ function Navbar() {
     return (
         <div>
             <nav className={click ? "navbar active" : "navbar"}>
-                <div className="nav-container" ref={ref}>
+                <div className="nav-container" >
                     <Link to='/' className='nav-brand'>
                         <MdFingerprint className='nav-icon' />
                         Shop
@@ -40,7 +40,7 @@ function Navbar() {
                             {click ? <img className='avatar' src="images/avatar.png" alt="NA" /> : <FaBars />}
                         </div>
 
-                        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                        <ul className={click ? 'nav-menu active' : 'nav-menu'} ref={ref} >
                             <li className="nav-items">
                                 <Link to='/' className="nav-link">
                                     Home

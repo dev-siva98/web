@@ -27,19 +27,19 @@ function Home() {
                                 <img src="images/custom.jpg" alt="1" className='explore-image' />
                                 <h2 className='cake-header'>Custom Cakes</h2>
                                 <p className='cake-description' >Customized cakes for Birthday,Anniversary,Wedding etc...</p>
-                                <button className='btn btn-outline'>Order Now</button>
+                                <button className='btn btn-outline'>Explore</button>
                             </div>
                             <div className="cake-category">
                                 <img src="images/jar.jpg" alt="2" className='explore-image' />
                                 <h2  className='cake-header'>Jar Cakes</h2>
                                 <p className='cake-description' >Comes in 5 different flavours-Order together or wait for notifications to order single...</p>
-                                <button className='btn btn-outline orange'>Pre-Order Now</button>
+                                <button className='btn btn-outline orange'>Explore</button>
                             </div>
                             <div className="cake-category">
                                 <img src="images/pastry.jpg" alt="3" className='explore-image' />
                                 <h2  className='cake-header'>Pastries</h2>
                                 <p className='cake-description'>Delicious fresh pastries are available now- Order your favorite cupcakes and brownies...</p>
-                                <button className='btn btn-outline'>Order Now</button>
+                                <button className='btn btn-outline'>Explore</button>
                             </div>
                         </div>
                     </div>

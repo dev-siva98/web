@@ -46,17 +46,17 @@ function Navbar() {
                                     Home
                                 </Link>
                             </li>
-                            <li className="nav-items">
+                            <li className="nav-items" onClick={handleClick} >
                                 <Link to='/cart' className="nav-link">
                                     Cart
                                 </Link>
                             </li>
-                            <li className="nav-items">
+                            <li className="nav-items" onClick={handleClick} >
                                 <Link to='/orders' className="nav-link">
                                     Orders
                                 </Link>
                             </li>
-                            <li className="nav-items">
+                            <li className="nav-items" onClick={handleClick} >
                                 <Link to='/about' className="nav-link">
                                     About Us
                                 </Link>

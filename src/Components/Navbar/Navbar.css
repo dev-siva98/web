@@ -147,7 +147,7 @@
     transform: scale(1.2);
     transition: all 0.3s ease;
   }
-
+  
   .nav-items:hover{
     border: none;
   }

@@ -1,4 +1,3 @@
-
 .home-section {
     position: relative;
     background-color: #fff;
@@ -30,7 +29,7 @@
     order: unset;
 }
 
-.home-main-svg{
+.home-main-svg {
     width: 90%;
 }
 
@@ -41,7 +40,7 @@
 .cake-section {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .cake-category {
@@ -55,18 +54,17 @@
 }
 
 .cake-category:hover {
-    transform: scale(1.01);
+    transform: scale(1.03);
 }
 
 .explore-section-header {
     font-size: 1.7rem;
-    padding: 20px 0;
+    padding-bottom: 40px
 }
 
 .explore-image {
     width: 90%;
 }
-
 
 .cake-header {
     font-size: 1.5rem;
@@ -85,9 +83,31 @@
     padding: 0.4rem 1.2rem;
 }
 
+
+
 .btn-outline:hover {
     background-color: #0dcaf0;
     color: #fff;
+}
+
+.btn-outline:active {
+    padding: 0.4rem;
+    border: 1px solid #05038a;
+}
+
+.btn.orange{
+    color: #f1b40c;
+    border: 1px solid #f1b40c;
+}
+
+.btn.orange:hover{
+    background-color: #f1b40c;
+    color: #fff;
+}
+.btn.orange:active {
+    color: #fff;
+    padding: 0.4rem;
+    border: 1px solid #e67c04;
 }
 
 @media (max-width:960px) {
@@ -95,23 +115,18 @@
         flex-direction: column;
         text-align: center;
     }
-
     .home-section-main-content {
         order: 2;
         width: 90%;
     }
-
     .home-section-main-image {
         order: 1;
         width: 90%;
     }
-
     .cake-section {
         flex-direction: column;
         align-items: center;
-        
     }
-
     .cake-category {
         width: 90%;
         margin: 20px 0;

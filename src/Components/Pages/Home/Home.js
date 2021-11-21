@@ -32,13 +32,13 @@ function Home() {
                             <div className="cake-category">
                                 <img src="images/jar.jpg" alt="2" className='explore-image' />
                                 <h2  className='cake-header'>Jar Cakes</h2>
-                                <p className='cake-description' >Delicious fresh pastries are available now- Order your favorite cupcakes and brownies...</p>
-                                <button className='btn btn-outline'>Order Now</button>
+                                <p className='cake-description' >Comes in 5 different flavours-Order together or wait for notifications to order single...</p>
+                                <button className='btn btn-outline orange'>Pre-Order Now</button>
                             </div>
                             <div className="cake-category">
                                 <img src="images/pastry.jpg" alt="3" className='explore-image' />
                                 <h2  className='cake-header'>Pastries</h2>
-                                <p className='cake-description'>Comes in 5 different flavours-Order together or wait for notifications to order single...</p>
+                                <p className='cake-description'>Delicious fresh pastries are available now- Order your favorite cupcakes and brownies...</p>
                                 <button className='btn btn-outline'>Order Now</button>
                             </div>
                         </div>

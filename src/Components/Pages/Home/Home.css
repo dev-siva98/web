@@ -92,7 +92,7 @@
 }
 
 .btn-outline:active {
-    padding: 0.4rem;
+    transform: scale(0.8);
     border: 1px solid #05038a;
 }
 

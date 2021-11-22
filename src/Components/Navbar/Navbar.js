@@ -33,7 +33,7 @@ function Navbar() {
                 <div className="nav-container" >
                     <Link to='/' className='nav-brand'>
                         <MdFingerprint className='nav-icon' />
-                        Shop
+                        MakeMyCake
                     </Link>
                     <div className="navigation" >
                         <div className="menu-icon avatar-mob" onClick={handleClick} >
@@ -41,9 +41,14 @@ function Navbar() {
                         </div>
 
                         <ul className={click ? 'nav-menu active' : 'nav-menu'} ref={ref} >
-                            <li className="nav-items">
+                            <li className="nav-items" onClick={handleClick} >
                                 <Link to='/' className="nav-link">
                                     Home
+                                </Link>
+                            </li>
+                            <li className="nav-items" onClick={handleClick} >
+                                <Link to='/explore' className="nav-link">
+                                    Shop
                                 </Link>
                             </li>
                             <li className="nav-items" onClick={handleClick} >

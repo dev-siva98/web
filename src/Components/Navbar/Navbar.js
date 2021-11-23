@@ -41,31 +41,31 @@ function Navbar() {
                         </div>
 
                         <ul className={click ? 'nav-menu active' : 'nav-menu'} ref={ref} >
-                            <li className="nav-items" onClick={handleClick} >
-                                <Link to='/' className="nav-link">
-                                    Home
-                                </Link>
+                        <Link to='/' className="nav-items">
+                            <li className="nav-link" onClick={handleClick} >
+                                    Home            
                             </li>
-                            <li className="nav-items" onClick={handleClick} >
-                                <Link to='/shop' className="nav-link">
-                                    Shop
-                                </Link>
+                            </Link>
+                            <Link to='/shop' className="nav-items">
+                            <li className="nav-link" onClick={handleClick} >
+                                    Shop             
                             </li>
-                            <li className="nav-items" onClick={handleClick} >
-                                <Link to='/cart' className="nav-link">
-                                    Cart
-                                </Link>
+                            </Link>
+                            <Link to='/cart' className="nav-items">
+                            <li className="nav-link" onClick={handleClick} >
+                                    Cart             
                             </li>
-                            <li className="nav-items" onClick={handleClick} >
-                                <Link to='/orders' className="nav-link">
-                                    Orders
-                                </Link>
+                            </Link>
+                            <Link to='/orders' className="nav-items">
+                            <li className="nav-link" onClick={handleClick} >
+                                    Orders             
                             </li>
-                            <li className="nav-items" onClick={handleClick} >
-                                <Link to='/about' className="nav-link">
-                                    About Us
-                                </Link>
+                            </Link>
+                            <Link to='/about' className="nav-items">
+                            <li className="nav-link" onClick={handleClick} >
+                                    About Us             
                             </li>
+                            </Link>
                             <li className="nav-items active">
                                 <div to='/about' className="nav-link">
                                 <img className='avatar' src="images/avatar.png" alt="NA" />

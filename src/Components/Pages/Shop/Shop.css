@@ -38,12 +38,29 @@
     border-radius: 5%;
 }
 
-.shop-item-content h2 {
-    padding-top: 10px;
+.shop-select-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
 }
 
-.shop-item-content button {
-    margin-top: 10px;
+.shop-item-name {
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.shop-select {
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 50%;
+}
+
+.shop-item-content h2 {
+    padding-bottom: 5px;
+}
+
+.btn-shop {
+    background-color: #2d2ae4;
 }
 
 .btn-shop:hover {

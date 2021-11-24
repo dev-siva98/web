@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import About from "./Components/Pages/About/About";
 import Cart from "./Components/Pages/Cart/Cart";
 import Home from "./Components/Pages/Home/Home";
+import Orders from "./Components/Pages/Orders/Orders";
 import Shop from "./Components/Pages/Shop/Shop";
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path='/cart'>
             <Cart/>         
+          </Route>
+          <Route path='/orders'>
+            <Orders/>         
           </Route>
         </Switch>
         <Footer />

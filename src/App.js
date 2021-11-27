@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css'
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
@@ -7,6 +8,7 @@ import Cart from "./Components/Pages/Cart/Cart";
 import Home from "./Components/Pages/Home/Home";
 import Orders from "./Components/Pages/Orders/Orders";
 import Shop from "./Components/Pages/Shop/Shop";
+import UserLogin from "./Components/Pages/UserLogin/UserLogin";
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Home />
+          </Route>
+          <Route path='/login'>
+            <UserLogin/>
           </Route>
           <Route path='/about'>
             <About/>

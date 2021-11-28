@@ -76,20 +76,27 @@ function Navbar() {
                                 </li>
                             </Link>
                             <li className='nav-items profile-mobile'>
-                                <div className="nav-link" onClick={() => setOpen(!open)}>
-                                    {open ? 'Logout' : 'Login'}
+                                <div className="nav-link" onClick={() =>{
+                                    setOpen(!open)
+                                    handleClick()
+                                    }}>
+                                    {open ? <Link to='/'>Logout</Link>
+                                    : <Link to='/login' onClick={() =>{
+                                        setDrop(!drop)
+                                        handleClick()
+                                        }}>Login</Link>}
                                 </div>
                             </li>
                             <li className="nav-items active">
                                 <div className="nav-link dropdown">
                                     <img className='avatar' src="images/avatar.png" alt="NA" onClick={() => setDrop(!drop)} />
-                                    <div className={drop ? "dropdown-content" : 'content-hidden'} onClick={() =>{
+                                    <div className={drop ? "dropdown-content" : 'content-hidden'} onClick={() => {
                                         setOpen(!open)
-                                        }}>
-                                        {open ? 'Logout'
-                                        : <Link to='/login'>Login</Link>}
+                                    }}>
+                                        {open ? <Link to='/' onClick={() => setDrop(!drop)}>Logout</Link>
+                                            : <Link to='/login' onClick={() => setDrop(!drop)}>Login</Link>}
                                     </div>
-                                    
+
                                 </div>
                             </li>
                         </ul>

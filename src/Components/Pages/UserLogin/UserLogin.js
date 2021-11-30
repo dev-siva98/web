@@ -17,7 +17,6 @@ function UserLogin() {
                                 <div className="social-container">
                                     <button>Sign up with Google</button>
                                 </div>
-
                                 <span><h2>OR</h2></span>
                                 <input type="text" placeholder="Name" />
                                 <input type="email" placeholder="Email" />

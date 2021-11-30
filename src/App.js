@@ -9,6 +9,7 @@ import Home from "./Components/Pages/Home/Home";
 import Orders from "./Components/Pages/Orders/Orders";
 import Shop from "./Components/Pages/Shop/Shop";
 import UserLogin from "./Components/Pages/UserLogin/UserLogin";
+import AddProduct from './Components/Admin/AddProduct'
 
 function App() {
   return (
@@ -19,20 +20,23 @@ function App() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route path='/login'>
-            <UserLogin/>
+          <Route  path='/login'>
+            <UserLogin />
           </Route>
-          <Route path='/about'>
-            <About/>
+          <Route  path='/about'>
+            <About />
           </Route>
-          <Route path='/shop'>
-            <Shop/>
+          <Route  path='/shop'>
+            <Shop />
           </Route>
           <Route path='/cart'>
-            <Cart/>         
+            <Cart />
           </Route>
-          <Route path='/orders'>
-            <Orders/>         
+          <Route  path='/orders'>
+            <Orders />
+          </Route>
+          <Route  path='/admin'>
+            <AddProduct/>
           </Route>
         </Switch>
         <Footer />

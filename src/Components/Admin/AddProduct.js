@@ -1,44 +1,133 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './AddProduct.css'
+import axios from '../../axios'
+import { useForm } from 'react-hook-form'
+// import { Image } from 'cloudinary-react'
+import Axios from 'axios'
+import { Line } from 'rc-progress'
+import ReactLoading from 'react-loading'
 
 function AddProduct() {
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [image, setImage] = useState()
+    const [imageDetails, setImageDetails] = useState([])
+    const [change, setChange] = useState(true)
+    const [progress, setProgress] = useState(0)
+    const [uploading, setUploading] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    const config = {
+        onUploadProgress: function (progressEvent) {
+            var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            setProgress(percentCompleted)
+        }
+    }
+
+    const uploadImage = () => {
+        setUploading(true)
+        console.log(image)
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "l68cm4ir");
+
+        Axios.post("https://api.cloudinary.com/v1_1/makemycake/image/upload", formData, config).then((res) => {
+            console.log(res.data)
+            setImageDetails(res.data)
+            setChange(false)
+
+        }).catch((err) => {
+            alert("Error uploading")
+            console.log(err)
+            setProgress(0)
+            setUploading(false)
+        })
+
+    }
+
+    const submitForm = (data) => {
+        console.log(data);
+        setLoading(true)
+        data.image = {
+            url: imageDetails.url,
+            publicId: imageDetails.public_id
+        }
+
+        console.log(data)
+        axios({
+            method: 'post',
+            url: '/addproducts',
+            data: data
+        })
+            .then((response) => {
+                console.log(response);
+                alert(data.pname + " - Added")
+                window.location.reload()
+            })
+            .catch((error) => {
+                setLoading(false)
+                console.log(error);
+                alert('Connection Error')
+            });
+    }
+
     return (
-        <div>
-            <section>
-                <div class="container mt-4">
-                    <div class="class">
-                        <div class="col-md-6">
-                            <h2 class="text-center">Add Product</h2>
-                            <form method="POST" id="add-product" action="/admin/add-product" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="pname">Product name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="pname" name="pname" placeholder="Enter Product Name"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="category">Category<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="category" name="category" placeholder="Enter Category"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="desc">Description<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="description" id="description" placeholder="Description"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="price">Price<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="price" id="price" placeholder="Price"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="image">Image<span class="text-danger">*</span></label>
-                                    <input type="file" class="form-control" name="image" id="image" placeholder="choose"/>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <input type="submit" value="Submit" class="btn btn-info btn-block"/>
-                                </div>
-                                <div class="form-group">
-                                </div>
-                            </form>
+        <div className='admin-add-product-section'>
+            <div className="admin-add-product-container">
+                <div className="admin-add-product-main">
+                    <h2>Add Product</h2>
+                    <form id="add-product" encType="multipart/form-data" onSubmit={handleSubmit(submitForm)} >
+                        <div className="form-group">
+                            <label className='form-control-label' htmlFor="pname">Product name<span className="text-danger">*</span></label>
+                            <input type="text" className="form-control" {...register("pname", { required: true })} placeholder="Enter Product Name" />
+                            {errors.pname && <p>First name is required</p>}
                         </div>
-                    </div>
+                        <div className="form-group">
+                            <label className='form-control-label' htmlFor="weight">Weight<span className="text-danger">*</span></label>
+                            <input type="text" className="form-control" {...register("weight", { required: true })} placeholder="Enter Weight" />
+                            {errors.weight && <p>Weight is required</p>}
+                        </div>
+                        <div className="form-group">
+                            <label className='form-control-label' htmlFor="pcode">Product-code<span className="text-danger">*</span></label>
+                            <input type="text" className="form-control" {...register("pcode", { required: true })} placeholder="Product-code" />
+                            {errors.pcode && <p>Product code is required</p>}
+                        </div>
+                        <div className="form-group">
+                            <label className='form-control-label' htmlFor="price">Price<span className="text-danger">*</span></label>
+                            <input type="text" className="form-control" {...register("price", { required: true })} placeholder="Price" />
+                            {errors.price && <p>Price is required</p>}
+                        </div>
+                        <div className="form-group">
+                            <label className='form-control-label' htmlFor="image">Image<span className="text-danger">*</span></label>
+                            <input type="file" name='image' className="form-control" onChange={(event) => {
+                                setImage(event.target.files[0])
+                                setChange(true)
+                                setProgress(0)
+                            }} />
+                            <div className='btn product-upload-button'
+                                style={{ backgroundColor: `${change ? 'blue' :'#00a623'}` }}
+                                onClick={progress===0 ? uploadImage : undefined} >
+                                {change ? `${uploading ? 'Uploading' : 'Upload'}` : "Done"}
+                            </div>
+                            <div className="upload-progress">
+                                <Line percent={progress}
+                                    trailColor={`rgba(188, 188, 188, ${progress / 100})`}
+                                    trailWidth='8'
+                                    strokeWidth="8"
+                                    strokeColor={progress === 100 ? '#37cc4e' : `rgba(62, 152, 199, ${progress / 100})`} />
+                                <h4 style={{ color: `${progress === 100 ? '#37cc4e' : `rgba(62, 152, 199, ${progress / 100})`}` }} >{progress}%</h4>
+                            </div>
+                        </div>
+                        <div className="form-group submit-button-container">
+                            <button type="submit" className="btn product-submit-button"
+                            disabled={change && !loading} >
+                                {loading ? <ReactLoading type={'bars'} color={'#fff'}/> : 'Submit'}</button>
+                        </div>
+                    </form>
+                    
                 </div>
-            </section>
+            </div>
         </div>
     )
 }

@@ -83,11 +83,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    letter-spacing: 3px;
 }
 
-ReactLoading {
+/* ReactLoading {
     overflow: hidden;
-}
+} */
 
 .btn:disabled {
     opacity: .5;

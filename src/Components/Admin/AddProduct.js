@@ -32,7 +32,7 @@ function AddProduct() {
         formData.append("file", image);
         formData.append("upload_preset", "l68cm4ir");
 
-        Axios.post("https://api.cloudinary.com/v1_1/makemycake/image/upload", formData, config).then((res) => {
+        Axios.put("https://api.cloudinary.com/v1_1/makemycake/image/upload", formData, config).then((res) => {
             console.log(res.data)
             setImageDetails(res.data)
             setChange(false)
@@ -54,6 +54,8 @@ function AddProduct() {
             publicId: imageDetails.public_id
         }
 
+        data.pcode="MC"+data.pcode
+
         console.log(data)
         axios({
             method: 'post',
@@ -68,7 +70,7 @@ function AddProduct() {
             .catch((error) => {
                 setLoading(false)
                 console.log(error);
-                alert('Connection Error')
+                alert(error)
             });
     }
 
@@ -85,17 +87,21 @@ function AddProduct() {
                         </div>
                         <div className="form-group">
                             <label className='form-control-label' htmlFor="weight">Weight<span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" {...register("weight", { required: true })} placeholder="Enter Weight" />
+                            <select type="select" className="form-control" {...register("weight", { required: true })} placeholder="Enter Weight">
+                                    <option value="500 G">500 G</option>
+                                    <option value="1 KG" >1 KG</option>
+                                    <option value="2 KG">2 KG</option>
+                            </select>
                             {errors.weight && <p>Weight is required</p>}
                         </div>
                         <div className="form-group">
                             <label className='form-control-label' htmlFor="pcode">Product-code<span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" {...register("pcode", { required: true })} placeholder="Product-code" />
+                            <input type="number" className="form-control" {...register("pcode", { required: true })} placeholder="Product-code" />
                             {errors.pcode && <p>Product code is required</p>}
                         </div>
                         <div className="form-group">
                             <label className='form-control-label' htmlFor="price">Price<span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" {...register("price", { required: true })} placeholder="Price" />
+                            <input type="number" className="form-control" {...register("price", { required: true })} placeholder="Price" />
                             {errors.price && <p>Price is required</p>}
                         </div>
                         <div className="form-group">
@@ -104,10 +110,11 @@ function AddProduct() {
                                 setImage(event.target.files[0])
                                 setChange(true)
                                 setProgress(0)
+                                setUploading(false)
                             }} />
                             <div className='btn product-upload-button'
-                                style={{ backgroundColor: `${change ? 'blue' :'#00a623'}` }}
-                                onClick={progress===0 ? uploadImage : undefined} >
+                                style={{ backgroundColor: `${change ? 'blue' : '#00a623'}` }}
+                                onClick={progress === 0 ? uploadImage : undefined} >
                                 {change ? `${uploading ? 'Uploading' : 'Upload'}` : "Done"}
                             </div>
                             <div className="upload-progress">
@@ -121,11 +128,11 @@ function AddProduct() {
                         </div>
                         <div className="form-group submit-button-container">
                             <button type="submit" className="btn product-submit-button"
-                            disabled={change && !loading} >
-                                {loading ? <ReactLoading type={'bars'} color={'#fff'}/> : 'Submit'}</button>
+                                disabled={change && !loading} >
+                                {loading ? <ReactLoading type={'bars'} color={'#fff'} /> : 'SUBMIT'}</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>

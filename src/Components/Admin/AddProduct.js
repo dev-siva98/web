@@ -7,10 +7,11 @@ import Axios from 'axios'
 import { Line } from 'rc-progress'
 import ReactLoading from 'react-loading'
 
+
 function AddProduct() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [image, setImage] = useState()
     const [imageDetails, setImageDetails] = useState([])
     const [change, setChange] = useState(true)
@@ -18,12 +19,18 @@ function AddProduct() {
     const [uploading, setUploading] = useState(false)
     const [loading, setLoading] = useState(false)
 
+
+
     const config = {
         onUploadProgress: function (progressEvent) {
             var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
             setProgress(percentCompleted)
         }
     }
+
+
+
+    console.log(image)
 
     const uploadImage = () => {
         setUploading(true)
@@ -54,7 +61,7 @@ function AddProduct() {
             publicId: imageDetails.public_id
         }
 
-        data.pcode="MC"+data.pcode
+        data.pcode = "MC" + data.pcode
 
         console.log(data)
         axios({
@@ -87,10 +94,10 @@ function AddProduct() {
                         </div>
                         <div className="form-group">
                             <label className='form-control-label' htmlFor="weight">Weight<span className="text-danger">*</span></label>
-                            <select type="select" className="form-control" {...register("weight", { required: true })} placeholder="Enter Weight">
-                                    <option value="500 G">500 G</option>
-                                    <option value="1 KG" >1 KG</option>
-                                    <option value="2 KG">2 KG</option>
+                            <select type="select" className="form-control select-checkbox" {...register("weight", { required: true })}  >
+                                <option value="500 G">500 G</option>
+                                <option value="1 KG" >1 KG</option>
+                                <option value="2 KG">2 KG</option>
                             </select>
                             {errors.weight && <p>Weight is required</p>}
                         </div>
@@ -132,7 +139,6 @@ function AddProduct() {
                                 {loading ? <ReactLoading type={'bars'} color={'#fff'} /> : 'SUBMIT'}</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

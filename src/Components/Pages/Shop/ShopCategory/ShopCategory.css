@@ -1,0 +1,13 @@
+.shop-cake-section {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-auto-rows: 340px;
+}
+
+@media (max-width:960px) {
+    .shop-cake-section {
+        grid-template-columns: 1fr 1fr;
+    }
+}

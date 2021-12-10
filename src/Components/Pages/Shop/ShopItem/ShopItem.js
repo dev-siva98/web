@@ -9,7 +9,7 @@ function ShopItem(props) {
     return (
         <div className="shop-item">
             <div className="shop-item-image">
-                {/* <Image
+                <Image
                     className='shop-item-img skeleton'
                     cloud_name='makemycake'
                     publicId={props.details.image.publicId}
@@ -18,8 +18,7 @@ function ShopItem(props) {
                     <Placeholder
                         type="vectorize">
                     </Placeholder>
-                </Image> */}
-                <img className='shop-item-img skeleton' src={props.details.image.url} alt="image loading" />
+                </Image>
             </div>
             <div className="shop-item-content">
                 <h2 className="shop-item-name">

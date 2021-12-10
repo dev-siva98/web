@@ -23,8 +23,7 @@ function ShopCategory(props) {
             <h2>{props.title}</h2>
             <div className="shop-cake-section">
                 {cakes.map((cake)=>
-                    <ShopItem
-                     
+                    <ShopItem 
                     key={cake._id}
                     details={cake} />
                 )}

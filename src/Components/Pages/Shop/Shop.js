@@ -16,7 +16,7 @@ function Shop() {
                     <div className="shop-section-main">
                         <ShopCategory 
                         title={titleData[0]}
-                        url='sync' />
+                        url='products' />
                         <hr className='shop-partition' />
                         {/* <ShopCategory
                         title={titleData[1]}/>

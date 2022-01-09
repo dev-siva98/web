@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Home.css'
 
 function Home() {
@@ -12,7 +13,7 @@ function Home() {
                                 We Bake Memories
                             </h1>
                             <p>
-                                Delicious Home Made Treat...<br/>
+                                Delicious Home Made Treat...<br />
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore esse optio mollitia, maxime in hic sequi quidem magni voluptatum, corrupti dicta labore voluptates animi ipsum!
                             </p>
                         </div>
@@ -27,19 +28,25 @@ function Home() {
                                 <img src="images/custom.jpg" alt="1" className='explore-image' />
                                 <h2 className='cake-header'>Custom Cakes</h2>
                                 <p className='cake-description' >Customized cakes for Birthday,Anniversary,Wedding etc...</p>
-                                <button className='btn btn-outline'>Explore</button>
+                                <Link to='/shop'>
+                                    <button className='btn btn-outline orange'>Explore</button>
+                                </Link>
                             </div>
                             <div className="cake-category">
                                 <img src="images/jar.jpg" alt="2" className='explore-image' />
-                                <h2  className='cake-header'>Jar Cakes</h2>
+                                <h2 className='cake-header'>Jar Cakes</h2>
                                 <p className='cake-description' >Comes in 5 different flavours-Order together or wait for notifications to order single...</p>
-                                <button className='btn btn-outline orange'>Explore</button>
+                                <Link to='/shop'>
+                                    <button className='btn btn-outline orange'>Explore</button>
+                                </Link>
                             </div>
                             <div className="cake-category">
                                 <img src="images/pastry.jpg" alt="3" className='explore-image' />
-                                <h2  className='cake-header'>Pastries</h2>
+                                <h2 className='cake-header'>Pastries</h2>
                                 <p className='cake-description'>Delicious fresh pastries are available now- Order your favorite cupcakes and brownies...</p>
-                                <button className='btn btn-outline'>Explore</button>
+                                <Link to='/shop'>
+                                    <button className='btn btn-outline orange'>Explore</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

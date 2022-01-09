@@ -1,24 +1,18 @@
 import React from 'react'
 import './ShopItem.css'
-import { Image, Placeholder } from 'cloudinary-react'
+// import { Placeholder } from 'cloudinary-react'
 
 function ShopItem(props) {
-
-    console.log(props.details.image.publicId)
 
     return (
         <div className="shop-item">
             <div className="shop-item-image">
-                <Image
+                <img
                     className='shop-item-img skeleton'
-                    cloud_name='makemycake'
-                    publicId={props.details.image.publicId}
-                    loading="lazy"
+                    src={props.details.image}
+                    alt='new'
                     >
-                    <Placeholder
-                        type="vectorize">
-                    </Placeholder>
-                </Image>
+                </img>
             </div>
             <div className="shop-item-content">
                 <h2 className="shop-item-name">

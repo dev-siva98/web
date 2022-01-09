@@ -57,7 +57,7 @@ function UserLogin() {
 
                                 <div className="overlay-panel overlay-right">
                                     <h1>Hello, Friend!</h1>
-                                    <p>Enter your personal details and start journey with us</p>
+                                    <p>Enter your personal details and order your favorite cake from us</p>
                                     <button className="ghost" id="signUp" onClick={() => {
                                         setLogin(true)
                                     }}>SIGN UP</button>

@@ -2,7 +2,7 @@
     width: 50%;
     height: 100%;
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     display: grid;
     grid-template-rows: 1fr 1fr;
     align-items: start;
@@ -29,7 +29,9 @@
 }
 
 .shop-item-img {
-    width: 90%;
+    width: 160px;
+    height: 160px;
+    background-size: cover;
     border-radius: 5%;
 }
 
@@ -76,6 +78,10 @@
 @media (max-width:960px) {
     .shop-item {
         width: 60%;
+    }
+
+    .shop-item-name {
+        font-size: 1.14rem;
     }
 }
 

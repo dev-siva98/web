@@ -13,16 +13,19 @@ function Signin() {
     } = useForm();
     const onSubmit = (data) => {
         axios({
-            method :'POST',
-            url:'signin',
-            data:data
+            method: 'POST',
+            url: 'signin',
+            data: data
         })
-        .then((response)=>{
-            alert(response)
-        })
-        .catch((err)=>{
-            alert(err)
-        })
+            .then((response) => {
+                if(response.data.status){
+                    
+                }
+            })
+            .catch((err) => {
+                alert(err)
+                console.log(err)
+            })
     };
 
     return (
@@ -32,16 +35,20 @@ function Signin() {
                 <button>Sign in with Google</button>
             </div>
             <span><h2>OR</h2></span>
-            <input type="email" placeholder="Email/Mobile"
-                {...register('email', { required: true })}
-                className={errors.email && 'input-error'}
+
+            <input type="tel" placeholder="Mobile"
+                pattern="^[0-9]{10,10}$"
+                {...register('mobile', { required: true })}
+                className={errors.mobile && 'input-error'}
             />
-            {errors.email && <p className='error-message'>field required</p>}
+            {errors.mobile && <p className='error-message'>field required</p>}
+
             <input type="password" placeholder="Password"
                 {...register('password', { required: true })}
                 className={errors.password && 'input-error'}
             />
             {errors.password && <p className='error-message'>field required</p>}
+
             <a href='http://localhost:3000/login'>Forgot your password?</a>
             <button>SIGN IN</button>
             <div className="signup-swap">

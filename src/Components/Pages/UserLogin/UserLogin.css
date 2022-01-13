@@ -64,11 +64,12 @@
 
 .login-section input {
 	background-color: #eee;
-	border: none;
+	border: 1.5px solid #fff;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
 }
+
 
 .login-menu-swap {
 	background-color: #fff;
@@ -207,6 +208,22 @@ a {
 .signin-swap , .signup-swap {
 	display: none;
 }
+
+.error-message {
+	color: #fd2600;
+	position: absolute;
+	left: 10px;
+	top: 30%;
+	/* background-color: #fdedea; */
+	
+}
+
+.input-error {
+	background-color: #fce4e4 !important;
+	border: 1.5px solid #fd2600 !important;
+	border-radius: 5px;
+}
+
 
 
 @media (max-width:960px) {

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from './UserContext'
 import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
+import { Redirect } from 'react-router'
 
 function Signin() {
 
@@ -18,8 +19,11 @@ function Signin() {
             data: data
         })
             .then((response) => {
-                if(response.data.status){
-                    
+                if (response.data.status) {
+                    alert('Success')
+                    return <Redirect to='/' />
+                } else {
+                    alert(response.data.message)
                 }
             })
             .catch((err) => {
@@ -29,7 +33,7 @@ function Signin() {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} >
             <h1>Sign in</h1>
             <div className="social-container">
                 <button>Sign in with Google</button>

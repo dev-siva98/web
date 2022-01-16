@@ -34,7 +34,8 @@ function Signup() {
             data:data
         })
         .then((response)=>{
-            alert(response)
+            console.log(response)
+            localStorage.setItem('token' , 'Bearer ' + response.data.accessToken)
         })
         .catch((err)=>{
             alert(err)

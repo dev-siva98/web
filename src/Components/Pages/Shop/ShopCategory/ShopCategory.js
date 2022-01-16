@@ -9,23 +9,23 @@ function ShopCategory(props) {
     const [cakes, setCakes] = useState([])
 
     console.log('hai')
-    useEffect(()=>{
-        axios.get(props.url).then(res=>{
+    useEffect(() => {
+        axios.get(props.url, { headers: { "Authorization": localStorage.getItem('token') } }).then(res => {
             console.log(res.data);
             setCakes(res.data)
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err);
         })
-    },[props.url])
+    }, [props.url])
 
     return (
         <div>
             <h2>{props.title}</h2>
             <div className="shop-cake-section">
-                {cakes.map((cake)=>
-                    <ShopItem 
-                    key={cake._id}
-                    details={cake} />
+                {cakes.map((cake) =>
+                    <ShopItem
+                        key={cake._id}
+                        details={cake} />
                 )}
             </div>
         </div>

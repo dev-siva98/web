@@ -4,17 +4,23 @@ import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
+import {useHistory} from 'react-router-dom'
 
 function Signup() {
 
     const { setMobile } = useContext(UserContext)
 
+    let history=useHistory()
     const formSchema = Yup.object().shape({
+        name: Yup.string()
+        .required('Missing Fields'),
+        mobile: Yup.string()
+        .required('Missing Fields'),
         password: Yup.string()
-          .required('Password is required')
+          .required('Missing Fields')
           .min(4, 'Password length should be at least 4 characters'),
         passwordConfirm: Yup.string()
-          .required('Confirm Password is required')
+          .required('Missing Fields')
           .oneOf([Yup.ref('password')], 'Passwords must and should match'),
       })
     
@@ -35,7 +41,12 @@ function Signup() {
         })
         .then((response)=>{
             console.log(response)
-            localStorage.setItem('token' , 'Bearer ' + response.data.accessToken)
+            if(response.data.error){
+                alert(response.data.message)
+            }else{
+                localStorage.setItem('token' , 'Bearer ' + response.data.accessToken)
+                history.push('/')
+            }
         })
         .catch((err)=>{
             alert(err)
@@ -52,14 +63,14 @@ function Signup() {
             <input type="text" placeholder="Name" {...register('name', { required: true })}
             className={errors.name && 'input-error'}
             />
-            {errors.name && <p className='error-message'>field required</p>}
+            {errors.name && <p className='error-message'>{errors.name.message}</p>}
 
             <input type="tel" placeholder="Mobile"
             pattern="^[0-9]{10,10}$"
             {...register('mobile', { required: true })}
             className={errors.mobile && 'input-error'}
             />
-            {errors.mobile && <p className='error-message'>field required</p>}
+            {errors.mobile && <p className='error-message'>{errors.mobile.message}</p>}
 
             <input type="password" placeholder="Password"
                 {...register('password', { required: true })}

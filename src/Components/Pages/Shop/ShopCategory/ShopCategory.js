@@ -10,12 +10,18 @@ function ShopCategory(props) {
 
     console.log('hai')
     useEffect(() => {
-        axios.get(props.url, { headers: { "Authorization": localStorage.getItem('token') } }).then(res => {
-            console.log(res.data);
-            setCakes(res.data)
-        }).catch(err => {
-            console.log(err);
-        })
+        axios.get(props.url, { headers: { "Authorization": localStorage.getItem('token') } })
+            .then(res => {
+                console.log(res);
+                if(res.data.error){
+                    alert(res.data.message)
+                }else {
+                    setCakes(res.data)
+                }
+            }).catch(err => {
+                console.log(err+'');
+                alert(err.messsage)
+            })
     }, [props.url])
 
     return (

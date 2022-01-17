@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import { UserContext } from './UserContext'
 import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
-import { Redirect } from 'react-router'
+import {useHistory} from 'react-router-dom'
 
 function Signin() {
 
     const { setMobile } = useContext(UserContext)
+    let history = useHistory()
     const {
         register,
         handleSubmit,
@@ -20,8 +21,9 @@ function Signin() {
         })
             .then((response) => {
                 if (response.data.status) {
+                    localStorage.setItem('token' , 'Bearer ' + response.data.accessToken)
                     alert('Success')
-                    return <Redirect to='/' />
+                    history.push('/')
                 } else {
                     alert(response.data.message)
                 }

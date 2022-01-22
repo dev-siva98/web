@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Testimonial from '../../Testimonial/Testimonial'
 import './About.css'
+import axios from '../../../axios';
+import { AppContext } from '../../../AppContext'
+
 
 function About() {
+
+    const { setLoggedIn } = useContext(AppContext)
+
+    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+        .then(res => {
+            console.log(res);
+            if (res.data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
     return (
         <div className='about-section'>
             <div className="about-section-container">
@@ -31,7 +50,7 @@ function About() {
                         </div>
                     </div>
                     <div className="testimonial">
-                        <Testimonial/>
+                        <Testimonial />
                     </div>
                     <div className="meet-team">
                         <h2>Meet Our Team</h2>

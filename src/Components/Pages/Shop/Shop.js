@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../../../AppContext'
+import axios from '../../../axios'
 import './Shop.css'
 import ShopCategory from './ShopCategory/ShopCategory'
 
 function Shop() {
+
+    const { setLoggedIn } = useContext(AppContext)
+
+    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+        .then(res => {
+            console.log(res);
+            if (res.data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
     const titleData = [
         'Custom Cakes',

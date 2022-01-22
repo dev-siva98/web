@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
@@ -13,8 +13,21 @@ function Navbar(props) {
     const [drop, setDrop] = useState(false)
     const [open, setOpen] = useState(false)
     // const [login, setLogin] = useState(false)
-
+    const history = useHistory()
     const handleClick = () => setClick(!click)
+
+    const handleLogout = () => {
+        const confirmBox = window.confirm(
+            "Do you really want to delete this Crumb?"
+          )
+          if (confirmBox === true) {
+              setDrop(!drop)
+              localStorage.removeItem('token')
+              localStorage.removeItem('user')
+              localStorage.removeItem('id')
+              history.push('/login')
+          }
+    }
 
     const ref = useRef()
 
@@ -87,7 +100,7 @@ function Navbar(props) {
                                     setOpen(!open)
                                     handleClick()
                                 }}>
-                                    {loggedIn ? <Link to='/'>Logout</Link>
+                                    {loggedIn ? <div onClick={handleLogout}>Logout</div>
                                         : <Link to='/login' onClick={() => {
                                             setDrop(!drop)
                                             handleClick()
@@ -104,10 +117,9 @@ function Navbar(props) {
                                     <div className={drop ? "dropdown-content" : 'content-hidden'} onClick={() => {
                                         setOpen(!open)
                                     }}>
-                                        {loggedIn ? <Link to='/' onClick={() => setDrop(!drop)}>Logout</Link>
+                                        {loggedIn ? <div onClick={handleLogout}>Logout</div>
                                             : <Link to='/login' onClick={() => setDrop(!drop)}>Login</Link>}
                                     </div>
-
                                 </div>
                             </li>
                         </ul>

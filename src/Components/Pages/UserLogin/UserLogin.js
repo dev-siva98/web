@@ -1,14 +1,31 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserContext } from './UserContext'
 import Signin from './Signin'
 import Signup from './Signup'
 import './UserLogin.css'
+import { AppContext } from '../../../AppContext'
+import axios from '../../../axios'
 
 function UserLogin() {
 
     const [login, setLogin] = useState(false)
     const [mobile, setMobile] = useState(false)
     const value = { mobile, setMobile }
+    const { setLoggedIn } = useContext(AppContext)
+
+    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+        .then(res => {
+            console.log(res);
+            if (res.data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
 
     return (
         <div className='login-section'>

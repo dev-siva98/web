@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AppContext } from '../../../AppContext'
+import axios from '../../../axios'
 import './Home.css'
 
 function Home() {
+
+    const { setLoggedIn } = useContext(AppContext)
+
+    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+        .then(res => {
+            console.log(res);
+            if (res.data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+
     return (
         <div>
             <div className="home-section">

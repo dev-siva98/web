@@ -2,10 +2,11 @@ import React, { useContext } from 'react'
 import { UserContext } from './UserContext'
 import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { AppContext } from '../../../AppContext'
 
 function Signin() {
-
+    const {setLoggedIn} = useContext(AppContext)
     const { setMobile } = useContext(UserContext)
     let history = useHistory()
     const {
@@ -20,16 +21,20 @@ function Signin() {
             data: data
         })
             .then((response) => {
-                if (response.data.status) {
-                    localStorage.setItem('token' , 'Bearer ' + response.data.accessToken)
+                if (response.data.error) {
+                    setLoggedIn(false)
+                    alert(response.data.message)
+                } else {
+                    localStorage.setItem('token', 'Bearer ' + response.data.accessToken)
+                    localStorage.setItem('user', response.data.user.name)
+                    localStorage.setItem('id' , response.data.id)
+                    setLoggedIn(true)
                     alert('Success')
                     history.push('/')
-                } else {
-                    alert(response.data.message)
                 }
             })
             .catch((err) => {
-                alert(err)
+                alert('Something went wrong')
                 console.log(err)
             })
     };
@@ -55,7 +60,7 @@ function Signin() {
             />
             {errors.password && <p className='error-message'>field required</p>}
 
-            <a href='http://localhost:3000/login'>Forgot your password?</a>
+            <a href='/login'>Forgot your password?</a>
             <button>SIGN IN</button>
             <div className="signup-swap">
                 New here ? <span className='swap-link' onClick={() => setMobile(true)}>Sign-up</span>

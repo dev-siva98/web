@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
-
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
-// import { BsPersonCircle } from 'react-icons/bs'
-function Navbar() {
+import { AppContext } from '../../AppContext'
+
+
+function Navbar(props) {
 
     const [click, setClick] = useState(false)
+    const {loggedIn} = useContext(AppContext)
     const [drop, setDrop] = useState(false)
     const [open, setOpen] = useState(false)
     // const [login, setLogin] = useState(false)
-
 
     const handleClick = () => setClick(!click)
 
@@ -80,7 +81,7 @@ function Navbar() {
                                     setOpen(!open)
                                     handleClick()
                                     }}>
-                                    {open ? <Link to='/'>Logout</Link>
+                                    {loggedIn ? <Link to='/'>Logout</Link>
                                     : <Link to='/login' onClick={() =>{
                                         setDrop(!drop)
                                         handleClick()
@@ -93,7 +94,7 @@ function Navbar() {
                                     <div className={drop ? "dropdown-content" : 'content-hidden'} onClick={() => {
                                         setOpen(!open)
                                     }}>
-                                        {open ? <Link to='/' onClick={() => setDrop(!drop)}>Logout</Link>
+                                        {loggedIn ? <Link to='/' onClick={() => setDrop(!drop)}>Logout</Link>
                                             : <Link to='/login' onClick={() => setDrop(!drop)}>Login</Link>}
                                     </div>
 

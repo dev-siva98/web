@@ -4,27 +4,29 @@ import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { AppContext } from '../../../AppContext'
 
 function Signup() {
 
+    const {setLoggedIn} = useContext(AppContext)
     const { setMobile } = useContext(UserContext)
 
-    let history=useHistory()
+    let history = useHistory()
     const formSchema = Yup.object().shape({
         name: Yup.string()
-        .required('Missing Fields'),
+            .required('Missing Fields'),
         mobile: Yup.string()
-        .required('Missing Fields'),
+            .required('Missing Fields'),
         password: Yup.string()
-          .required('Missing Fields')
-          .min(4, 'Password length should be at least 4 characters'),
+            .required('Missing Fields')
+            .min(4, 'Password length should be at least 4 characters'),
         passwordConfirm: Yup.string()
-          .required('Missing Fields')
-          .oneOf([Yup.ref('password')], 'Passwords must and should match'),
-      })
-    
-      const validationOpt = { resolver: yupResolver(formSchema) }
+            .required('Missing Fields')
+            .oneOf([Yup.ref('password')], 'Passwords must and should match'),
+    })
+
+    const validationOpt = { resolver: yupResolver(formSchema) }
 
     const {
         register,
@@ -33,24 +35,28 @@ function Signup() {
     } = useForm(validationOpt);
 
     const onSubmit = (data) => {
-        data.passwordConfirm=null
+        data.passwordConfirm = null
         axios({
-            method:'POST',
-            url:'signup',
-            data:data
+            method: 'POST',
+            url: 'signup',
+            data: data
         })
-        .then((response)=>{
-            console.log(response)
-            if(response.data.error){
-                alert(response.data.message)
-            }else{
-                localStorage.setItem('token' , 'Bearer ' + response.data.accessToken)
-                history.push('/')
-            }
-        })
-        .catch((err)=>{
-            alert(err)
-        })
+            .then((response) => {
+                console.log(response)
+                if (response.data.error) {
+                    setLoggedIn(false)
+                    alert(response.data.message)
+                } else {
+                    localStorage.setItem('token', 'Bearer ' + response.data.accessToken)
+                    localStorage.setItem('user', response.data.user.name)
+                    localStorage.setItem('id', response.data.id)
+                    setLoggedIn(true)
+                    history.push('/')
+                }
+            })
+            .catch((err) => {
+                alert(err)
+            })
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,14 +67,14 @@ function Signup() {
             <span><h2>OR</h2></span>
 
             <input type="text" placeholder="Name" {...register('name', { required: true })}
-            className={errors.name && 'input-error'}
+                className={errors.name && 'input-error'}
             />
             {errors.name && <p className='error-message'>{errors.name.message}</p>}
 
             <input type="tel" placeholder="Mobile"
-            pattern="^[0-9]{10,10}$"
-            {...register('mobile', { required: true })}
-            className={errors.mobile && 'input-error'}
+                pattern="^[0-9]{10,10}$"
+                {...register('mobile', { required: true })}
+                className={errors.mobile && 'input-error'}
             />
             {errors.mobile && <p className='error-message'>{errors.mobile.message}</p>}
 

@@ -9,7 +9,7 @@ import { AppContext } from '../../AppContext'
 function Navbar(props) {
 
     const [click, setClick] = useState(false)
-    const {loggedIn} = useContext(AppContext)
+    const { loggedIn } = useContext(AppContext)
     const [drop, setDrop] = useState(false)
     const [open, setOpen] = useState(false)
     // const [login, setLogin] = useState(false)
@@ -47,7 +47,13 @@ function Navbar(props) {
                     </Link>
                     <div className="navigation" >
                         <div className="menu-icon avatar-mob" onClick={handleClick} >
-                            {click ? <img className='avatar' src="images/avatar.png" alt="NA" /> : <FaBars />}
+                            {click ?
+                                <img className='avatar'
+                                    src={loggedIn ?
+                                        `https://ui-avatars.com/api/?name=${props.user}&length=1&background=random&bold=true`
+                                        : 'images/avatar.png'}
+                                    alt="NA" />
+                                : <FaBars />}
                         </div>
 
                         <ul className={click ? 'nav-menu active' : 'nav-menu'} ref={ref} >
@@ -77,20 +83,24 @@ function Navbar(props) {
                                 </li>
                             </Link>
                             <li className='nav-items profile-mobile'>
-                                <div className="nav-link" onClick={() =>{
+                                <div className="nav-link" onClick={() => {
                                     setOpen(!open)
                                     handleClick()
-                                    }}>
+                                }}>
                                     {loggedIn ? <Link to='/'>Logout</Link>
-                                    : <Link to='/login' onClick={() =>{
-                                        setDrop(!drop)
-                                        handleClick()
+                                        : <Link to='/login' onClick={() => {
+                                            setDrop(!drop)
+                                            handleClick()
                                         }}>Login</Link>}
                                 </div>
                             </li>
                             <li className="nav-items active">
                                 <div className="nav-link dropdown">
-                                    <img className='avatar' src="images/avatar.png" alt="NA" onClick={() => setDrop(!drop)} />
+                                    <img className='avatar'
+                                        src={loggedIn ?
+                                            `https://ui-avatars.com/api/?name=${props.user}&length=1&background=random&bold=true`
+                                            : 'images/avatar.png'}
+                                        alt="NA" onClick={() => setDrop(!drop)} />
                                     <div className={drop ? "dropdown-content" : 'content-hidden'} onClick={() => {
                                         setOpen(!open)
                                     }}>

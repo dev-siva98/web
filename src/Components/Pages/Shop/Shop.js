@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../../../AppContext'
 import axios from '../../../axios'
 import './Shop.css'
@@ -10,7 +10,6 @@ function Shop() {
 
     axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
         .then(res => {
-            console.log(res);
             if (res.data.error) {
                 setLoggedIn(false)
             } else {

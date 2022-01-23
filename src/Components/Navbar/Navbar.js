@@ -4,10 +4,10 @@ import { Link, useHistory } from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
-
+import { useStateValue } from '../Cart/StateProvider'
 
 function Navbar(props) {
-
+    const [{basket}] = useStateValue();
     const [click, setClick] = useState(false)
     const { loggedIn } = useContext(AppContext)
     const [drop, setDrop] = useState(false)
@@ -18,7 +18,7 @@ function Navbar(props) {
 
     const handleLogout = () => {
         const confirmBox = window.confirm(
-            "Do you really want to delete this Crumb?"
+            "Do you really want to Logout?"
           )
           if (confirmBox === true) {
               setDrop(!drop)
@@ -48,7 +48,7 @@ function Navbar(props) {
         }
     }, [click, drop])
 
-
+    console.log(basket)
 
     return (
         <div>
@@ -82,7 +82,7 @@ function Navbar(props) {
                             </Link>
                             <Link to='/cart' className="nav-items">
                                 <li className="nav-link" onClick={handleClick} >
-                                    Cart
+                                    Cart {basket?.length>0 ? basket.length : undefined}
                                 </li>
                             </Link>
                             <Link to='/orders' className="nav-items">

@@ -1,8 +1,17 @@
 import React from 'react'
 import './ShopItem.css'
+import { useStateValue } from '../../../Cart/StateProvider'
 // import { Placeholder } from 'cloudinary-react'
 
 function ShopItem(props) {
+    const [{basket}, dispatch] = useStateValue();
+
+    const addToCart = (item) => {
+        dispatch({
+            type: 'ADD_ITEM',
+            item: item
+        })
+    }
 
     return (
         <div className="shop-item">
@@ -22,7 +31,7 @@ function ShopItem(props) {
                     {props.details.weight}
                 </div>
                 <h2>&#8377;{props.details.price}</h2>
-                <button className='btn btn-shop'>Add to Cart</button>
+                <button onClick={()=> addToCart(props.details)} className='btn btn-shop'>Add to Cart</button>
             </div>
         </div>
     )

@@ -4,14 +4,15 @@ import { BiPlusCircle, BiMinusCircle } from 'react-icons/bi'
 import { MdDeleteForever } from 'react-icons/md'
 import { AppContext } from '../../../AppContext'
 import axios from '../../../axios'
+import { useStateValue } from '../../Cart/StateProvider'
 
 function Cart() {
 
     const { setLoggedIn } = useContext(AppContext)
+    const [{ basket}] = useStateValue()
 
     axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
         .then(res => {
-            console.log(res);
             if (res.data.error) {
                 setLoggedIn(false)
             } else {
@@ -23,6 +24,7 @@ function Cart() {
         })
 
 
+
     return (
         <div>
             <div className="cart-section">
@@ -30,38 +32,6 @@ function Cart() {
                     <h1 className='cart-header'>Cart</h1>
                     <div className="cart-section-main">
                         <div className="cart-items">
-                            <div className="cart-item">
-                                <div className="cart-item-product">
-                                    <div className="cart-item-image">
-                                        <img className='cart-item-img' src="images/custom.jpg" alt="item" />
-                                    </div>
-                                    <div className="cart-item-details">
-                                        <h2 className="cart-item-name">
-                                            Red velvet
-                                        </h2>
-                                        <h3>1 KG</h3>
-                                        <h4>MC101</h4>
-                                        <h4>&#8377;600</h4>
-                                    </div>
-                                </div>
-                                <div className="cart-items-details">
-
-                                    <div className="cart-item-availability">
-                                        Available
-                                    </div>
-                                    <div className="cart-item-quantity">
-                                        <BiMinusCircle className='quantity-button minus-icon' />
-                                        2
-                                        <BiPlusCircle className='quantity-button plus-icon' />
-                                    </div>
-                                    <div className="cart-item-price">
-                                        &#8377;1200
-                                    </div>
-                                    <MdDeleteForever className='delete-icon' />
-                                </div>
-                            </div>
-
-                            <hr className="cart-items-partition" />
                             <div className="cart-item">
                                 <div className="cart-item-product">
                                     <div className="cart-item-image">

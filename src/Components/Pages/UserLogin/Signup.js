@@ -42,7 +42,6 @@ function Signup() {
             data: data
         })
             .then((response) => {
-                console.log(response)
                 if (response.data.error) {
                     setLoggedIn(false)
                     alert(response.data.message)

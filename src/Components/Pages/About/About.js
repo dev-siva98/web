@@ -11,7 +11,6 @@ function About() {
 
     axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
         .then(res => {
-            console.log(res);
             if (res.data.error) {
                 setLoggedIn(false)
             } else {

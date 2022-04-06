@@ -7,12 +7,17 @@ function ShopItem(props) {
     const [{basket}, dispatch] = useStateValue();
 
     const addToCart = (item) => {
+        const product = {
+            proId: item.id,
+            quantity: 1
+        }
         dispatch({
             type: 'ADD_ITEM',
             item: item
         })
     }
 
+    
     return (
         <div className="shop-item">
             <div className="shop-item-image">

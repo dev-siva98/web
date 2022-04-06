@@ -18,16 +18,20 @@ function reducer(state, action) {
                 alert('Item already added to the cart')
                 return state
             } else {
-                action.item.quantity = 1
+                const pro = {
+                    proId: action.item.id,
+                    quantity: 1
+                }
+                console.log(pro, action.item)
                 axios({
                     url: 'addtocart',
                     method: 'post',
-                    data: action.item,
+                    data: pro,
                     headers: { "Authorization": localStorage.getItem('token') }
                 })
                 return {
                     ...state,
-                    basket: [...state.basket, action.item]
+                    basket: [...state.basket, pro]
                 }
             }
         case 'REMOVE_ITEM':

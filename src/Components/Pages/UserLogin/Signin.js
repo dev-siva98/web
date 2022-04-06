@@ -30,7 +30,7 @@ function Signin() {
                     localStorage.setItem('id' , response.data.id)
                     setLoggedIn(true)
                     alert('Success')
-                    navigate.push('/')
+                    navigate('/')
                 }
             })
             .catch((err) => {

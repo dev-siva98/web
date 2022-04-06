@@ -50,7 +50,7 @@ function Signup() {
                     localStorage.setItem('user', response.data.user.name)
                     localStorage.setItem('id', response.data.id)
                     setLoggedIn(true)
-                    navigate.push('/')
+                    navigate('/')
                 }
             })
             .catch((err) => {

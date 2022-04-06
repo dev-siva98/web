@@ -1,3 +1,5 @@
+import axios from '../../axios'
+
 export const initialState = {
     basket: []
 }
@@ -16,6 +18,13 @@ function reducer(state, action) {
                 alert('Item already added to the cart')
                 return state
             } else {
+                action.item.quantity=1
+                axios({
+                    url: 'addtocart',
+                    method: 'post',
+                    data: action.item,
+                    headers: { "Authorization": localStorage.getItem('token') }
+                })
                 return {
                     ...state,
                     basket: [...state.basket, action.item]

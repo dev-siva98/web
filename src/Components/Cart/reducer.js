@@ -1,11 +1,11 @@
 import axios from '../../axios'
 
+
 export const initialState = {
     basket: []
 }
 
 function reducer(state, action) {
-    console.log(action)
     switch (action.type) {
         case 'ADD_ITEM':
             var flag = false
@@ -18,7 +18,7 @@ function reducer(state, action) {
                 alert('Item already added to the cart')
                 return state
             } else {
-                action.item.quantity=1
+                action.item.quantity = 1
                 axios({
                     url: 'addtocart',
                     method: 'post',
@@ -31,10 +31,10 @@ function reducer(state, action) {
                 }
             }
         case 'REMOVE_ITEM':
-            state.basket.map((product)=> {
-                if(product.id===action.item.id) {
+            state.basket.map((product) => {
+                if (product.id === action.item.id) {
                     console.log('deleted')
-                }else {
+                } else {
                     state.basket.push(product)
                 }
             })

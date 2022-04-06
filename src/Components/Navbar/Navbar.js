@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Navbar.css'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
@@ -13,7 +13,7 @@ function Navbar(props) {
     const [drop, setDrop] = useState(false)
     const [open, setOpen] = useState(false)
     // const [login, setLogin] = useState(false)
-    const history = useHistory()
+    const navigate = useNavigate()
     const handleClick = () => setClick(!click)
 
     const handleLogout = () => {
@@ -25,7 +25,7 @@ function Navbar(props) {
               localStorage.removeItem('token')
               localStorage.removeItem('user')
               localStorage.removeItem('id')
-              history.push('/login')
+              navigate.push('/login')
           }
     }
 

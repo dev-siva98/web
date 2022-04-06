@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../../AppContext'
 
 function Signup() {
@@ -12,7 +12,7 @@ function Signup() {
     const {setLoggedIn} = useContext(AppContext)
     const { setMobile } = useContext(UserContext)
 
-    let history = useHistory()
+    let navigate = useNavigate()
     const formSchema = Yup.object().shape({
         name: Yup.string()
             .required('Missing Fields'),
@@ -50,7 +50,7 @@ function Signup() {
                     localStorage.setItem('user', response.data.user.name)
                     localStorage.setItem('id', response.data.id)
                     setLoggedIn(true)
-                    history.push('/')
+                    navigate.push('/')
                 }
             })
             .catch((err) => {

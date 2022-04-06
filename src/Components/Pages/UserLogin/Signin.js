@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { UserContext } from './UserContext'
 import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../../AppContext'
 
 function Signin() {
     const {setLoggedIn} = useContext(AppContext)
     const { setMobile } = useContext(UserContext)
-    let history = useHistory()
+    let navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -30,7 +30,7 @@ function Signin() {
                     localStorage.setItem('id' , response.data.id)
                     setLoggedIn(true)
                     alert('Success')
-                    history.push('/')
+                    navigate.push('/')
                 }
             })
             .catch((err) => {

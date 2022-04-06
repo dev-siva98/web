@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './App.css'
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import About from "./Components/Pages/About/About";
@@ -41,29 +41,15 @@ function App() {
         <AppContext.Provider value={login}>
           <StateProvider initialState={initialState} reducer={reducer}>
             <Navbar user={user} />
-            <Switch>
-              <Route exact path='/'>
-                <Home />
-              </Route>
-              <Route path='/login'>
-                <UserLogin />
-              </Route>
-              <Route path='/about'>
-                <About />
-              </Route>
-              <Route path='/shop'>
-                <Shop />
-              </Route>
-              <Route path='/cart'>
-                <Cart />
-              </Route>
-              <Route path='/orders'>
-                <Orders />
-              </Route>
-              <Route path='/admin'>
-                <AddProduct />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route exact path='/' element={<Home />}/>
+              <Route path='/login' element={<UserLogin />}/>
+              <Route path='/about' element={<About />}/>
+              <Route path='/shop' element={<Shop />}/>
+              <Route path='/cart' element={<Cart />}/> 
+              <Route path='/orders' element={<Orders />}/>
+              <Route path='/admin' element={<AddProduct />}/> 
+            </Routes>
             <Footer />
           </StateProvider>
         </AppContext.Provider>

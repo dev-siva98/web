@@ -1,11 +1,15 @@
-import axios from '../../axios'
-
 
 function reducer(state, action) {
     switch (action.type) {
+
         case 'INITIALIZE':
-            state.basket= action.payload.basket
+            state.basket = action.payload.basket
             return state
+
+        case 'CLEAR':
+            state.basket = []
+            return state
+
         case 'ADD_ITEM':
             var flag = false
             state.basket.map((product) => {
@@ -35,7 +39,7 @@ function reducer(state, action) {
             }
         case 'REMOVE_ITEM':
             state.basket.map((product) => {
-                if (product.proId === action.item.proId) {
+                if (product.proId === action.item.id) {
                     console.log('deleted')
                 } else {
                     state.basket.push(product)

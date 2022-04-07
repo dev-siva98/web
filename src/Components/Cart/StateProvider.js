@@ -1,6 +1,7 @@
 import axios from "../../axios";
 import React, { createContext, useContext, useEffect, useReducer, useState } from "react"
 import reducer from "./reducer";
+import { AppContext } from "../../AppContext";
 
 
 
@@ -17,21 +18,30 @@ export const CartState = () => useContext(StateContext)
 // Provider
 
 export const StateProvider = ({ children }) => {
+
+    const { loggedIn } = useContext(AppContext)
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        axios.get('userdetails', {
-            headers: { "Authorization": localStorage.getItem('token') }
-        }).then(res =>{
-            dispatch({
-                type: 'INITIALIZE',
-                payload:{
-                    ...initialState,
-                    basket:res.data?.cart}
+        if (loggedIn) {
+            axios.get('userdetails', {
+                headers: { "Authorization": localStorage.getItem('token') }
+            }).then(res => {
+                dispatch({
+                    type: 'INITIALIZE',
+                    payload: {
+                        ...initialState,
+                        basket: res.data?.cart
+                    }
                 })
-            }
-        )
-    }, []);
+            })
+        } else {
+            dispatch({
+                type: 'CLEAR'
+            })
+        }
+    }, [loggedIn])
+
     return (
         <StateContext.Provider value={useReducer(reducer, initialState)}>
             {children}

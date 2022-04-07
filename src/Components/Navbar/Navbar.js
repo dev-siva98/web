@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext, useReducer } from 'react'
 import './Navbar.css'
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
-import { useStateValue } from '../Cart/StateProvider'
+import { CartState } from '../Cart/StateProvider'
+
+
 
 function Navbar(props) {
-    const [{basket}] = useStateValue();
+    const [{ basket }, dispatch] = CartState()
     const [click, setClick] = useState(false)
     const { loggedIn } = useContext(AppContext)
     const [drop, setDrop] = useState(false)
@@ -19,18 +21,18 @@ function Navbar(props) {
     const handleLogout = () => {
         const confirmBox = window.confirm(
             "Do you really want to Logout?"
-          )
-          if (confirmBox === true) {
-              setDrop(!drop)
-              localStorage.removeItem('token')
-              localStorage.removeItem('user')
-              localStorage.removeItem('id')
-              navigate.push('/login')
-          }
+        )
+        if (confirmBox === true) {
+            setDrop(!drop)
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            localStorage.removeItem('id')
+            navigate('/login')
+        }
     }
 
     const ref = useRef()
-
+    console.log(basket, "Hwey")
     useEffect(() => {
         const detectClick = e => {
             if (click && ref.current && !ref.current.contains(e.target)) {
@@ -48,7 +50,7 @@ function Navbar(props) {
         }
     }, [click, drop])
 
-    console.log(basket)
+    // console.log(state)
 
     return (
         <div>
@@ -82,7 +84,7 @@ function Navbar(props) {
                             </Link>
                             <Link to='/cart' className="nav-items">
                                 <li className="nav-link" onClick={handleClick} >
-                                    Cart {basket?.length>0 ? basket.length : undefined}
+                                    Cart {basket?.length > 0 ? basket.length : undefined}
                                 </li>
                             </Link>
                             <Link to='/orders' className="nav-items">

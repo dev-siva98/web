@@ -4,12 +4,10 @@ import { BiPlusCircle, BiMinusCircle } from 'react-icons/bi'
 import { MdDeleteForever } from 'react-icons/md'
 import { AppContext } from '../../../AppContext'
 import axios from '../../../axios'
-import { useStateValue } from '../../Cart/StateProvider'
 
 function Cart() {
 
     const { setLoggedIn } = useContext(AppContext)
-    const [{ basket}] = useStateValue()
 
     axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
         .then(res => {

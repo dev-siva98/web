@@ -1,10 +1,12 @@
-import React from 'react'
+import React,{useReducer} from 'react'
 import './ShopItem.css'
-import { useStateValue } from '../../../Cart/StateProvider'
+import { CartState } from '../../../Cart/StateProvider';
+
+
 // import { Placeholder } from 'cloudinary-react'
 
 function ShopItem(props) {
-    const [{basket}, dispatch] = useStateValue();
+    const [{basket}, dispatch] = CartState();
 
     const addToCart = (item) => {
         const product = {
@@ -16,8 +18,6 @@ function ShopItem(props) {
             item: item
         })
     }
-
-    
     return (
         <div className="shop-item">
             <div className="shop-item-image">
@@ -25,7 +25,7 @@ function ShopItem(props) {
                     className='shop-item-img skeleton'
                     src={props.details.image}
                     alt='new'
-                    >
+                >
                 </img>
             </div>
             <div className="shop-item-content">
@@ -36,7 +36,7 @@ function ShopItem(props) {
                     {props.details.weight}
                 </div>
                 <h2>&#8377;{props.details.price}</h2>
-                <button onClick={()=> addToCart(props.details)} className='btn btn-shop'>Add to Cart</button>
+                <button onClick={() => addToCart(props.details)} className='btn btn-shop'>Add to Cart</button>
             </div>
         </div>
     )

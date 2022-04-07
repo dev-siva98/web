@@ -1,16 +1,15 @@
 import axios from '../../axios'
 
 
-export const initialState = {
-    basket: []
-}
-
 function reducer(state, action) {
     switch (action.type) {
+        case 'INITIALIZE':
+            state.basket= action.payload.basket
+            return state
         case 'ADD_ITEM':
             var flag = false
             state.basket.map((product) => {
-                if (product.id === action.item.id) {
+                if (product.proId === action.item.id) {
                     flag = true
                 }
             })
@@ -23,12 +22,12 @@ function reducer(state, action) {
                     quantity: 1
                 }
                 console.log(pro, action.item)
-                axios({
-                    url: 'addtocart',
-                    method: 'post',
-                    data: pro,
-                    headers: { "Authorization": localStorage.getItem('token') }
-                })
+                // axios({
+                //     url: 'addtocart',
+                //     method: 'post',
+                //     data: pro,
+                //     headers: { "Authorization": localStorage.getItem('token') }
+                // })
                 return {
                     ...state,
                     basket: [...state.basket, pro]
@@ -36,7 +35,7 @@ function reducer(state, action) {
             }
         case 'REMOVE_ITEM':
             state.basket.map((product) => {
-                if (product.id === action.item.id) {
+                if (product.proId === action.item.proId) {
                     console.log('deleted')
                 } else {
                     state.basket.push(product)

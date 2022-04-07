@@ -12,8 +12,8 @@ import UserLogin from "./Components/Pages/UserLogin/UserLogin";
 import AddProduct from './Components/Admin/AddProduct'
 import axios from "./axios";
 import { AppContext } from './AppContext'
-import { StateProvider } from "./Components/Cart/StateProvider";
-import reducer, { initialState } from "./Components/Cart/reducer";
+import {StateProvider } from "./Components/Cart/StateProvider";
+
 
 function App() {
 
@@ -35,20 +35,21 @@ function App() {
       console.log(err);
     })
 
+  
   return (
     <div className="app">
       <Router>
         <AppContext.Provider value={login}>
-          <StateProvider initialState={initialState} reducer={reducer}>
+          <StateProvider>
             <Navbar user={user} />
             <Routes>
-              <Route exact path='/' element={<Home />}/>
-              <Route path='/login' element={<UserLogin />}/>
-              <Route path='/about' element={<About />}/>
-              <Route path='/shop' element={<Shop />}/>
-              <Route path='/cart' element={<Cart />}/> 
-              <Route path='/orders' element={<Orders />}/>
-              <Route path='/admin' element={<AddProduct />}/> 
+              <Route exact path='/' element={<Home />} />
+              <Route path='/login' element={<UserLogin />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/shop' element={<Shop />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/orders' element={<Orders />} />
+              <Route path='/admin' element={<AddProduct />} />
             </Routes>
             <Footer />
           </StateProvider>

@@ -12,13 +12,15 @@ import UserLogin from "./Components/Pages/UserLogin/UserLogin";
 import AddProduct from './Components/Admin/AddProduct'
 import axios from "./axios";
 import { AppContext } from './AppContext'
-import {StateProvider } from "./Components/Cart/StateProvider";
+import { StateProvider } from "./Components/Cart/StateProvider";
+import Loader from "./Components/Loader/Loader";
 
 
 function App() {
 
   const [user, setUser] = useState()
   const [loggedIn, setLoggedIn] = useState()
+  let [loading, setLoading] = useState(false)
   const login = { loggedIn, setLoggedIn }
 
   axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
@@ -35,28 +37,34 @@ function App() {
       console.log(err);
     })
 
-  
+
   return (
     <div className="app">
-      <Router>
-        <AppContext.Provider value={login}>
-          <StateProvider>
-            <Navbar user={user} />
-            <Routes>
-              <Route exact path='/' element={<Home />} />
-              <Route path='/login' element={<UserLogin />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/shop' element={<Shop />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/orders' element={<Orders />} />
-              <Route path='/admin' element={<AddProduct />} />
-            </Routes>
-            <Footer />
-          </StateProvider>
-        </AppContext.Provider>
-      </Router>
+      {
+        loading ?
+          <Loader />
+          :
+          <Router>
+            <AppContext.Provider value={login}>
+              <StateProvider>
 
-    </div >
+                <Navbar user={user} />
+
+                <Routes>
+                  <Route exact path='/' element={<Home />} />
+                  <Route path='/login' element={<UserLogin />} />
+                  <Route path='/about' element={<About />} />
+                  <Route path='/shop' element={<Shop />} />
+                  <Route path='/cart' element={<Cart />} />
+                  <Route path='/orders' element={<Orders />} />
+                  <Route path='/admin' element={<AddProduct />} />
+                </Routes>
+                <Footer />
+              </StateProvider>
+            </AppContext.Provider>
+          </Router>
+      }
+    </div>
   );
 }
 

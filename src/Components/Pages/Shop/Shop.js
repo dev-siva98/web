@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { AppContext } from '../../../AppContext'
 import axios from '../../../axios'
 import './Shop.css'

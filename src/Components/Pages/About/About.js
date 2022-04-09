@@ -3,6 +3,7 @@ import Testimonial from '../../Testimonial/Testimonial'
 import './About.css'
 import axios from '../../../axios';
 import { AppContext } from '../../../AppContext'
+import Loader from '../../Loader/Loader';
 
 
 function About() {
@@ -50,6 +51,7 @@ function About() {
                     </div>
                     <div className="testimonial">
                         <Testimonial />
+                        <Loader/>
                     </div>
                     <div className="meet-team">
                         <h2>Meet Our Team</h2>

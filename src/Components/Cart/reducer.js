@@ -16,6 +16,7 @@ function reducer(state, action) {
                 if (product.proId === action.item.id) {
                     flag = true
                 }
+                return flag
             })
             if (flag) {
                 alert('Item already added to the cart')
@@ -44,6 +45,7 @@ function reducer(state, action) {
                 } else {
                     state.basket.push(product)
                 }
+                return state
             })
             return { state }
         default:

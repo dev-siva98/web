@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext, useReducer } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Navbar.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
@@ -9,7 +9,7 @@ import { CartState } from '../Cart/StateProvider'
 
 
 function Navbar(props) {
-    const [{ basket }, dispatch] = CartState()
+    const [{ basket }] = CartState()
     const [click, setClick] = useState(false)
     const { loggedIn } = useContext(AppContext)
     const [drop, setDrop] = useState(false)

@@ -1,0 +1,97 @@
+.loader-body {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: transparent;
+   z-index: 9999;
+   position: fixed;
+}
+
+.loader-container {
+   width: 80px; 
+   height: 80px;
+   position: relative;
+}
+
+.loader-inner-1,
+.loader-inner-2,
+.loader-inner-3,
+.loader-inner-4 {
+   position: absolute;
+   display: block;
+   width: 16px;
+   height: 16px;
+   border-radius: 16px;
+}
+
+.loader-inner-1::before,
+.loader-inner-2::before,
+.loader-inner-3::before,
+.loader-inner-4::before {
+   position: absolute;
+   content: '';
+   display: block;
+   width: 16px;
+   height: 16px;
+   border-radius: 16px;
+   right: 0;
+   animation: loading-1 2s infinite;
+}
+
+.loader-inner-1 {
+   top: 0;
+   left: 0;
+   transform: rotate(70deg);
+}
+
+.loader-inner-1::before{
+   background-color: #ffbb00;
+}
+.loader-inner-2 {
+   top: 0;
+   right: 0;
+   transform: rotate(160deg);
+}
+
+.loader-inner-2::before{
+   background-color: #7cbb00;
+}
+
+.loader-inner-3 {
+   bottom: 0;
+   right: 0;
+   transform: rotate(-110deg);
+}
+
+.loader-inner-3::before{
+   background-color: #00a1f1;
+}
+
+.loader-inner-4 {
+   bottom: 0;
+   left: 0;
+   transform: rotate(-20deg);
+}
+
+.loader-inner-4::before{
+   background-color: #f65314;
+}
+
+@keyframes loading-1 {
+   0%{
+      width: 16px;
+      right: 0;
+   }
+   30%{
+      width: 96px;
+      right: -80px;
+   }
+   60%{
+      width: 16px;
+      right: -80px;
+   }
+
+}
+

@@ -1,4 +1,4 @@
-import React,{useReducer} from 'react'
+import React from 'react'
 import './ShopItem.css'
 import { CartState } from '../../../Cart/StateProvider';
 
@@ -9,10 +9,6 @@ function ShopItem(props) {
     const [{basket}, dispatch] = CartState();
 
     const addToCart = (item) => {
-        const product = {
-            proId: item.id,
-            quantity: 1
-        }
         dispatch({
             type: 'ADD_ITEM',
             item: item

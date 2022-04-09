@@ -42,7 +42,7 @@ export const StateProvider = ({ children }) => {
                 type: 'CLEAR'
             })
         }
-    }, [loggedIn])
+    }, [loggedIn, setLoading]) 
 
     return (
         <StateContext.Provider value={useReducer(reducer, initialState)}>

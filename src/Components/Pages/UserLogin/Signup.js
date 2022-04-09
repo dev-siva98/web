@@ -5,12 +5,13 @@ import axios from '../../../axios';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from '../../../AppContext'
+import { AppContext, LoadingContext } from '../../../AppContext'
 
 function Signup() {
 
-    const {setLoggedIn} = useContext(AppContext)
+    const { setLoggedIn } = useContext(AppContext)
     const { setMobile } = useContext(UserContext)
+    const { setLoading } = useContext(LoadingContext)
 
     let navigate = useNavigate()
     const formSchema = Yup.object().shape({
@@ -34,6 +35,12 @@ function Signup() {
         formState: { errors },
     } = useForm(validationOpt);
 
+    const handleKeypress = e => {
+        if (e.key === 'Enter') {
+            setLoading(true)
+        }
+    };
+
     const onSubmit = (data) => {
         data.passwordConfirm = null
         axios({
@@ -43,6 +50,7 @@ function Signup() {
         })
             .then((response) => {
                 if (response.data.error) {
+                    setLoading(false)
                     setLoggedIn(false)
                     alert(response.data.message)
                 } else {
@@ -50,10 +58,12 @@ function Signup() {
                     localStorage.setItem('user', response.data.user.name)
                     localStorage.setItem('id', response.data.id)
                     setLoggedIn(true)
+                    setLoading(false)
                     navigate('/')
                 }
             })
             .catch((err) => {
+                setLoading(false)
                 alert(err)
             })
     }
@@ -86,10 +96,11 @@ function Signup() {
             <input type="password" placeholder="Confirm Password"
                 {...register('passwordConfirm', { required: true })}
                 className={errors.passwordConfirm && 'input-error'}
+                onKeyPress={handleKeypress}
             />
             {errors.passwordConfirm && <p className='error-message'>{errors.passwordConfirm.message}</p>}
 
-            <button>SIGN UP</button>
+            <button onClick={() => setLoading(true)}>SIGN UP</button>
             <div className="signin-swap">
                 Already have an account ? <span className='swap-link' onClick={() => setMobile(false)}>Sign-in</span>
             </div>

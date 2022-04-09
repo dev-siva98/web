@@ -29,7 +29,6 @@ function Signin() {
                     localStorage.setItem('user', response.data.user.name)
                     localStorage.setItem('id' , response.data.id)
                     setLoggedIn(true)
-                    alert('Success')
                     navigate('/')
                 }
             })

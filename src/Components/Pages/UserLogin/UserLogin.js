@@ -36,7 +36,6 @@ function UserLogin() {
                                 <Signup />
                             </div>
                             <div className={mobile ? "form-container sign-in-container signin-container-swap" : "form-container sign-in-container "}>
-
                                 <Signin />
                             </div>
                             <div className="overlay-container">

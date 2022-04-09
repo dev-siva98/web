@@ -11,7 +11,7 @@ import Shop from "./Components/Pages/Shop/Shop";
 import UserLogin from "./Components/Pages/UserLogin/UserLogin";
 import AddProduct from './Components/Admin/AddProduct'
 import axios from "./axios";
-import { AppContext } from './AppContext'
+import { AppContext,LoadingContext } from './AppContext'
 import { StateProvider } from "./Components/Cart/StateProvider";
 import Loader from "./Components/Loader/Loader";
 
@@ -19,8 +19,9 @@ import Loader from "./Components/Loader/Loader";
 function App() {
 
   const [user, setUser] = useState()
+  const [loading, setLoading] = useState(false)
   const [loggedIn, setLoggedIn] = useState()
-  let [loading, setLoading] = useState(false)
+  const loader = { loading, setLoading }
   const login = { loggedIn, setLoggedIn }
 
   axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
@@ -41,15 +42,12 @@ function App() {
   return (
     <div className="app">
       {
-        loading ?
-          <Loader />
-          :
+        loading ? <Loader /> : null }
           <Router>
             <AppContext.Provider value={login}>
+              <LoadingContext.Provider value={loader}>
               <StateProvider>
-
                 <Navbar user={user} />
-
                 <Routes>
                   <Route exact path='/' element={<Home />} />
                   <Route path='/login' element={<UserLogin />} />
@@ -61,9 +59,9 @@ function App() {
                 </Routes>
                 <Footer />
               </StateProvider>
+              </LoadingContext.Provider>
             </AppContext.Provider>
           </Router>
-      }
     </div>
   );
 }

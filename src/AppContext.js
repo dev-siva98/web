@@ -5,7 +5,7 @@ export const AppContext = createContext({
     setLoggedIn: () => { }
 })
 
-export const CartContext = createContext({
-    cartInitial: [],
-    setCartInitial: ()=>{}
+export const LoadingContext = createContext({
+    loading: false,
+    setLoading: ()=>{}
 })

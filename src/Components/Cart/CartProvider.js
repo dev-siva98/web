@@ -7,7 +7,7 @@ const CartStateContext = createContext();
 const CartDispatchContext = createContext();
 
 function CartProvider({ children }){
-  const [state, dispatch] = useReducer(cartReducer, []);
+  const [cart, dispatch] = useReducer(cartReducer, []);
   const {loggedIn} = useContext(AppContext)
   const { setLoading } = useContext(LoadingContext)
   
@@ -34,7 +34,7 @@ function CartProvider({ children }){
 
   return (
     <CartDispatchContext.Provider value={dispatch}>
-      <CartStateContext.Provider value={state}>
+      <CartStateContext.Provider value={cart}>
         {children}
       </CartStateContext.Provider>
     </CartDispatchContext.Provider>

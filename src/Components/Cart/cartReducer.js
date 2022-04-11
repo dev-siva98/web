@@ -1,4 +1,4 @@
-function reducer(state, action) {
+function reducer(cart, action) {
     switch (action.type) {
 
         case 'INITIALIZE':
@@ -9,7 +9,7 @@ function reducer(state, action) {
 
         case 'ADD_ITEM':
             var flag = false
-            state.map((product) => {
+            cart.map((product) => {
                 if (product.proId === action.item.id) {
                     flag = true
                 }
@@ -17,7 +17,7 @@ function reducer(state, action) {
             })
             if (flag) {
                 alert('Item already added to the cart')
-                return state
+                return cart
             } else {
                 const pro = {
                     proId: action.item.id,
@@ -29,13 +29,13 @@ function reducer(state, action) {
                 //     data: pro,
                 //     headers: { "Authorization": localStorage.getItem('token') }
                 // })
-                return [...state, pro]
+                return [...cart, pro]
             }
         case 'REMOVE_ITEM':
-            return state.filter((product) => product.proId !== action.item.id)
+            return cart.filter((product) => product.proId !== action.item.id)
 
         default:
-            return state;
+            return cart;
     }
 }
 

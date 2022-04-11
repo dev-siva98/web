@@ -27,7 +27,6 @@ function ShopItem(props) {
             type: 'ADD_ITEM',
             item: item
         })
-        setFlag(true)
     }
 
     const removeFromCart = (item) => {
@@ -35,7 +34,6 @@ function ShopItem(props) {
             type: 'REMOVE_ITEM',
             item: item
         })
-        setFlag(false)
     }
 
     return (

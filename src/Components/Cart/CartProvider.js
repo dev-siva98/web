@@ -1,41 +1,21 @@
-// import { createContext, useContext, useEffect, useReducer, useState } from "react";
-// import axios from "../../axios";
-// import cartReducer from "./cartReducer";
+import React, { useReducer, useContext, createContext } from "react";
+import cartReducer from './cartReducer'
 
+const CartStateContext = createContext();
+const CartDispatchContext = createContext();
 
-// const CartContext = createContext()
+function CartProvider({ children }){
+  const [state, dispatch] = useReducer(cartReducer, []);
 
-// export const initialState= {
-//     basket: []
-// }
+  return (
+    <CartDispatchContext.Provider value={dispatch}>
+      <CartStateContext.Provider value={state}>
+        {children}
+      </CartStateContext.Provider>
+    </CartDispatchContext.Provider>
+  );
+};
 
-// const CartProvider = ({ children }) => {
-    
-//     // const [initialState, setInitialState] = useState([])
-
-//     // useEffect(() => {
-//     //     axios.get('userdetails', {
-//     //         headers: { "Authorization": localStorage.getItem('token') }
-//     //     }).then(res => {
-//     //         console.log(res)
-//     //         const basket= res.data.cart
-//     //         setInitialState(basket)
-//     //     })
-//     // }, []);
-
-    
-
-//     const [state, dispatch] = useReducer(cartReducer, initialState);
-
-//     return (
-//         <CartContext.Provider value={{ state, dispatch }}>
-//             {children}
-//         </CartContext.Provider>
-//     );
-// };
-
-// export const CartState = () => {
-//     useContext(CartContext)
-// }
-
-// export default CartProvider
+export default CartProvider
+export const useCart = () => useContext(CartStateContext);
+export const useDispatchCart = () => useContext(CartDispatchContext);

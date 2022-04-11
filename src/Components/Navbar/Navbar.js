@@ -4,20 +4,35 @@ import { Link, useNavigate } from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
-import { CartState } from '../Cart/StateProvider'
+// import { CartState } from '../Cart/StateProvider'
+import axios from '../../axios'
+import { useCart, useDispatchCart } from '../Cart/CartProvider'
 
 
 
-function Navbar(props) {
-    const [{ basket }] = CartState()
+function Navbar(props){
+    const cart = useCart()
+    const dispatch = useDispatchCart()
     const [click, setClick] = useState(false)
-    const { loggedIn } = useContext(AppContext)
+    const { loggedIn, setLoggedIn } = useContext(AppContext)
     const [drop, setDrop] = useState(false)
     const [open, setOpen] = useState(false)
-    // const [login, setLogin] = useState(false)
     const navigate = useNavigate()
+
     const handleClick = () => setClick(!click)
 
+        axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+        .then(res => {
+            if (res.data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+            }
+        })
+        .catch(err => {
+            setLoggedIn(false)
+            console.log(err);
+        })    
     const handleLogout = () => {
         const confirmBox = window.confirm(
             "Do you really want to Logout?"
@@ -27,12 +42,16 @@ function Navbar(props) {
             localStorage.removeItem('token')
             localStorage.removeItem('user')
             localStorage.removeItem('id')
-            navigate('/login')
+            // dispatch({
+            //     type: 'CLEAR_CART'
+            // })
         }
+        navigate('/login')
     }
 
     const ref = useRef()
-    console.log(basket, "Hwey")
+
+    console.log(cart, "Hwey")
     useEffect(() => {
         const detectClick = e => {
             if (click && ref.current && !ref.current.contains(e.target)) {
@@ -42,15 +61,12 @@ function Navbar(props) {
                 setDrop(false)
             }
         }
-
         document.addEventListener("mousedown", detectClick)
 
         return () => {
             document.removeEventListener("mousedown", detectClick)
         }
     }, [click, drop])
-
-    // console.log(state)
 
     return (
         <div>
@@ -84,7 +100,7 @@ function Navbar(props) {
                             </Link>
                             <Link to='/cart' className="nav-items">
                                 <li className="nav-link" onClick={handleClick} >
-                                    Cart {basket?.length > 0 ? basket.length : undefined}
+                                    Cart {cart?.length > 0 ? cart.length : undefined}
                                 </li>
                             </Link>
                             <Link to='/orders' className="nav-items">

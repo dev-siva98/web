@@ -1,47 +1,43 @@
-// import axios from "../../axios";
+function reducer(state, action) {
+    switch (action.type) {
 
+        case 'INITIALIZE':
+            return []
 
-// function cartReducer(state, action){
-//     switch (action.type) {
-        
-//         // case 'INITIALIZE_CART':
-//         //     return {
-//         //         ...state,
-//         //         basket: action.payload
-//         //     };
+        case 'CLEAR_CART':
+            return []
 
-//         case 'ADD_ITEM':
-//             var flag = false
-//             state.basket.map((product) => {
-//                 if (product.id === action.payload.id) {
-//                     flag = true
-//                 }
-//             })
-//             if (flag) {
-//                 alert('Item already added to the cart')
-//                 return state
-//             } else {
-//                 const pro = {
-//                     proId: action.payload.id,
-//                     quantity: 1
-//                 }
-//                 console.log(pro, action.payload)
-//                 axios({
-//                     url: 'addtocart',
-//                     method: 'post',
-//                     data: pro,
-//                     headers: { "Authorization": localStorage.getItem('token') }
-//                 })
-//                 return {
-//                     ...state,
-//                     basket: [...state.basket, pro]
-//                 }
-//             }
-        
+        case 'ADD_ITEM':
+            var flag = false
+            state.map((product) => {
+                if (product.proId === action.item.id) {
+                    flag = true
+                }
+                return flag
+            })
+            if (flag) {
+                alert('Item already added to the cart')
+                return state
+            } else {
+                const pro = {
+                    proId: action.item.id,
+                    quantity: 1
+                }
+                // axios({
+                //     url: 'addtocart',
+                //     method: 'post',
+                //     data: pro,
+                //     headers: { "Authorization": localStorage.getItem('token') }
+                // })
+                return [...state, pro]
+            }
+        case 'REMOVE_ITEM':
+            console.log(state, "state")
+            return state.filter((product) => product.proId !== action.item.id)
 
-//         default:
-//             return state;
-//     }
-// };
+        default:
+            return state;
+    }
+}
 
-// export default cartReducer;
+export default reducer;

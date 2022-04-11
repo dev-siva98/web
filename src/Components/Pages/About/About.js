@@ -1,26 +1,26 @@
 import React, { useContext } from 'react'
 import Testimonial from '../../Testimonial/Testimonial'
 import './About.css'
-import axios from '../../../axios';
-import { AppContext } from '../../../AppContext'
+// import axios from '../../../axios';
+// import { AppContext } from '../../../AppContext'
 import Loader from '../../Loader/Loader';
 
 
 function About() {
 
-    const { setLoggedIn } = useContext(AppContext)
+    // const { setLoggedIn } = useContext(AppContext)
 
-    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    // axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+    //     .then(res => {
+    //         if (res.data.error) {
+    //             setLoggedIn(false)
+    //         } else {
+    //             setLoggedIn(true)
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
 
     return (
         <div className='about-section'>

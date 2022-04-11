@@ -4,27 +4,29 @@ import Signin from './Signin'
 import Signup from './Signup'
 import './UserLogin.css'
 import { AppContext } from '../../../AppContext'
-import axios from '../../../axios'
+// import axios from '../../../axios'
 
 function UserLogin() {
 
     const [login, setLogin] = useState(false)
     const [mobile, setMobile] = useState(false)
     const value = { mobile, setMobile }
-    const { setLoggedIn } = useContext(AppContext)
+    const {loggedIn, setLoggedIn } = useContext(AppContext)
 
-    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    // axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+    //     .then(res => {
+    //         if (res.data.error) {
+    //             setLoggedIn(false)
+    //         } else {
+    //             setLoggedIn(true)
+    //         }
+    //     })
+    //     .catch(err => {
+    //         setLoggedIn(false)
+    //         console.log(err);
+    //     })
 
+        console.log(loggedIn)
 
     return (
         <div className='login-section'>

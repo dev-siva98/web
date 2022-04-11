@@ -20,6 +20,10 @@ function ShopCategory(props) {
                 console.log(err.message);
                 alert(err.message)
             })
+
+            return () => {
+                setCakes([])
+            }
     }, [props.url])
 
     return (

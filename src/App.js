@@ -11,8 +11,8 @@ import Shop from "./Components/Pages/Shop/Shop";
 import UserLogin from "./Components/Pages/UserLogin/UserLogin";
 import AddProduct from './Components/Admin/AddProduct'
 import axios from "./axios";
-import { AppContext,LoadingContext } from './AppContext'
-import { StateProvider } from "./Components/Cart/StateProvider";
+import { AppContext, LoadingContext } from './AppContext'
+import CartProvider from "./Components/Cart/CartProvider";
 import Loader from "./Components/Loader/Loader";
 
 
@@ -24,7 +24,7 @@ function App() {
   const loader = { loading, setLoading }
   const login = { loggedIn, setLoggedIn }
 
-  axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
     .then(res => {
       if (res.data.error) {
         setLoggedIn(false)
@@ -35,33 +35,34 @@ function App() {
       }
     })
     .catch(err => {
+      setLoggedIn(false)
+      setUser(null)
       console.log(err);
     })
-
 
   return (
     <div className="app">
       {
-        loading ? <Loader /> : null }
-          <Router>
-            <AppContext.Provider value={login}>
-              <LoadingContext.Provider value={loader}>
-              <StateProvider>
-                <Navbar user={user} />
-                <Routes>
-                  <Route exact path='/' element={<Home />} />
-                  <Route path='/login' element={<UserLogin />} />
-                  <Route path='/about' element={<About />} />
-                  <Route path='/shop' element={<Shop />} />
-                  <Route path='/cart' element={<Cart />} />
-                  <Route path='/orders' element={<Orders />} />
-                  <Route path='/admin' element={<AddProduct />} />
-                </Routes>
-                <Footer />
-              </StateProvider>
-              </LoadingContext.Provider>
-            </AppContext.Provider>
-          </Router>
+        loading ? <Loader /> : null}
+      <Router>
+        <AppContext.Provider value={login}>
+          <LoadingContext.Provider value={loader}>
+            <CartProvider>
+              <Navbar user={user} />
+              <Routes>
+                <Route exact path='/' element={<Home />} />
+                <Route path='/login' element={<UserLogin />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/shop' element={<Shop />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/orders' element={<Orders />} />
+                <Route path='/admin' element={<AddProduct />} />
+              </Routes>
+              <Footer />
+            </CartProvider>
+          </LoadingContext.Provider>
+        </AppContext.Provider>
+      </Router>
     </div>
   );
 }

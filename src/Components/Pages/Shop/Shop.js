@@ -6,19 +6,19 @@ import ShopCategory from './ShopCategory/ShopCategory'
 
 function Shop() {
 
-    const { setLoggedIn } = useContext(AppContext)
+    // const { setLoggedIn } = useContext(AppContext)
 
-    axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    // axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+    //     .then(res => {
+    //         if (res.data.error) {
+    //             setLoggedIn(false)
+    //         } else {
+    //             setLoggedIn(true)
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
 
     const titleData = [
         'Custom Cakes',

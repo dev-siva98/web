@@ -14,7 +14,6 @@ function Footer() {
             <div className="footer-container">
                 <div className="footer-navigation">
                     {/* get in touch */}
-
                     <div className="foot-section">
                         <h2 className='foot-header'>Get In Touch</h2>
                         <ul className='foot-menu'>

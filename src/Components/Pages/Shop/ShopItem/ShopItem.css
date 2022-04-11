@@ -75,6 +75,21 @@
     border: 1px solid #05038a;
 }
 
+.shop-remove {
+    background-color: #fc1212
+}
+
+.shop-remove:hover {
+    background-color: #b40404;
+    color: #fff;
+}
+
+.shop-remove:active {
+    transform: scale(0.8);
+    border: 1px solid #aa0404;
+}
+
+
 @media (max-width:960px) {
     .shop-item {
         width: 60%;

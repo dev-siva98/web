@@ -2,7 +2,7 @@ function reducer(state, action) {
     switch (action.type) {
 
         case 'INITIALIZE':
-            return []
+            return [...action.payload]
 
         case 'CLEAR_CART':
             return []
@@ -32,7 +32,6 @@ function reducer(state, action) {
                 return [...state, pro]
             }
         case 'REMOVE_ITEM':
-            console.log(state, "state")
             return state.filter((product) => product.proId !== action.item.id)
 
         default:

@@ -1,8 +1,13 @@
+* {
+    scroll-behavior: smooth;
+}
+
 .cart-section {
     position: relative;
     background-color: #fff;
     top: 80px;
     padding: 30px 20px;
+    margin: 0px 40px;
 }
 
 .cart-section-container {
@@ -168,7 +173,8 @@
 }
 
 .cart-coupon-input input {
-    padding: 10px 20px;
+    font-size: 1rem;
+    padding: 9px 20px;
     border: #aaa solid 1px;
     border-right: 0;
 }

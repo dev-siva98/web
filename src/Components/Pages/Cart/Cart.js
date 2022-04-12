@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import CartItem from './CartItem'
 import './CartNew.css'
+import { useCart } from '../../Cart/CartProvider'
 
 function Cart() {
+
+    const scrollRef = useRef(null)
+    const handleScroll = () => {
+        scrollRef.current.scrollIntoView()
+    }
+
+    const cart = useCart()
+
     return (
         <div>
             <div className="cart-section">
@@ -13,22 +22,30 @@ function Cart() {
                             <h3>PRODUCT</h3>
                             <h3>QTY</h3>
                             <h3>PRICE</h3>
-                            <button className="btn btn-cart-proceed-mobile">Proceed to Checkout</button>
+                            <button className="btn btn-cart-proceed-mobile" onClick={handleScroll}>Proceed to Checkout</button>
                             <button className="btn btn-clear-cart">Clear Cart</button>
                         </div>
-                        <CartItem />
-                        <hr className='cart-item-seperation'/>
-                        <CartItem />
+                        {
+                            cart.length===0 ? <>Cart Is Empty</> :
+                            cart.map((product) => {
+                                return (
+                                    <>
+                                        <CartItem product={product} key={product.proId} />
+                                    </>
+                                )
+                            })
+                        }
                     </div>
-                    <div className="cart-section-right">
+                    <div className="cart-section-right" ref={scrollRef}>
                         <div className="cart-right-coupon">
                             <h3>Have coupon ?</h3>
                             <div className="cart-coupon-input">
-                                <input type="text" placeholder='Coupon Code' />
+                                <input type="text" placeholder='Coupon Code'
+                                    onInput={(e) => e.target.value = e.target.value.toUpperCase()} />
                                 <button className="btn btn-cart-coupon">Apply</button>
                             </div>
                         </div>
-                        <div className="cart-right-total">
+                        <div className="cart-right-total" >
                             <div className="cart-total-details">
                                 <div className="cart-total-item">
                                     <h3>Total Price:</h3>

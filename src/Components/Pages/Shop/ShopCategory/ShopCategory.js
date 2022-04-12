@@ -1,29 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ShopItem from '../ShopItem/ShopItem'
 import './ShopCategory.css'
 import axios from '../../../../axios'
+import { LoadingContext } from '../../../../AppContext'
 
 function ShopCategory(props) {
 
-
+    const { setLoading } = useContext(LoadingContext)
     const [cakes, setCakes] = useState([])
 
     useEffect(() => {
+        setLoading(true)
         axios.get(props.url, { headers: { "Authorization": localStorage.getItem('token') } })
             .then(res => {
-                if(res.data.error){
+                if (res.data.error) {
                     alert(res.data.message)
-                }else {
+                    setLoading(false)
+                } else {
                     setCakes(res.data)
+                    setLoading(false)
                 }
             }).catch(err => {
                 console.log(err.message);
                 alert(err.message)
+                setLoading(false)
             })
 
-            return () => {
-                setCakes([])
-            }
+        return () => {
+            setCakes([])
+            setLoading(false)
+        }
     }, [props.url])
 
     return (

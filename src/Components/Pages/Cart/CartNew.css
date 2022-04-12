@@ -14,13 +14,13 @@
 }
 
 .cart-header {
-    padding: 10px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 .cart-section-left {
-    grid-row: auto;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+    display: grid;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
     padding: 25px;
 }
 
@@ -31,15 +31,34 @@
     grid-template-columns: 2.5fr repeat(5, 1fr);
     align-items: center;
     justify-content: start;
+    font-size: 0.8rem;
 }
 
-.cart-left-headers h3:nth-child(2){
+.cart-left-headers h3:nth-child(2) {
     grid-column: 3 / 4;
     justify-self: center;
 }
 
 .cart-left-headers h3:nth-child(3) {
     justify-self: center;
+}
+
+.btn-cart-proceed-mobile {
+    display: none;
+}
+
+.btn-clear-cart {
+    grid-column: 6 / 6;
+    width: 100px;
+    color: #dd0004;
+    background-color: #fff;
+    border: #dd0004 solid 1px;
+    padding: 5px;
+}
+
+.btn-clear-cart:hover {
+    color: #fff;
+    background-color: #dd0004;
 }
 
 .cart-left-content {
@@ -62,6 +81,7 @@
 
 .cart-product-img {
     width: 120px;
+    border-radius: 8px;
 }
 
 .cart-product-details {
@@ -114,11 +134,18 @@
 }
 
 .btn-cart-remove {
+    padding: 5px 12px;
     background-color: #ff0000e3;
 }
 
 .btn-cart-remove:hover {
     background-color: #cf0609
+}
+
+.cart-item-seperation {
+    justify-self: center;
+    width: 90%;
+    margin: 10px 0;
 }
 
 .cart-section-right {
@@ -130,7 +157,7 @@
 
 .cart-right-coupon {
     padding: 20px;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .cart-coupon-input {
@@ -154,8 +181,8 @@
 .cart-right-total {
     display: grid;
     padding: 30px;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
-}   
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+}
 
 .cart-total-details {
     display: grid;
@@ -202,11 +229,11 @@
         grid-template-columns: 3fr 1fr 1fr;
     }
 
-    .cart-left-headers h3:nth-child(2){
+    .cart-left-headers h3:nth-child(2) {
         grid-column: 2 / 3;
     }
 
-    .cart-left-headers h3:nth-child(3){
+    .cart-left-headers h3:nth-child(3) {
         grid-column: 3 / 4;
     }
 
@@ -239,7 +266,30 @@
     }
 
     .cart-left-headers {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .cart-left-headers h3 {
         display: none;
+    }
+
+    .btn-cart-proceed-mobile {
+        display: block;
+        width: 180px;
+        color: #149902;
+        background-color: #fff;
+        border: #149902 solid 1px;
+        padding: 5px 12px;
+    }
+
+    .btn-cart-proceed-mobile:hover {
+        color: #fff;
+        background-color: #149902;
+    }
+
+    .btn-clear-cart {
+        justify-self: end;
+        grid-column: 2 / -1;
     }
 
     .cart-left-content {

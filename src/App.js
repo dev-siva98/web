@@ -4,7 +4,6 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import About from "./Components/Pages/About/About";
-import Cart from "./Components/Pages/Cart/Cart";
 import Home from "./Components/Pages/Home/Home";
 import Orders from "./Components/Pages/Orders/Orders";
 // import Shop from "./Components/Pages/Shop/Shop";
@@ -14,7 +13,7 @@ import axios from "./axios";
 // import { AppContext, LoadingContext } from './AppContext'
 // import CartProvider from "./Components/Cart/CartProvider";
 import Loader from "./Components/Loader/Loader";
-import CartNew from "./Components/Pages/Cart/CartNew";
+import Cart from "./Components/Pages/Cart/Cart";
 
 
 function App() {
@@ -58,7 +57,7 @@ function App() {
                 {/* <Route path='/login' element={<UserLogin />} /> */}
                 <Route path='/about' element={<About />} />
                 {/* <Route path='/shop' element={<Shop />} /> */}
-                <Route path='/cart' element={<CartNew />} />
+                <Route path='/cart' element={<Cart />} />
                 <Route path='/orders' element={<Orders />} />
                 <Route path='/admin' element={<AddProduct />} />
               </Routes>

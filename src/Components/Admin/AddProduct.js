@@ -29,9 +29,6 @@ function AddProduct() {
     }
 
 
-
-    console.log(image)
-
     const uploadImage = () => {
         setUploading(true)
         console.log(image)
@@ -40,7 +37,6 @@ function AddProduct() {
         formData.append("upload_preset", "l68cm4ir");
 
         Axios.put("https://api.cloudinary.com/v1_1/makemycake/image/upload", formData, config).then((res) => {
-            console.log(res.data)
             setImageDetails(res.data)
             setChange(false)
 
@@ -54,19 +50,11 @@ function AddProduct() {
     }
 
     const submitForm = (data) => {
-        console.log(data);
         setLoading(true)
-        data.image = {
-            url: imageDetails.url,
-            publicId: imageDetails.public_id
-        }
-
-        data.pcode = "MC" + data.pcode
-
-        console.log(data)
+        data.image = imageDetails.url
         axios({
             method: 'post',
-            url: '/addproducts',
+            url: '/admin/addproduct',
             data: data
         })
             .then((response) => {
@@ -102,9 +90,9 @@ function AddProduct() {
                             {errors.weight && <p>Weight is required</p>}
                         </div>
                         <div className="form-group">
-                            <label className='form-control-label' htmlFor="pcode">Product-code<span className="text-danger">*</span></label>
-                            <input type="number" className="form-control" {...register("pcode", { required: true })} placeholder="Product-code" />
-                            {errors.pcode && <p>Product code is required</p>}
+                            <label className='form-control-label' htmlFor="proId">Product-code<span className="text-danger">*</span></label>
+                            <input type="number" className="form-control" {...register("proId", { required: true })} placeholder="Product-code" />
+                            {errors.proId && <p>Product code is required</p>}
                         </div>
                         <div className="form-group">
                             <label className='form-control-label' htmlFor="price">Price<span className="text-danger">*</span></label>

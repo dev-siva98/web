@@ -15,7 +15,7 @@ function CartProvider({ children }){
         
         if (loggedIn) {
             setLoading(true)
-            axios.get('userdetails', {
+            axios.get('fetchcart', {
                 headers: { "Authorization": localStorage.getItem('token') }
             }).then(res => {
                 dispatch({

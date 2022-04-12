@@ -11,7 +11,7 @@ function ShopItem(props) {
 
     useEffect(() => {
         cart.map((product) => {
-            if (product.proId === props.details.id) {
+            if (product.proId === props.details.proId) {
                 setFlag(true)
             }
         })

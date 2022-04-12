@@ -15,7 +15,6 @@ function Shop() {
     const { setLoggedIn } = useContext(AppContext)
 
     useEffect(() => {
-        console.log('auth-nav')
         axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
         .then(res => {
             if (res.data.error) {

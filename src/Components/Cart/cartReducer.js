@@ -1,3 +1,5 @@
+import axios from "../../axios"
+
 function reducer(cart, action) {
     switch (action.type) {
 
@@ -10,7 +12,7 @@ function reducer(cart, action) {
         case 'ADD_ITEM':
             var flag = false
             cart.map((product) => {
-                if (product.proId === action.item.id) {
+                if (product.proId === action.item.proId) {
                     flag = true
                 }
                 return flag
@@ -19,20 +21,17 @@ function reducer(cart, action) {
                 alert('Item already added to the cart')
                 return cart
             } else {
-                const pro = {
-                    proId: action.item.id,
-                    quantity: 1
-                }
-                // axios({
-                //     url: 'addtocart',
-                //     method: 'post',
-                //     data: pro,
-                //     headers: { "Authorization": localStorage.getItem('token') }
-                // })
-                return [...cart, pro]
+                action.item.quantity = 1
+                axios({
+                    url: 'addtocart',
+                    method: 'post',
+                    data: action.item,
+                    headers: { "Authorization": localStorage.getItem('token') }
+                })
+                return [...cart, action.item]
             }
         case 'REMOVE_ITEM':
-            return cart.filter((product) => product.proId !== action.item.id)
+            return cart.filter((product) => product.proId !== action.item.proId)
 
         default:
             return cart;

@@ -1,15 +1,17 @@
-import React, { useContext } from 'react'
+// import React, { useContext, useEffect } from 'react'
 import './Cart.css'
 import { BiPlusCircle, BiMinusCircle } from 'react-icons/bi'
 import { MdDeleteForever } from 'react-icons/md'
-import { AppContext } from '../../../AppContext'
-import axios from '../../../axios'
+// import { AppContext } from '../../../AppContext'
+// import axios from '../../../axios'
 
 function Cart() {
 
     // const { setLoggedIn } = useContext(AppContext)
 
-    // axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+    // useEffect(() => {
+    //     console.log('auth-nav')
+    //     axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
     //     .then(res => {
     //         if (res.data.error) {
     //             setLoggedIn(false)
@@ -18,8 +20,10 @@ function Cart() {
     //         }
     //     })
     //     .catch(err => {
+    //         setLoggedIn(false)
     //         console.log(err);
-    //     })
+    //     })    
+    // },[])
 
 
 

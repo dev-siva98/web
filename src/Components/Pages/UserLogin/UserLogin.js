@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from './UserContext'
 import Signin from './Signin'
 import Signup from './Signup'
 import './UserLogin.css'
 import { AppContext } from '../../../AppContext'
-// import axios from '../../../axios'
+import axios from '../../../axios'
 
 function UserLogin() {
 
@@ -13,18 +13,21 @@ function UserLogin() {
     const value = { mobile, setMobile }
     const {loggedIn, setLoggedIn } = useContext(AppContext)
 
-    // axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-    //     .then(res => {
-    //         if (res.data.error) {
-    //             setLoggedIn(false)
-    //         } else {
-    //             setLoggedIn(true)
-    //         }
-    //     })
-    //     .catch(err => {
-    //         setLoggedIn(false)
-    //         console.log(err);
-    //     })
+    useEffect(() => {
+        console.log('auth-nav')
+        axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
+        .then(res => {
+            if (res.data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+            }
+        })
+        .catch(err => {
+            setLoggedIn(false)
+            console.log(err);
+        })    
+    },[])
 
         console.log(loggedIn)
 

@@ -30,6 +30,9 @@ function CartProvider({ children }){
                 type: 'CLEAR_CART'
             })
         }
+        return () => {
+          setLoading(false)
+        }
     },[loggedIn])
 
   return (

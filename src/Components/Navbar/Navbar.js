@@ -4,8 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
-// import { CartState } from '../Cart/StateProvider'
-import axios from '../../axios'
 import { useCart, useDispatchCart } from '../Cart/CartProvider'
 
 
@@ -21,26 +19,14 @@ function Navbar(props){
 
     const handleClick = () => setClick(!click)
 
-        axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            setLoggedIn(false)
-            console.log(err);
-        })    
-    const handleLogout = () => {
-        const confirmBox = window.confirm(
-            "Do you really want to Logout?"
-        )
-        if (confirmBox === true) {
-            setDrop(!drop)
-            localStorage.removeItem('token')
-            localStorage.removeItem('user')
+        const handleLogout = () => {
+            const confirmBox = window.confirm(
+                "Do you really want to Logout?"
+                )
+                if (confirmBox === true) {
+                    setDrop(!drop)
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('user')
             localStorage.removeItem('id')
             // dispatch({
             //     type: 'CLEAR_CART'

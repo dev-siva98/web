@@ -24,24 +24,21 @@ function App() {
   const login = { loggedIn, setLoggedIn }
 
   useEffect(() => {
-    console.log('auth')
     axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-    .then(res => {
-      if (res.data.error) {
+      .then(res => {
+        if (res.data.error) {
+          throw (res.data.message)
+        } else {
+          setLoggedIn(true)
+          setUser(res.data.name)
+        }
+      })
+      .catch(err => {
         setLoggedIn(false)
         setUser(null)
-      } else {
-        setLoggedIn(true)
-        setUser(res.data.name)
-      }
-    })
-    .catch(err => {
-      setLoggedIn(false)
-      setUser(null)
-      console.log(err);
-    })
-  },[loggedIn])  
-    
+      })
+  }, [loggedIn])
+
   return (
     <div className="app">
       {

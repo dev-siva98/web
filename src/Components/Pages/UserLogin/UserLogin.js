@@ -1,35 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserContext } from './UserContext'
 import Signin from './Signin'
 import Signup from './Signup'
 import './UserLogin.css'
 import { AppContext } from '../../../AppContext'
-import axios from '../../../axios'
+import Authentication from '../../../Authentication'
 
 function UserLogin() {
 
     const [login, setLogin] = useState(false)
     const [mobile, setMobile] = useState(false)
     const value = { mobile, setMobile }
-    const {loggedIn, setLoggedIn } = useContext(AppContext)
+    const { loggedIn } = useContext(AppContext)
 
-    useEffect(() => {
-        console.log('auth-nav')
-        axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            setLoggedIn(false)
-            console.log(err);
-        })    
-    },[])
+    Authentication()
 
-        console.log(loggedIn)
+    console.log(loggedIn)
 
     return (
         <div className='login-section'>

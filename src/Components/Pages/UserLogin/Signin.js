@@ -15,14 +15,9 @@ function Signin() {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    
-    const handleKeypress = e => {
-        if (e.key === 'Enter') {
-            setLoading(true)
-        }
-    };
 
     const onSubmit = (data) => {
+        setLoading(true)
         axios({
             method: 'POST',
             url: 'signin',
@@ -30,13 +25,11 @@ function Signin() {
         })
             .then((response) => {
                 if (response.data.error) {
-                    setLoading(false)
-                    setLoggedIn(false)
-                    alert(response.data.message)
+                    throw ({ message: response.data.message })
                 } else {
                     localStorage.setItem('token', 'Bearer ' + response.data.accessToken)
                     localStorage.setItem('user', response.data.user.name)
-                    localStorage.setItem('id', response.data.id)
+                    localStorage.setItem('id', response.data.user.id)
                     setLoggedIn(true)
                     setLoading(false)
                     navigate('/')
@@ -44,8 +37,8 @@ function Signin() {
             })
             .catch((err) => {
                 setLoading(false)
-                alert('Something went wrong')
-                console.log(err)
+                setLoggedIn(false)
+                alert(err.message)
             })
     };
 
@@ -67,12 +60,11 @@ function Signin() {
             <input type="password" placeholder="Password"
                 {...register('password', { required: true })}
                 className={errors.password && 'input-error'}
-                onKeyPress={handleKeypress}
             />
             {errors.password && <p className='error-message'>field required</p>}
 
             <a href='/login'>Forgot your password?</a>
-            <button onClick={() => setLoading(true)} >SIGN IN</button>
+            <button>SIGN IN</button>
             <div className="signup-swap">
                 New here ? <span className='swap-link' onClick={() => setMobile(true)}>Sign-up</span>
             </div>

@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import CartItem from './CartItem'
 import './CartNew.css'
 import { useCart } from '../../Cart/CartProvider'
+import Authentication from '../../../Authentication'
 
 function Cart() {
 
@@ -9,6 +10,8 @@ function Cart() {
     const handleScroll = () => {
         scrollRef.current.scrollIntoView()
     }
+
+    Authentication()
 
     const cart = useCart()
 

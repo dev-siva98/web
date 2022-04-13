@@ -12,7 +12,6 @@ function CartProvider({ children }){
   const { setLoading } = useContext(LoadingContext)
   
     useEffect(() => {
-        
         if (loggedIn) {
             setLoading(true)
             axios.get('fetchcart', {

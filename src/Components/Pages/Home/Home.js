@@ -1,28 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { AppContext } from '../../../AppContext'
-import axios from '../../../axios'
+import Authentication from '../../../Authentication'
 import './Home.css'
 
 function Home() {
 
-    const { setLoggedIn } = useContext(AppContext)
-
-    useEffect(() => {
-        console.log('auth-nav')
-        axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            setLoggedIn(false)
-            console.log(err);
-        })    
-    },[])
+    Authentication()
 
 
     return (

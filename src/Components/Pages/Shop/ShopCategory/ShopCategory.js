@@ -13,15 +13,17 @@ function ShopCategory(props) {
         setLoading(true)
         axios.get(props.url, { headers: { "Authorization": localStorage.getItem('token') } })
             .then(res => {
-                console.log(res)
+                if (res.data.error) {
+                    throw (res.data.message)
+                } else {
                     setCakes(res.data)
                     setLoading(false)
+                }
             }).catch(err => {
                 console.log(err.message);
                 alert(err.message)
                 setLoading(false)
             })
-
         return () => {
             setCakes([])
             setLoading(false)

@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { AppContext } from '../../../AppContext'
-import axios from '../../../axios'
+import React from 'react'
+import Authentication from '../../../Authentication'
 import './Shop.css'
 import ShopCategory from './ShopCategory/ShopCategory'
 
@@ -12,22 +11,7 @@ function Shop() {
         'Pastries'
     ]
 
-    const { setLoggedIn } = useContext(AppContext)
-
-    useEffect(() => {
-        axios.get('auth', { headers: { "Authorization": localStorage.getItem('token') } })
-        .then(res => {
-            if (res.data.error) {
-                setLoggedIn(false)
-            } else {
-                setLoggedIn(true)
-            }
-        })
-        .catch(err => {
-            setLoggedIn(false)
-            console.log(err);
-        })    
-    },[])
+    Authentication()
 
     return (
             <div className="shop-section">

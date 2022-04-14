@@ -25,7 +25,7 @@ function Signin() {
         })
             .then((response) => {
                 if (response.data.error) {
-                    throw ({ message: response.data.message })
+                    throw (response.data)
                 } else {
                     localStorage.setItem('token', 'Bearer ' + response.data.accessToken)
                     localStorage.setItem('user', response.data.user.name)

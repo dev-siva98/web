@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ShopItem.css'
 import { useCart, useDispatchCart } from '../../../Cart/CartProvider'
+import axios from '../../../../axios'
 
 
 function ShopItem(props) {
@@ -8,7 +9,6 @@ function ShopItem(props) {
     const cart = useCart()
     const dispatch = useDispatchCart()
     const [flag, setFlag] = useState(false)
-
     useEffect(() => {
         cart.map((product) => {
             if (product.proId === props.details.proId) {
@@ -26,6 +26,17 @@ function ShopItem(props) {
         dispatch({
             type: 'ADD_ITEM',
             item: item
+        })
+        item.quantity = 1
+        axios({
+            url: 'addtocart',
+            method: 'post',
+            data: item,
+            headers: { "Authorization": localStorage.getItem('token') }
+        }).then(res => {
+            if (res.data.error) {
+                alert(res.data.message)
+            }
         })
     }
 

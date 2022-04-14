@@ -1,17 +1,36 @@
 import React, { useRef } from 'react'
 import CartItem from './CartItem'
 import './CartNew.css'
-import { useCart } from '../../Cart/CartProvider'
+import { useCart, useDispatchCart } from '../../Cart/CartProvider'
 import Authentication from '../../../Authentication'
+import axios from '../../../axios'
 
 function Cart() {
 
+    Authentication()
+    
+    const dispatch = useDispatchCart()
     const scrollRef = useRef(null)
+    
     const handleScroll = () => {
         scrollRef.current.scrollIntoView()
     }
 
-    Authentication()
+    const handleClearCart = () => {
+
+        dispatch({
+            type: 'CLEAR_CART'
+        })
+
+        axios.get('clearcart', {
+            headers: { "Authorization": localStorage.getItem('token') }
+        }).then(res => {
+            if(res.data.error) {
+                console.log(res.data.message)
+            }
+        })
+    }
+    
 
     const cart = useCart()
 
@@ -25,18 +44,20 @@ function Cart() {
                             <h3>PRODUCT</h3>
                             <h3>QTY</h3>
                             <h3>PRICE</h3>
-                            <button className="btn btn-cart-proceed-mobile" onClick={handleScroll}>Proceed to Checkout</button>
-                            <button className="btn btn-clear-cart">Clear Cart</button>
+                            <button onClick={handleScroll}
+                                className="btn btn-cart-proceed-mobile">Proceed to Checkout</button>
+                            <button onClick={handleClearCart}
+                                className="btn btn-clear-cart">Clear Cart</button>
                         </div>
                         {
-                            cart.length===0 ? <>Cart Is Empty</> :
-                            cart.map((product) => {
-                                return (
-                                    <>
-                                        <CartItem product={product} key={product.proId} />
-                                    </>
-                                )
-                            })
+                            cart.length === 0 ? <>Cart Is Empty</> :
+                                cart.map((product) => {
+                                    return (
+                                        <>
+                                            <CartItem product={product} key={product.proId} />
+                                        </>
+                                    )
+                                })
                         }
                     </div>
                     <div className="cart-section-right" ref={scrollRef}>

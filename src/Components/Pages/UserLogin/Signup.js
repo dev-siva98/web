@@ -35,13 +35,8 @@ function Signup() {
         formState: { errors },
     } = useForm(validationOpt);
 
-    const handleKeypress = e => {
-        if (e.key === 'Enter') {
-            setLoading(true)
-        }
-    };
-
     const onSubmit = (data) => {
+        setLoading(true)
         data.passwordConfirm = null
         axios({
             method: 'POST',
@@ -96,11 +91,10 @@ function Signup() {
             <input type="password" placeholder="Confirm Password"
                 {...register('passwordConfirm', { required: true })}
                 className={errors.passwordConfirm && 'input-error'}
-                onKeyPress={handleKeypress}
             />
             {errors.passwordConfirm && <p className='error-message'>{errors.passwordConfirm.message}</p>}
 
-            <button onClick={() => setLoading(true)}>SIGN UP</button>
+            <button>SIGN UP</button>
             <div className="signin-swap">
                 Already have an account ? <span className='swap-link' onClick={() => setMobile(false)}>Sign-in</span>
             </div>

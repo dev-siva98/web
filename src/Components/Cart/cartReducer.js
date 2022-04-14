@@ -22,12 +22,6 @@ function reducer(cart, action) {
                 return cart
             } else {
                 action.item.quantity = 1
-                axios({
-                    url: 'addtocart',
-                    method: 'post',
-                    data: action.item,
-                    headers: { "Authorization": localStorage.getItem('token') }
-                })
                 return [...cart, action.item]
             }
         case 'REMOVE_ITEM':

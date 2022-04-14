@@ -45,6 +45,16 @@ function ShopItem(props) {
             type: 'REMOVE_ITEM',
             item: item
         })
+        axios({
+            method: 'delete',
+            url: 'removefromcart',
+            data: item,
+            headers: { "Authorization": localStorage.getItem('token') }
+        }).then(res => {
+            if (res.data.error) {
+                alert(res.data.message)
+            }
+        })
     }
 
     return (

@@ -2,14 +2,21 @@ function reducer(cart, action) {
     switch (action.type) {
 
         case 'INITIALIZE':
-            return [...action.payload]
-
+            return {
+                ...cart,
+                cartTotal: action.payload.cartTotal,
+                items: [...action.payload.products]
+            }
         case 'CLEAR_CART':
-            return []
+            return {
+                ...cart,
+                cartTotal: 0,
+                items: []
+            }
 
         case 'ADD_ITEM':
             var flag = false
-            cart.map((product) => {
+            cart.items.map((product) => {
                 if (product.proId === action.item.proId) {
                     flag = true
                 }
@@ -20,10 +27,20 @@ function reducer(cart, action) {
                 return cart
             } else {
                 action.item.quantity = 1
-                return [...cart, action.item]
+                return {
+                    ...cart,
+                    cartTotal: cart.cartTotal + action.item.price,
+                    items: [...cart.items, action.item]
+                }
             }
         case 'REMOVE_ITEM':
-            return cart.filter((product) => product.proId !== action.item.proId)
+            const newItems = cart.items.filter((product) => product.proId !== action.item.proId)
+            const newTotal = cart.cartTotal - (action.item.price * action.item.quantity)
+            return {
+                ...cart,
+                cartTotal: newTotal,
+                items: newItems
+            }
 
         case 'INCREMENT':
             const itemIndex = cart.findIndex(item => item.proId === action.proId)

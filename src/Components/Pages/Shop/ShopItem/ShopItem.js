@@ -10,7 +10,7 @@ function ShopItem(props) {
     const dispatch = useDispatchCart()
     const [flag, setFlag] = useState(false)
     useEffect(() => {
-        cart.map((product) => {
+        cart.items.map((product) => {
             if (product.proId === props.details.proId) {
                 setFlag(true)
             }

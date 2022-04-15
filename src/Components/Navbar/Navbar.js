@@ -86,7 +86,7 @@ function Navbar(props){
                             </Link>
                             <Link to='/cart' className="nav-items">
                                 <li className="nav-link" onClick={handleClick} >
-                                    Cart {cart?.length > 0 ? cart.length : undefined}
+                                    Cart {cart.items?.length > 0 ? cart.items.length : undefined}
                                 </li>
                             </Link>
                             <Link to='/orders' className="nav-items">

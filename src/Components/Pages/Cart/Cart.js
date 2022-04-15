@@ -47,8 +47,8 @@ function Cart() {
                                 className="btn btn-clear-cart">Clear Cart</button>
                         </div>
                         {
-                            cart.length === 0 ? <>Cart Is Empty</> :
-                                cart.map((product) => {
+                            cart.items.length === 0 ? <>Cart Is Empty</> :
+                                cart.items.map((product) => {
                                     return (
                                         <CartItem product={product} key={product.proId} />
                                     )
@@ -73,7 +73,7 @@ function Cart() {
                                     <h3>Grand Total:</h3>
                                 </div>
                                 <div className="cart-total-amount">
-                                    <h3>&#8377;600</h3>
+                                    <h3>&#8377;{cart.cartTotal}</h3>
                                     <h3>&#8377;50</h3>
                                     <h3>&#8377;100</h3>
                                     <h3>&#8377;550</h3>

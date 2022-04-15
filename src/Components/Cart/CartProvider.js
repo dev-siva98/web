@@ -7,7 +7,7 @@ const CartStateContext = createContext();
 const CartDispatchContext = createContext();
 
 function CartProvider({ children }){
-  const [cart, dispatch] = useReducer(cartReducer, []);
+  const [cart, dispatch] = useReducer(cartReducer, { cartTotal: 0, items: []});
   const {loggedIn} = useContext(AppContext)
   const { setLoading } = useContext(LoadingContext)
   

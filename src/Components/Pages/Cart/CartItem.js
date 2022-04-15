@@ -12,7 +12,7 @@ function CartItem({ product }) {
     const [item, setItem] = useState(product.quantity)
 
     useEffect(() => {
-        cart.map(prod => {
+        cart.items.map(prod => {
             if (prod.proId === product.proId) {
                 setItem(prod.quantity)
             }

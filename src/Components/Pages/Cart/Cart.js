@@ -8,31 +8,28 @@ import axios from '../../../axios'
 function Cart() {
 
     Authentication()
-    
+
+    const cart = useCart()
     const dispatch = useDispatchCart()
     const scrollRef = useRef(null)
-    
+
     const handleScroll = () => {
         scrollRef.current.scrollIntoView()
     }
 
     const handleClearCart = () => {
-
         dispatch({
             type: 'CLEAR_CART'
         })
-
         axios.get('clearcart', {
             headers: { "Authorization": localStorage.getItem('token') }
         }).then(res => {
-            if(res.data.error) {
+            if (res.data.error) {
                 console.log(res.data.message)
             }
         })
     }
-    
 
-    const cart = useCart()
 
     return (
         <div>
@@ -53,9 +50,7 @@ function Cart() {
                             cart.length === 0 ? <>Cart Is Empty</> :
                                 cart.map((product) => {
                                     return (
-                                        <>
-                                            <CartItem product={product} key={product.proId} />
-                                        </>
+                                        <CartItem product={product} key={product.proId} />
                                     )
                                 })
                         }

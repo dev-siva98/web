@@ -111,6 +111,12 @@
 
 .cart-qty-dec {
     font-size: 1.7rem;
+    color: #dd0004;
+    cursor: pointer;
+}
+
+.cart-qty-dec:hover {
+    color: #be0306;
 }
 
 .cart-qty-value {
@@ -123,6 +129,16 @@
 
 .cart-qty-inc {
     font-size: 1.7rem;
+    color: #149902;
+    cursor: pointer;
+}
+
+.cart-qty-inc:hover {
+    color: #0e7701;
+}
+
+.cart-qty-dec:active, .cart-qty-inc:active {
+    transform: scale(0.9);
 }
 
 .cart-left-price {

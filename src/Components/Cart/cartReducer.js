@@ -1,5 +1,3 @@
-import axios from "../../axios"
-
 function reducer(cart, action) {
     switch (action.type) {
 
@@ -27,6 +25,15 @@ function reducer(cart, action) {
         case 'REMOVE_ITEM':
             return cart.filter((product) => product.proId !== action.item.proId)
 
+        case 'INCREMENT':
+            const itemIndex = cart.findIndex(item => item.proId === action.proId)
+            cart[itemIndex].quantity++
+            return [...cart]
+
+        case 'DECREMENT':
+            const findIndex = cart.findIndex(item => item.proId === action.proId)
+            cart[findIndex].quantity--
+            return [...cart]
         default:
             return cart;
     }

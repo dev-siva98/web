@@ -26,7 +26,7 @@ function CartItem({ product }) {
         if (product.quantity > 1) {
             dispatch({
                 type: 'DECREMENT',
-                proId: product.proId
+                item: product
             })
             axios({
                 method: 'post',
@@ -48,7 +48,7 @@ function CartItem({ product }) {
     const handleIncrement = (product) => {
         dispatch({
             type: 'INCREMENT',
-            proId: product.proId
+            item: product
         })
         axios({
             method: 'post',

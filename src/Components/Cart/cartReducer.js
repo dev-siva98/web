@@ -43,14 +43,22 @@ function reducer(cart, action) {
             }
 
         case 'INCREMENT':
-            const itemIndex = cart.findIndex(item => item.proId === action.proId)
-            cart[itemIndex].quantity++
-            return [...cart]
+            const itemIndex = cart.items.findIndex(prod => prod.proId === action.item.proId)
+            cart.items[itemIndex].quantity++
+            return {
+                ...cart,
+                cartTotal: cart.cartTotal + action.item.price,
+                items: [...cart.items]
+            }
 
         case 'DECREMENT':
-            const findIndex = cart.findIndex(item => item.proId === action.proId)
-            cart[findIndex].quantity--
-            return [...cart]
+            const findIndex = cart.items.findIndex(prod => prod.proId === action.item.proId)
+            cart.items[findIndex].quantity--
+            return {
+                ...cart,
+                cartTotal: cart.cartTotal - action.item.price,
+                items: [...cart.items]
+            }
         default:
             return cart;
     }

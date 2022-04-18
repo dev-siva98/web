@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AiFillMinusSquare, AiFillPlusSquare } from 'react-icons/ai'
 import { useCart, useDispatchCart } from '../../Cart/CartProvider'
 import axios from '../../../axios'
-import './CartNew.css'
+import './Cart.css'
 
 
 function CartItem({ product }) {

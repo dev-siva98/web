@@ -14,6 +14,7 @@ import { AppContext, LoadingContext } from './AppContext'
 import CartProvider from "./Components/Cart/CartProvider";
 import Loader from "./Components/Loader/Loader";
 import Cart from "./Components/Pages/Cart/Cart";
+import Checkout from "./Components/Pages/Checkout/Checkout";
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
                 <Route path='/about' element={<About />} />
                 <Route path='/shop' element={<Shop />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/checkout' element={<Checkout />} />
                 <Route path='/orders' element={<Orders />} />
                 <Route path='/admin' element={<AddProduct />} />
               </Routes>

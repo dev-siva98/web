@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import CartItem from './CartItem'
-import './CartNew.css'
+import './Cart.css'
 import { useCart, useDispatchCart } from '../../Cart/CartProvider'
 import Authentication from '../../../Authentication'
 import axios from '../../../axios'

@@ -16,8 +16,18 @@ function Checkout() {
         if (otp === '123456') {
             setDone(true)
             setLoader(false)
+        } else {
+            setDone(false)
+            setLoader(false)
         }
     }
+
+    const handleGetOtp = () =>{
+        setDone(false)
+        setLoader(false)
+        setVerify(null)
+    }
+
     useEffect(() => {
         if (verify === 6) {
             setLoader(true)
@@ -91,11 +101,12 @@ function Checkout() {
                                         </div>
                                         <div className="checkout-form-section">
                                             <div className="checkout-form-section-1">
-                                                <input disabled={mode} type="tel" className="checkout-form-input checkout-form-input-mobile" placeholder='Mobile' />
+                                                <input disabled={mode || loader || done} type="tel" className="checkout-form-input checkout-form-input-mobile" placeholder='Mobile' />
                                             </div>
-                                            <button disabled={mode} type='button' className="btn btn-checkout-mobile-verification">Get OTP</button>
+                                            <button disabled={mode || loader || done} type='button' className="btn btn-checkout-mobile-verification"
+                                            onClick={() => handleGetOtp()}>Get OTP</button>
                                             <div className="checkout-form-section-2">
-                                                <input disabled={mode} type="otp" className={`checkout-form-input checkout-form-input-small ${done ? 'verified' : ''}`}
+                                                <input disabled={mode || loader || done} type="otp" className={`checkout-form-input checkout-form-input-small ${done ? 'verified' : ''}`}
                                                     placeholder='OTP'
                                                     onChange={(e) => {
                                                         setVerify(e.target.value.length)

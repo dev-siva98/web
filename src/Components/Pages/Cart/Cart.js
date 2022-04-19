@@ -99,7 +99,7 @@ function Cart() {
                                     <hr className='cart-total-partition' />
                                     <div className="cart-submit-button">
                                         <button type="submit" className="btn btn-cart-submit">
-                                            Proceed to payment</button>
+                                            Checkout</button>
                                     </div>
                                 </div>
                             </div>

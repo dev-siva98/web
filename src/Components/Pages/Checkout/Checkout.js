@@ -21,12 +21,11 @@ function Checkout() {
         if (verify === 6) {
             setLoader(true)
             setTimeout(handleOtp, 5000)
-        }
-        return () => {
-            setVerify(null)
+        } else {
+            setDone(false)
+            setLoader(false)
         }
     }, [verify])
-
 
     console.log(verify)
     return (
@@ -43,7 +42,6 @@ function Checkout() {
                             <div className="checkout-left-button">
                                 <button type="button" className="btn btn-checkout-back">GO BACK</button>
                             </div>
-
                         </div>
                         <div className="checkout-address-second">
                             <div className="checkout-second-inner">
@@ -60,6 +58,11 @@ function Checkout() {
                                         <div className="checkout-form-section-inner">
                                             <div className="checkout-form-outline">
                                                 <input type="text" className="checkout-form-input" placeholder='Address Line 2' />
+                                            </div>
+                                        </div>
+                                        <div className="checkout-form-section-inner">
+                                            <div className="checkout-form-outline">
+                                                <input type="text" className="checkout-form-input" placeholder='What to write on cake' />
                                             </div>
                                         </div>
                                         <div className="checkout-form-section">
@@ -95,45 +98,11 @@ function Checkout() {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className="checkout-submit-button">
+                                            <button type="submit" className="btn btn-checkout-submit">
+                                                Proceed to payment</button>
+                                        </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="checkout-section-right">
-                    <div className="checkout-section-right-container">
-                        <div className="checkout-section-right-body">
-                            <div className="checkout-right-coupon">
-                                <h3>Have coupon ?</h3>
-                                <div className="checkout-coupon-input">
-                                    <input type="text" placeholder='Coupon Code'
-                                        onInput={(e) => e.target.value = e.target.value.toUpperCase()} />
-                                    <button className="btn btn-checkout-coupon">Apply</button>
-                                </div>
-                            </div>
-                            <div className="checkout-right-total" >
-                                <div className="checkout-total-details">
-                                    <div className="checkout-total-item">
-                                        <h3>Total Price:</h3>
-                                        <h3>Shipping:</h3>
-                                        <h3>Discount:</h3>
-                                    </div>
-                                    <div className="checkout-total-amount">
-                                        <h3>500.00</h3>
-                                        <h3>50.00</h3>
-                                        <h3>100.00</h3>
-                                    </div>
-                                </div>
-                                <hr className='checkout-total-partition' />
-                                <div className="checkout-right-grand-total">
-                                    <h3>Grand Total:</h3>
-                                    <h3>&#8377; 550.00</h3>
-                                </div>
-                                <hr className='checkout-total-partition' />
-                                <div className="checkout-submit-button">
-                                    <button type="submit" className="btn btn-checkout-submit">
-                                        Proceed to payment</button>
                                 </div>
                             </div>
                         </div>

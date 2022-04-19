@@ -87,8 +87,8 @@ function CartItem({ product }) {
 
     return (
         <>
-            <div className="cart-main-contents">
-                <div className="cart-main-product">
+            <div className="cart-left-contents">
+                <div className="cart-left-product">
                     <div className="cart-product-image">
                         <img src={product.image}
                             alt="cake" className="cart-product-img" />
@@ -100,15 +100,15 @@ function CartItem({ product }) {
                         <h3>&#8377;{product.price}</h3>
                     </div>
                 </div>
-                <div className="cart-main-qty">
+                <div className="cart-left-qty">
                     <AiFillMinusSquare className='cart-qty-dec' onClick={() => handleDecrement(product)} />
                     <input type="text" className='cart-qty-value' value={item} disabled />
                     <AiFillPlusSquare className='cart-qty-inc' onClick={() => handleIncrement(product)} />
                 </div>
-                <div className="cart-main-price">
+                <div className="cart-left-price">
                     <h2>&#8377;{item * product.price}</h2>
                 </div>
-                <div className="cart-main-button">
+                <div className="cart-left-button">
                     <button className="btn btn-cart-remove" onClick={() => handleRemove(product)}>Remove</button>
                 </div>
             </div>

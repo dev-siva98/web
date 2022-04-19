@@ -138,6 +138,11 @@
     border-radius: 5px;
 }
 
+.checkout-input-error {
+    border: 1px solid #f70505;
+    background-color: #ffdddd;
+}
+
 .checkout-form-input-mobile {
     width: 230px;
     padding-right: 10px;

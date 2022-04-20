@@ -4,30 +4,34 @@ import axios from '../../../axios';
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FaShippingFast } from 'react-icons/fa'
-import { GoVerified } from 'react-icons/go'
+import { GoVerified, GoUnverified } from 'react-icons/go'
 import './Checkout.css'
 
 function Checkout() {
 
     const [verify, setVerify] = useState()
     const [otp, setOtp] = useState()
-    const [done, setDone] = useState(false)
+    const [verified, setVerified] = useState(false)
+    const [unVerified, setUnVerified] = useState(false)
     const [loader, setLoader] = useState(false)
-    const [mode, setMode] = useState(true)
+    const [paymentMode, setPaymentMode] = useState(true)
 
     const handleOtp = () => {
         setTimeout(3000)
         if (otp === '123456') {
-            setDone(true)
+            setVerified(true)
+            setUnVerified(false)
             setLoader(false)
         } else {
-            setDone(false)
+            setUnVerified(true)
+            setVerified(false)
             setLoader(false)
         }
     }
 
     const handleGetOtp = () => {
-        setDone(false)
+        setUnVerified(false)
+        setVerified(false)
         setLoader(false)
         setVerify(null)
     }
@@ -37,7 +41,8 @@ function Checkout() {
             setLoader(true)
             setTimeout(handleOtp, 5000)
         } else {
-            setDone(false)
+            setVerified(false)
+            setUnVerified(false)
             setLoader(false)
         }
     }, [verify])
@@ -58,7 +63,6 @@ function Checkout() {
                 is: 'cod',
                 then: Yup.string().required('Required')
             })
-
     })
 
     const validationOpt = { resolver: yupResolver(formSchema) }
@@ -126,14 +130,14 @@ function Checkout() {
                                             <h3 className='checkout-form-section-headers'>Payment Mode</h3>
                                             <div className="checkout-form-payment-radio">
                                                 <div className='checkout-form-payment-section'>
-                                                    <label type='button' className={`btn btn-checkout-payment-mode pay-online ${mode ? 'active' : ''}`}
-                                                        onClick={() => setMode(true)} > Pay now Online
+                                                    <label type='button' className={`btn btn-checkout-payment-mode pay-online ${paymentMode ? 'active' : ''}`}
+                                                        onClick={() => setPaymentMode(true)} > Pay now Online
                                                         <input type="radio" name="payment" value="online" defaultChecked {...register('payment', { required: true })} />
                                                     </label>
                                                 </div>
                                                 <div className='checkout-form-payment-section' >
-                                                    <label type='button' className={`btn btn-checkout-payment-mode ${mode ? '' : 'active'}`}
-                                                        onClick={() => setMode(false)} >Cash on Delivery
+                                                    <label type='button' className={`btn btn-checkout-payment-mode ${paymentMode ? '' : 'active'}`}
+                                                        onClick={() => setPaymentMode(false)} >Cash on Delivery
                                                         <input type="radio" name="payment" value="cod" {...register('payment', { required: true })} />
                                                     </label>
                                                 </div>
@@ -141,26 +145,28 @@ function Checkout() {
                                         </div>
                                         <div className="checkout-form-section">
                                             <div className="checkout-form-section-1">
-                                                <input disabled={mode || loader || done} type="tel"
+                                                <input disabled={paymentMode || loader || verified} type="tel"
                                                     className={`checkout-form-input checkout-form-input-mobile ${errors.mobile && 'checkout-input-error'}`}
                                                     placeholder='Mobile'  {...register('mobile')} />
                                             </div>
-                                            <button disabled={mode || loader || done} type='button' className="btn btn-checkout-mobile-verification"
+                                            <button disabled={paymentMode || loader || verified} type='button' className="btn btn-checkout-mobile-verification"
                                                 onClick={() => handleGetOtp()}>Get OTP</button>
                                             <div className="checkout-form-section-2">
-                                                <input disabled={mode || loader || done} type="otp" className={`checkout-form-input checkout-form-input-small ${done ? 'verified' : ''}`}
+                                                <input disabled={paymentMode || loader || verified} type="otp"
+                                                    className={`checkout-form-input checkout-form-input-small ${verified && 'verified'} ${unVerified && 'unverified'} `}
                                                     placeholder='OTP'
                                                     onChange={(e) => {
                                                         setVerify(e.target.value.length)
                                                         setOtp(e.target.value)
                                                     }}
                                                 />
-                                                {done && <GoVerified className='checkout-otp-verification' />}
+                                                {verified && <GoVerified className='checkout-otp-verification' />}
+                                                {unVerified && <GoUnverified className='checkout-otp-verification unverified' />}
                                                 {loader && <div className='checkout-otp-verify-loader' />}
                                             </div>
                                         </div>
                                         <div className="checkout-submit-button">
-                                            <button type="submit" className="btn btn-checkout-submit">
+                                            <button type="submit" className="btn btn-checkout-submit" disabled={!paymentMode && !verified}>
                                                 PROCEED TO PAY &#8377;12345</button>
                                         </div>
                                     </form>

@@ -193,6 +193,10 @@
     color: green;
 }
 
+.checkout-otp-verification.unverified {
+    color: #ca0b0b;
+}
+
 .checkout-form-input-small {
     width: 100%;
     justify-self: end;
@@ -201,6 +205,11 @@
 
 .checkout-form-input-small.verified {
     border: 1px solid green;
+}
+
+
+.checkout-form-input-small.unverified {
+    border: 1px solid #ec0505;
 }
 
 .checkout-otp-verify-loader {
@@ -247,6 +256,10 @@
 }
 
 .btn-checkout-payment-mode input {
+    display: none;
+}
+
+.checkout-form-input-otp-verification {
     display: none;
 }
 

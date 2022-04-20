@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import CartItem from './CartItem'
 import './Cart.css'
 import { useCart, useDispatchCart } from '../../Cart/CartProvider'
@@ -12,6 +12,15 @@ function Cart() {
     const cart = useCart()
     const dispatch = useDispatchCart()
     const scrollRef = useRef(null)
+    const [checkout, setCheckout] = useState(false)
+
+    useEffect(() => {
+        if (cart.cartTotal > 0) {
+            setCheckout(true)
+        } else {
+            setCheckout(false)
+        }
+    }, [cart])
 
     const handleScroll = () => {
         scrollRef.current.scrollIntoView()
@@ -98,7 +107,7 @@ function Cart() {
                                     </div>
                                     <hr className='cart-total-partition' />
                                     <div className="cart-submit-button">
-                                        <button type="submit" className="btn btn-cart-submit">
+                                        <button type="submit" className="btn btn-cart-submit" disabled={!checkout}>
                                             Checkout</button>
                                     </div>
                                 </div>

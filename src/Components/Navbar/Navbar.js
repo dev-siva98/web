@@ -8,7 +8,7 @@ import { useCart, useDispatchCart } from '../Cart/CartProvider'
 
 
 
-function Navbar(props){
+function Navbar(props) {
     const cart = useCart()
     const dispatch = useDispatchCart()
     const [click, setClick] = useState(false)
@@ -19,14 +19,14 @@ function Navbar(props){
 
     const handleClick = () => setClick(!click)
 
-        const handleLogout = () => {
-            const confirmBox = window.confirm(
-                "Do you really want to Logout?"
-                )
-                if (confirmBox === true) {
-                    setDrop(!drop)
-                    localStorage.removeItem('token')
-                    localStorage.removeItem('user')
+    const handleLogout = () => {
+        const confirmBox = window.confirm(
+            "Do you really want to Logout?"
+        )
+        if (confirmBox === true) {
+            setDrop(!drop)
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
             localStorage.removeItem('id')
             // dispatch({
             //     type: 'CLEAR_CART'

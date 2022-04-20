@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
 import * as Yup from 'yup'
@@ -6,6 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { FaShippingFast } from 'react-icons/fa'
 import { GoVerified, GoUnverified } from 'react-icons/go'
 import './Checkout.css'
+import { useCart, useDispatchCart } from '../../Cart/CartProvider';
+import Authentication from '../../../Authentication';
+import { LoadingContext } from '../../../AppContext';
 
 function Checkout() {
 
@@ -15,9 +19,14 @@ function Checkout() {
     const [unVerified, setUnVerified] = useState(false)
     const [loader, setLoader] = useState(false)
     const [paymentMode, setPaymentMode] = useState(true)
+    const cart = useCart()
+    const { setLoading } = useContext(LoadingContext)
+    const dispatch = useDispatchCart()
+    const navigate = useNavigate()
+
+    Authentication()
 
     const handleOtp = () => {
-        setTimeout(3000)
         if (otp === '123456') {
             setVerified(true)
             setUnVerified(false)
@@ -74,8 +83,50 @@ function Checkout() {
     } = useForm(validationOpt);
 
     const onSubmit = (data) => {
-        console.log(data)
+        setLoading(true)
+        const payload = {
+            userName: localStorage.getItem('user'),
+            cartTotal: cart.cartTotal,
+            couponApplied: '',
+            discount: 0,
+            shipping: cart.shipping,
+            total: cart.total,
+            paymentMode: data.payment,
+            write: data.write,
+            mobile: data.mobile,
+            address: {
+                address1: data.address1,
+                address2: data.address2,
+                landmark: data.landmark,
+                pin: data.pincode,
+                conatct: data.contact
+            },
+            products: cart.items
+        }
+        axios({
+            method: 'post',
+            url: 'checkout',
+            data: payload,
+            headers: { "Authorization": localStorage.getItem('token') }
+        }).then(res => {
+            if (res.data.error) {
+                alert('Error try again')
+                setLoading(false)
+            } else {
+                dispatch({
+                    type: 'CLEAR_CART'
+                })
+                alert('Order Placed')
+                navigate('/orders')
+                setLoading(false)
+            }
+        }).catch(err => {
+            alert(err.message)
+            setLoading(false)
+        })
     }
+
+
 
     return (
         <div className="checkout-section">
@@ -166,8 +217,13 @@ function Checkout() {
                                             </div>
                                         </div>
                                         <div className="checkout-submit-button">
-                                            <button type="submit" className="btn btn-checkout-submit" disabled={!paymentMode && !verified}>
-                                                PROCEED TO PAY &#8377;12345</button>
+                                            {paymentMode ?
+                                                <button type="submit" className="btn btn-checkout-submit" >
+                                                    PAY &#8377; {cart.total}.00</button>
+                                                :
+                                                <button type="submit" className="btn btn-checkout-submit" disabled={!paymentMode && !verified}>
+                                                    PLACE ORDER</button>
+                                            }
                                         </div>
                                     </form>
                                 </div>

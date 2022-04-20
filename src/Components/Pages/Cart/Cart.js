@@ -4,6 +4,7 @@ import './Cart.css'
 import { useCart, useDispatchCart } from '../../Cart/CartProvider'
 import Authentication from '../../../Authentication'
 import axios from '../../../axios'
+import { Link } from 'react-router-dom'
 
 function Cart() {
 
@@ -107,8 +108,11 @@ function Cart() {
                                     </div>
                                     <hr className='cart-total-partition' />
                                     <div className="cart-submit-button">
-                                        <button type="submit" className="btn btn-cart-submit" disabled={!checkout}>
-                                            Checkout</button>
+                                        <Link to='/checkout' >
+                                            <button type="submit" className="btn btn-cart-submit" disabled={!checkout}>
+                                                Checkout
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+.confirmation-section {
+    position: relative;
+    background-color: #fff;
+    top: 80px;
+    padding: 30px 20px;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+}
+
+.confirmation-section-container {
+    margin: auto;
+    width: 900px;
+    background-image: linear-gradient(to right, #ff0606, #f39200);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 260px 560px;
+}
+
+.confirmation-section-left {
+    margin-right: 40px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.confirmatiom-section-left-image {
+    width: 80px;
+}
+
+.confirmation-left-title h2 {
+    font-family: 'pacifico', 'cursive';
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+.confirmation-left-title h5 {
+
+}
+
+
+
+.confirmation-section-right {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+}
+

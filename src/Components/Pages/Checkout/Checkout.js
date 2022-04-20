@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from '../../../axios';
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FaShippingFast } from 'react-icons/fa'
 import { GoVerified, GoUnverified } from 'react-icons/go'
-import './Checkout.css'
 import { useCart, useDispatchCart } from '../../Cart/CartProvider';
 import Authentication from '../../../Authentication';
 import { LoadingContext } from '../../../AppContext';
+import './Checkout.css'
 
 function Checkout() {
 

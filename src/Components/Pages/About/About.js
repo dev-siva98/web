@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Testimonial from '../../Testimonial/Testimonial'
 import './About.css'
 // import axios from '../../../axios';

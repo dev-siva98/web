@@ -86,15 +86,15 @@ function Cart() {
                                             <h3>Discount:</h3>
                                         </div>
                                         <div className="cart-total-amount">
-                                            <h3>500.00</h3>
-                                            <h3>50.00</h3>
-                                            <h3>100.00</h3>
+                                            <h3>{cart.cartTotal}.00</h3>
+                                            <h3>{cart.shipping}.00</h3>
+                                            <h3>{cart.discount}.00</h3>
                                         </div>
                                     </div>
                                     <hr className='cart-total-partition' />
                                     <div className="cart-right-grand-total">
                                         <h3>Grand Total:</h3>
-                                        <h3>&#8377; 550.00</h3>
+                                        <h3>&#8377; {cart.total}.00</h3>
                                     </div>
                                     <hr className='cart-total-partition' />
                                     <div className="cart-submit-button">

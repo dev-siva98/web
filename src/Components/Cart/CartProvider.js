@@ -6,34 +6,42 @@ import axios from "../../axios";
 const CartStateContext = createContext();
 const CartDispatchContext = createContext();
 
-function CartProvider({ children }){
-  const [cart, dispatch] = useReducer(cartReducer, { cartTotal: 0, items: []});
-  const {loggedIn} = useContext(AppContext)
+const initialState = {
+  cartTotal: 0,
+  shipping: 0,
+  discount: 0,
+  total: 0,
+  items: []
+}
+
+function CartProvider({ children }) {
+  const [cart, dispatch] = useReducer(cartReducer, initialState);
+  const { loggedIn } = useContext(AppContext)
   const { setLoading } = useContext(LoadingContext)
-  
-    useEffect(() => {
-        if (loggedIn) {
-            setLoading(true)
-            axios.get('fetchcart', {
-                headers: { "Authorization": localStorage.getItem('token') }
-            }).then(res => {
-              console.log(res)
-                dispatch({
-                    type: 'INITIALIZE',
-                    payload: res.data
-                })
-                setLoading(false)
-            })
-        }
-        else {
-            dispatch({
-                type: 'CLEAR_CART'
-            })
-        }
-        return () => {
-          setLoading(false)
-        }
-    },[loggedIn])
+
+  useEffect(() => {
+    if (loggedIn) {
+      setLoading(true)
+      axios.get('fetchcart', {
+        headers: { "Authorization": localStorage.getItem('token') }
+      }).then(res => {
+        console.log(res.data)
+        dispatch({
+          type: 'INITIALIZE',
+          payload: res.data
+        })
+        setLoading(false)
+      })
+    }
+    else {
+      dispatch({
+        type: 'CLEAR_CART'
+      })
+    }
+    return () => {
+      setLoading(false)
+    }
+  }, [loggedIn])
 
   return (
     <CartDispatchContext.Provider value={dispatch}>

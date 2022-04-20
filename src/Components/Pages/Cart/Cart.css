@@ -288,7 +288,7 @@
 }
 
 .cart-total-amount {
-    width: 80px;
+    width: 100px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -302,7 +302,7 @@
 }
 
 .cart-right-grand-total h3:last-child {
-    width: 80px;
+    width: 100px;
     display: flex;
     justify-content: flex-end;
     color: #000;

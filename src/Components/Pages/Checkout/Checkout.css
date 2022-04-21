@@ -156,6 +156,21 @@
     margin-bottom: 15px;
 }
 
+.checkout-form-input-delivery {
+    display: flex;
+    align-items: center;
+}
+
+.checkout-input-write {
+    width: 338px;
+    margin-left: 20px;
+}
+
+.checkout-input-date {
+    width: 150px;
+    margin-left: 20px;
+}
+
 
 .checkout-form-section {
     display: grid;
@@ -358,6 +373,26 @@
         margin-left: 195px;
     }
 
+    .checkout-form-section-full {
+        grid-column: 1 / -1;
+        margin-bottom: 15px;
+    }
+
+    .checkout-form-input-delivery {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .checkout-input-write {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .checkout-input-date {
+        margin-left: 22px;
+    }
+
+
 }
 
 @media (max-width: 720px) {
@@ -449,10 +484,20 @@
         justify-self: center;
         margin-right: 25px;
     }
-    
+
 
     .checkout-submit-button {
         text-align: center;
+    }
+
+    .checkout-form-input-delivery {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .checkout-input-date {
+        margin-left: 0;
+        margin-top: 5px;
     }
 
 }

@@ -57,6 +57,8 @@ function Checkout() {
     }, [verify])
 
     const formSchema = Yup.object().shape({
+        delivery: Yup.string()
+            .required('Provide delivery date expected'),
         address1: Yup.string()
             .required('Missing Fields'),
         contact: Yup.string()
@@ -93,6 +95,7 @@ function Checkout() {
             total: cart.total,
             paymentMode: data.payment,
             write: data.write,
+            delivery: data.delivery,
             mobile: data.mobile,
             address: {
                 address1: data.address1,
@@ -150,9 +153,15 @@ function Checkout() {
                                         <h4 >Delivery Details</h4>
                                     </div>
                                     <form onSubmit={handleSubmit(onSubmit)} className="checkout-address-form">
-                                        <div className="checkout-form-section-full">
+                                        <div className="checkout-form-section-full checkout-form-input-delivery">
+                                            <h4>Write On Cake : </h4>
                                             <input type="text" placeholder='Write on cake' {...register('write')}
-                                                className="checkout-form-input" />
+                                                className="checkout-form-input checkout-input-write" />
+                                        </div>
+                                        <div className="checkout-form-section-full checkout-form-input-delivery">
+                                        <h4>Delivery date expected : </h4>
+                                            <input type="date" {...register('delivery', { required: true })}
+                                                className={`checkout-form-input checkout-input-date ${errors.delivery && 'checkout-input-error'}`} />
                                         </div>
                                         <h3 className='checkout-form-section-headers'>Address</h3>
                                         <div className="checkout-form-section-full">

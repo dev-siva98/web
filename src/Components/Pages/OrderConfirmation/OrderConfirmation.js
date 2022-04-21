@@ -1,9 +1,15 @@
 import React from 'react'
 import { BsFillCartCheckFill } from 'react-icons/bs'
+import { Link, useLocation } from 'react-router-dom'
+
 
 import './OrderConfirmation.css'
 
-function OrderConfirmation() {
+function OrderConfirmation(props) {
+    const { state } = useLocation()
+
+    const createdAt = new Date(state.createdAt).toLocaleString('en-uk', { hour12: true })
+    const delivery = new Date(state.delivery).toLocaleDateString('en-uk')
     return (
         <div className='confirmation-section'>
             <div className="confirmation-section-container">
@@ -19,34 +25,43 @@ function OrderConfirmation() {
                 <div className="confirmation-section-right">
                     <div className="confirmation-right-section-1">
                         <h5>Ordered on :</h5>
-                        <h4>12 Apr 2022, 08:27:35 PM</h4>
+                        <h4>{createdAt}</h4>
                     </div>
                     <div className="confirmation-right-section-2">
-                        <h3>Thank you Siva</h3>
+
+                        <h3>Thank you {state.userName}</h3>
                     </div>
                     <div className="confirmation-right-section-3">
-                        <h4>Order No: FMPP14456787545</h4>
+                        <h4>Order No: {state.orderId}</h4>
                         <div className="confirmation-right-section-3-paid">
-                            Total : <span>&#8377; 1200.00</span>
+                            Total : <span>&#8377; {state.total}.00</span>
                         </div>
                     </div>
                     <div className="confirmation-right-section-4">
                         <div className="confirmation-right-section-4-payment">
-                            <h4>Payment Mode: <span>Online</span></h4>
+                            <h4>Payment Mode: <span>{state.paymentMode}</span></h4>
                         </div>
                         <div className="confirmation-right-section-4-order">
-                            <h4>Order Status: <span>Placed</span></h4>
+                            <h4>Order Status: <span>{state.orderStatus}</span></h4>
                         </div>
                     </div>
                     <div className="confirmation-right-section-5">
                         <div className="confirmation-right-section-5-address">
                             <h4>Delivery Address:</h4>
-                            <span>Thayyulla Parambil, Koothali</span>
+                            <h4>{state.address.address1}<br />
+                                {state.address?.address2}
+                                Pin: {state.address.pin}
+                            </h4>
                         </div>
                         <div className="confirmation-right-section-5-date">
                             <h4>Delievry date :</h4>
-                            <span>14-Apr-2022</span>
+                            <h4>{delivery}</h4>
                         </div>
+                    </div>
+                    <div className="confirmation-right-section-6">
+                        <Link to='/orders' >
+                            <button className='btn btn-confirmation-action'>My Orders</button>
+                        </Link>
                     </div>
                 </div>
             </div>

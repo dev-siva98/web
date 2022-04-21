@@ -119,8 +119,9 @@ function Checkout() {
                 dispatch({
                     type: 'CLEAR_CART'
                 })
+                console.log("haii this", res.data)
                 alert('Order Placed')
-                navigate('/orders')
+                navigate('/confirmation', { state: res.data })
                 setLoading(false)
             }
         }).catch(err => {
@@ -159,7 +160,7 @@ function Checkout() {
                                                 className="checkout-form-input checkout-input-write" />
                                         </div>
                                         <div className="checkout-form-section-full checkout-form-input-delivery">
-                                        <h4>Delivery date expected : </h4>
+                                            <h4>Delivery date expected : </h4>
                                             <input type="date" {...register('delivery', { required: true })}
                                                 className={`checkout-form-input checkout-input-date ${errors.delivery && 'checkout-input-error'}`} />
                                         </div>

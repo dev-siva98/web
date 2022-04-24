@@ -67,7 +67,7 @@ function Navbar(props) {
                             {click ?
                                 <img className='avatar'
                                     src={loggedIn ?
-                                        `https://ui-avatars.com/api/?name=${props.user}&length=1&background=random&bold=true`
+                                        `https://ui-avatars.com/api/?name=${props?.user}&length=1&background=random&bold=true`
                                         : 'images/avatar.png'}
                                     alt="NA" />
                                 : <FaBars />}

@@ -8,8 +8,8 @@ import './OrderConfirmation.css'
 function OrderConfirmation(props) {
     const { state } = useLocation()
 
-    const createdAt = new Date(state.createdAt).toLocaleString('en-uk', { hour12: true })
-    const delivery = new Date(state.delivery).toLocaleDateString('en-uk')
+    const createdAt = new Date(state.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+    const delivery = new Date(state.delivery).toLocaleDateString('en-IN', { dateStyle: 'medium' })
     return (
         <div className='confirmation-section'>
             <div className="confirmation-section-container">
@@ -39,7 +39,7 @@ function OrderConfirmation(props) {
                     </div>
                     <div className="confirmation-right-section-4">
                         <div className="confirmation-right-section-4-payment">
-                            <h4>Payment Mode: <span>{state.paymentMode}</span></h4>
+                            <h4>Payment Status: <span>{state.paymentStatus}</span></h4>
                         </div>
                         <div className="confirmation-right-section-4-order">
                             <h4>Order Status: <span>{state.orderStatus}</span></h4>
@@ -49,7 +49,7 @@ function OrderConfirmation(props) {
                         <div className="confirmation-right-section-5-address">
                             <h4>Delivery Address:</h4>
                             <h4>{state.address.address1}<br />
-                                {state.address?.address2}
+                                {state.address?.address2}<br />
                                 Pin: {state.address.pin}
                             </h4>
                         </div>

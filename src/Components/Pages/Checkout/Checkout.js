@@ -10,6 +10,22 @@ import { useCart, useDispatchCart } from '../../Cart/CartProvider';
 import Authentication from '../../../Authentication';
 import { LoadingContext } from '../../../AppContext';
 import './Checkout.css'
+import CapturePayment from '../../../CapturePayment';
+
+function loadRazorpay() {
+    return new Promise(resolve => {
+        console.log('loadRazorpay')
+        const script = document.createElement('script')
+        script.src = "https://checkout.razorpay.com/v1/checkout.js"
+        script.onload = () => {
+            resolve(true)
+        }
+        script.onerror = () => {
+            resolve(false)
+        }
+        document.body.appendChild(script)
+    })
+}
 
 function Checkout() {
 
@@ -26,35 +42,95 @@ function Checkout() {
 
     Authentication()
 
-    const handleOtp = () => {
-        if (otp === '123456') {
-            setVerified(true)
-            setUnVerified(false)
-            setLoader(false)
-        } else {
-            setUnVerified(true)
-            setVerified(false)
-            setLoader(false)
-        }
+    const verifyPayment = (payment, order) => {
+        setLoading(true)
+        axios({
+            method: 'post',
+            url: 'verifypayment',
+            data: {
+                payment: payment,
+                order: order
+            },
+            headers: { "Authorization": localStorage.getItem('token') }
+        }).then(res => {
+            dispatch({
+                type: 'CLEAR_CART'
+            })
+            console.log("haii this", res.data)
+            alert('Order Placed')
+            setLoading(false)
+            navigate('/confirmation', { state: res.data })
+        }).catch(err => {
+            setLoading(false)
+            console.log(err)
+        })
     }
 
-    const handleGetOtp = () => {
-        setUnVerified(false)
-        setVerified(false)
-        setLoader(false)
-        setVerify(null)
+    const onFailure = (details, order) => {
+        setLoading(true)
+        axios({
+            method: 'post',
+            url: 'failedtransaction',
+            data: {
+                error: details.error,
+                order: order
+            },
+            headers: { "Authorization": localStorage.getItem('token') }
+        }).then(res => {
+            dispatch({
+                type: 'CLEAR_CART'
+            })
+            console.log("haii this", res.data)
+            alert('Order Placed')
+            setLoading(false)
+            CapturePayment({ payment: details.error.metadata.payment_id, order: order })
+            // navigate('/confirmation', { state: res.data })
+        }).catch(err => {
+            setLoading(false)
+            console.log(err)
+        })
     }
 
-    useEffect(() => {
-        if (verify === 6) {
-            setLoader(true)
-            setTimeout(handleOtp, 5000)
-        } else {
-            setVerified(false)
-            setUnVerified(false)
-            setLoader(false)
+    const displayRazorpay = async (order, data) => {
+        console.log('displayRazorpay')
+        const res = await loadRazorpay()
+        setLoading(false)
+        if (!res) {
+            alert('Payment Gateway loading error')
+            return
         }
-    }, [verify])
+        console.log('loaded')
+        var options = {
+            "key": "rzp_test_JttBO92oxOBmPw",
+            "amount": order.amount,
+            "currency": "INR",
+            "name": "Make My Cake",
+            "description": "Make transaction to order cake",
+            "order_id": order.id,
+            "handler": function (response) {
+                console.log(response)
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": data.userName,
+                "email": "some@gmail.com",
+                "contact": '+91' + data.address.contact
+            },
+            "notes": {
+                "address": "Make My Cake, Perambra"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        }
+        var rzp1 = new window.Razorpay(options);
+        rzp1.open()
+        rzp1.on('payment.failed', function (response) {
+            onFailure(response, order)
+        });
+    }
+
+
 
     const formSchema = Yup.object().shape({
         delivery: Yup.string()
@@ -102,7 +178,7 @@ function Checkout() {
                 address2: data.address2,
                 landmark: data.landmark,
                 pin: data.pincode,
-                conatct: data.contact
+                contact: data.contact
             },
             products: cart.items
         }
@@ -116,19 +192,53 @@ function Checkout() {
                 alert('Error try again')
                 setLoading(false)
             } else {
-                dispatch({
-                    type: 'CLEAR_CART'
-                })
-                console.log("haii this", res.data)
-                alert('Order Placed')
-                navigate('/confirmation', { state: res.data })
-                setLoading(false)
+                if (data.payment === 'online') {
+                    displayRazorpay(res.data, payload)
+                } else {
+                    dispatch({
+                        type: 'CLEAR_CART'
+                    })
+                    console.log("haii this", res.data)
+                    alert('Order Placed')
+                    navigate('/confirmation', { state: res.data })
+                    setLoading(false)
+                }
             }
         }).catch(err => {
             alert(err.message)
             setLoading(false)
         })
     }
+
+    const handleOtp = () => {
+        if (otp === '123456') {
+            setVerified(true)
+            setUnVerified(false)
+            setLoader(false)
+        } else {
+            setUnVerified(true)
+            setVerified(false)
+            setLoader(false)
+        }
+    }
+
+    const handleGetOtp = () => {
+        setUnVerified(false)
+        setVerified(false)
+        setLoader(false)
+        setVerify(null)
+    }
+
+    useEffect(() => {
+        if (verify === 6) {
+            setLoader(true)
+            setTimeout(handleOtp, 5000)
+        } else {
+            setVerified(false)
+            setUnVerified(false)
+            setLoader(false)
+        }
+    }, [verify])
 
 
 

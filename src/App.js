@@ -32,7 +32,7 @@ function App() {
           throw (res.data.message)
         } else {
           setLoggedIn(true)
-          setUser(res.data.name)
+          setUser(res.data?.name)
         }
       })
       .catch(err => {

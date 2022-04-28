@@ -81,10 +81,9 @@ function Checkout() {
                 type: 'CLEAR_CART'
             })
             console.log("haii this", res.data)
-            alert('Order Placed')
             setLoading(false)
             CapturePayment({ payment: details.error.metadata.payment_id, order: order })
-            // navigate('/confirmation', { state: res.data })
+            navigate('/orders')
         }).catch(err => {
             setLoading(false)
             console.log(err)
@@ -110,6 +109,11 @@ function Checkout() {
             "handler": function (response) {
                 console.log(response)
                 verifyPayment(response, order)
+            },
+            "modal": {
+                "ondismiss": function () {
+                    navigate('/orders')
+                }
             },
             "prefill": {
                 "name": data.userName,
@@ -189,7 +193,7 @@ function Checkout() {
             headers: { "Authorization": localStorage.getItem('token') }
         }).then(res => {
             if (res.data.error) {
-                alert('Error try again')
+                alert(res.data.message)
                 setLoading(false)
             } else {
                 if (data.payment === 'online') {

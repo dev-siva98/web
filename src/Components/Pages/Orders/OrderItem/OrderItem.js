@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './OrderItem.css';
-import axios from '../../../axios';
+import axios from '../../../../axios';
 
 function OrderItem(props) {
 

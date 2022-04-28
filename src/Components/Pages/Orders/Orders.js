@@ -1,6 +1,6 @@
 import React from 'react'
 import './Orders.css'
-import OrderProducts from '../../InnerPageItems/OrderProducts/OrderProducts'
+import OrderProducts from './OrderProducts/OrderProducts'
 import Authentication from '../../../Authentication'
 
 function Orders() {

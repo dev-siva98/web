@@ -71,7 +71,6 @@ function Cart() {
                         <div className="cart-left-instructions">
                             <div className="cart-left-instructions-text">
                                 <p>*Order for minimum 1000 and get free shipping <br />
-                                    *You can get discount by coupon code in payment section <br />
                                     *Remember coupon is applicable to online payment only <br />
                                 </p>
                             </div>

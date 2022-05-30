@@ -1,6 +1,6 @@
 import React from 'react'
 import './Orders.css'
-import OrderProducts from './OrderProducts/OrderProducts'
+import OrderItem from './OrderItems/OrderItem'
 import Authentication from '../../../Authentication'
 
 function Orders() {
@@ -12,7 +12,11 @@ function Orders() {
             <div className="order-section">
                 <div className="order-section-container">
                     <h1 className='order-section-header'>My Orders</h1>
-                    <OrderProducts/>
+                    <div className="order-section-items">
+                        <OrderItem />
+                        <OrderItem />
+
+                    </div>
                 </div>
             </div>
         </div>

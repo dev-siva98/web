@@ -177,14 +177,14 @@
 
 .cart-item-seperation {
     justify-self: center;
-    width: 90%;
+    width: 100%;
     margin: 10px 0;
 }
 
 .cart-total-price {
     display: flex;
     justify-content: flex-end;
-    margin-right: 40px;
+    margin-right: 10px;
 }
 
 .cart-total-price h3 {

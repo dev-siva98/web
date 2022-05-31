@@ -9,7 +9,7 @@
 
 .order-section-container {
     margin: auto;
-    width: 900px;
+    width: 800px;
 }
 
 .order-section-header {
@@ -19,7 +19,17 @@
 
 .order-section-items {
     border-radius: 5px;
-    padding: 40px;
+    padding: 20px;
+}
+
+.order-section-warning {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.order-section-warning-link {
+    font-weight: 600;
+    margin-right: 5px;
 }
 
 
@@ -28,6 +38,24 @@
 @media (max-width:960px) {
 
     .order-section-container {
-        margin: 0;
+        width: 500px;
     }
+    
+}
+
+@media (max-width: 560px) {
+
+    .order-section-container {
+        width: 350px;
+    }
+
+    .order-section-warning.shop {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    .order-section-warning-link.shop {
+        margin: 0;   
+    }
+    
 }

@@ -8,7 +8,7 @@ import './OrderConfirmation.css'
 function OrderConfirmation(props) {
     const { state } = useLocation()
 
-    const createdAt = new Date(state.createdAt).toLocaleString('en-UK', { dateStyle: 'medium', timeStyle: 'short' })
+    const createdAt = new Date(state.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
     const delivery = new Date(state.delivery).toLocaleDateString('en-IN', { dateStyle: 'medium' })
     return (
         <div className='confirmation-section'>

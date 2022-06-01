@@ -3,7 +3,7 @@ import './Orders.css'
 import OrderItem from './OrderItems/OrderItem'
 import Authentication from '../../../Authentication'
 import axios from '../../../axios'
-import { AppContext } from '../../../AppContext'
+import { AppContext, LoadingContext } from '../../../AppContext'
 import { Link } from 'react-router-dom'
 
 function Orders() {
@@ -11,17 +11,25 @@ function Orders() {
     Authentication()
     const [orders, setOrders] = useState([])
     const { loggedIn } = useContext(AppContext)
+    const { setLoading } = useContext(LoadingContext)
 
     useEffect(() => {
+        setLoading(true)
         axios.get('getorder', {
             headers: { "Authorization": localStorage.getItem('token') }
         })
             .then(res => {
                 console.log(res.data)
                 setOrders(res.data)
+                setLoading(false)
+            })
+            .catch(err => {
+                setLoading(false)
+                alert(err.message)
             })
         return () => {
             setOrders([])
+            setLoading(false)
         }
     }, [])
 

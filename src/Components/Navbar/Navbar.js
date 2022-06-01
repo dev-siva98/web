@@ -1,18 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Navbar.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { MdFingerprint } from 'react-icons/md'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
-import { useCart, useDispatchCart } from '../Cart/CartProvider'
+import { useCart } from '../Cart/CartProvider'
 
 
 
 function Navbar(props) {
     const cart = useCart()
-    const dispatch = useDispatchCart()
     const [click, setClick] = useState(false)
-    const { loggedIn, setLoggedIn } = useContext(AppContext)
+    const { loggedIn } = useContext(AppContext)
     const [drop, setDrop] = useState(false)
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
@@ -59,8 +57,7 @@ function Navbar(props) {
             <nav className={click ? "navbar active" : "navbar"}>
                 <div className="nav-container" >
                     <Link to='/' className='nav-brand'>
-                        <MdFingerprint className='nav-icon' />
-                        MakeMyCake
+                        <h1>make<span>MY</span>cake</h1>
                     </Link>
                     <div className="navigation" >
                         <div className="menu-icon avatar-mob" onClick={handleClick} >
@@ -94,7 +91,7 @@ function Navbar(props) {
                                     Orders
                                 </li>
                             </Link>
-                            <Link to='/about' className="nav-items">
+                            <Link to='/about' className="nav-items about-us">
                                 <li className="nav-link" onClick={handleClick} >
                                     About Us
                                 </li>

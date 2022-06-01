@@ -2,7 +2,7 @@ import React from 'react'
 import './OrderItem.css'
 
 function OrderItem({ order }) {
-  const createdAt = new Date(order.createdAt).toLocaleString('en-UK', { dateStyle: 'medium', timeStyle: 'short' })
+  const createdAt = new Date(order.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
   const delivery = new Date(order.delivery).toLocaleDateString('en-IN', { dateStyle: 'medium' })
   return (
     <div className='order-item-section'>

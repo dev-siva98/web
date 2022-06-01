@@ -57,7 +57,7 @@ function Cart() {
                         </div>
                         {
                             cart.items.length === 0 ? <>Cart Is Empty</> :
-                                cart.items.map((product) => {
+                                cart.items.reverse().map((product) => {
                                     return (
                                         <CartItem product={product} key={product.proId} />
                                     )

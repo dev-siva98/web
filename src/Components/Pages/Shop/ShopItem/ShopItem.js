@@ -9,10 +9,13 @@ function ShopItem(props) {
     const cart = useCart()
     const dispatch = useDispatchCart()
     const [flag, setFlag] = useState(false)
+    const [cartItem, setCartItem] = useState(false)
+
     useEffect(() => {
         cart.items.map((product) => {
-            if (product.proId === props.details.proId) {
+            if (product.proId === props.details.proId) {    //to show remove button
                 setFlag(true)
+                setCartItem(product)
             }
         })
 
@@ -77,7 +80,7 @@ function ShopItem(props) {
                 <h2>&#8377;{props.details.price}</h2>
                 {
                     flag ?
-                        <button onClick={() => removeFromCart(props.details)} className='btn btn-shop shop-remove'>Remove item</button>
+                        <button onClick={() => removeFromCart(cartItem)} className='btn btn-shop shop-remove'>Remove item</button>
                         :
                         <button onClick={() => addToCart(props.details)} className='btn btn-shop'>Add to Cart</button>
                 }

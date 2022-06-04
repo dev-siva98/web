@@ -1,0 +1,8 @@
+.admin-section {
+    position: relative;
+    background-color: #fff;
+    top: 80px;
+    padding: 30px 20px;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+}

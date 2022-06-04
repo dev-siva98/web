@@ -16,6 +16,7 @@ import Loader from "./Components/Loader/Loader";
 import Cart from "./Components/Pages/Cart/Cart";
 import Checkout from "./Components/Pages/Checkout/Checkout";
 import OrderConfirmation from "./Components/Pages/OrderConfirmation/OrderConfirmation";
+import Login from "./Components/Admin/Login/Login";
 
 function App() {
 
@@ -59,7 +60,7 @@ function App() {
                 <Route path='/checkout' element={<Checkout />} />
                 <Route path='/confirmation' element={<OrderConfirmation />} />
                 <Route path='/orders' element={<Orders />} />
-                <Route path='/admin' element={<AddProduct />} />
+                <Route path='/admin' element={<Login />} />
               </Routes>
               <Footer />
             </CartProvider>

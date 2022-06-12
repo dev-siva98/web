@@ -34,8 +34,7 @@ function Navbar(props) {
     }
 
     const ref = useRef()
-
-    console.log(cart, "Hwey")
+    
     useEffect(() => {
         const detectClick = e => {
             if (click && ref.current && !ref.current.contains(e.target)) {

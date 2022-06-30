@@ -44,30 +44,44 @@ function Cart() {
     return (
         <div className='cart-section'>
             <div className="cart-section-container">
-                <div className="cart-section-body">
-                    <div className="cart-section-left">
+                <div className="cart-section-left">
+                    <div className="cart-left-items-container">
                         <div className="cart-left-headers">
                             <h3>PRODUCT</h3>
                             <h3>QTY</h3>
                             <h3>PRICE</h3>
-                            <button onClick={handleScroll}
-                                className="btn btn-cart-proceed-mobile">Proceed to Checkout</button>
-                            <button onClick={handleClearCart}
-                                className="btn btn-clear-cart">Clear Cart</button>
+                            <div className="cart-left-buttons-container">
+                                <button onClick={handleScroll}
+                                    className="btn btn-cart-proceed-mobile"
+                                    disabled={cart.total === 0}
+                                >
+                                    Proceed to Checkout
+                                </button>
+                                <button onClick={handleClearCart}
+                                    className="btn btn-clear-cart"
+                                    disabled={cart.total === 0}
+                                >
+                                    Clear Cart
+                                </button>
+                            </div>
                         </div>
-                        {
-                            cart.items.length === 0 ? <>Cart Is Empty</> :
-                                cart.items.reverse().map((product) => {
-                                    return (
-                                        <CartItem product={product} key={product.proId} />
-                                    )
-                                })
-                        }
+                        <div className="cart-left-items">
+                            {
+                                cart.items.length === 0 ? <p className='cart-empty-text'>Cart Is Empty</p> :
+                                    cart.items.reverse().map((product) => {
+                                        return (
+                                            <CartItem product={product} key={product.proId} />
+                                        )
+                                    })
+                            }
+                        </div>
+                    </div>
+                    <div className="cart-total-price-container">
                         <div className="cart-total-price">
                             <h3>Total Price:</h3>
                             <h2>&#8377; {cart.cartTotal}</h2>
                         </div>
-                        <hr className='cart-item-seperation' ref={scrollRef} />
+                        <hr className='cart-item-seperation instruction' ref={scrollRef} />
                         <div className="cart-left-instructions">
                             <div className="cart-left-instructions-text">
                                 <p>*Order for minimum 1000 and get free shipping <br />
@@ -76,43 +90,44 @@ function Cart() {
                             </div>
                         </div>
                     </div>
-                    <div className="cart-section-right" >
-                        <div className="cart-section-right-container">
-                            <div className="cart-section-right-body">
-                                <div className="cart-right-coupon">
-                                    <h3>Have coupon ?</h3>
-                                    <div className="cart-coupon-input">
-                                        <input type="text" placeholder='Coupon Code'
-                                            onInput={(e) => e.target.value = e.target.value.toUpperCase()} />
-                                        <button className="btn btn-cart-coupon">Apply</button>
+                </div>
+
+                <div className="cart-section-right" >
+                    <div className="cart-section-right-container">
+                        <div className="cart-section-right-body">
+                            <div className="cart-right-coupon">
+                                <h3>Have coupon ?</h3>
+                                <div className="cart-coupon-input">
+                                    <input type="text" placeholder='Coupon Code'
+                                        onInput={(e) => e.target.value = e.target.value.toUpperCase()} />
+                                    <button className="btn btn-cart-coupon">Apply</button>
+                                </div>
+                            </div>
+                            <div className="cart-right-total"  >
+                                <div className="cart-total-details">
+                                    <div className="cart-total-item">
+                                        <h3>Total Price:</h3>
+                                        <h3>Shipping:</h3>
+                                        <h3>Discount:</h3>
+                                    </div>
+                                    <div className="cart-total-amount">
+                                        <h3>{cart.cartTotal}.00</h3>
+                                        <h3>{cart.shipping}.00</h3>
+                                        <h3>{cart.discount}.00</h3>
                                     </div>
                                 </div>
-                                <div className="cart-right-total"  >
-                                    <div className="cart-total-details">
-                                        <div className="cart-total-item">
-                                            <h3>Total Price:</h3>
-                                            <h3>Shipping:</h3>
-                                            <h3>Discount:</h3>
-                                        </div>
-                                        <div className="cart-total-amount">
-                                            <h3>{cart.cartTotal}.00</h3>
-                                            <h3>{cart.shipping}.00</h3>
-                                            <h3>{cart.discount}.00</h3>
-                                        </div>
-                                    </div>
-                                    <hr className='cart-total-partition' />
-                                    <div className="cart-right-grand-total">
-                                        <h3>Grand Total:</h3>
-                                        <h3>&#8377; {cart.total}.00</h3>
-                                    </div>
-                                    <hr className='cart-total-partition' />
-                                    <div className="cart-submit-button">
-                                        <Link to='/checkout' >
-                                            <button type="submit" className="btn btn-cart-submit" disabled={!checkout}>
-                                                Checkout
-                                            </button>
-                                        </Link>
-                                    </div>
+                                <hr className='cart-total-partition' />
+                                <div className="cart-right-grand-total">
+                                    <h3>Grand Total:</h3>
+                                    <h3>&#8377; {cart.total}.00</h3>
+                                </div>
+                                <hr className='cart-total-partition' />
+                                <div className="cart-submit-button">
+                                    <Link to='/checkout' >
+                                        <button type="submit" className="btn btn-cart-submit" disabled={!checkout}>
+                                            Checkout
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

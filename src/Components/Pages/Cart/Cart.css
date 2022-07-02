@@ -137,6 +137,7 @@
     font-size: 1.7rem;
     color: #dd0004;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .cart-qty-dec:hover {
@@ -155,6 +156,7 @@
     font-size: 1.7rem;
     color: #149902;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .cart-qty-inc:hover {
@@ -181,12 +183,7 @@
 }
 
 .btn-cart-remove {
-    padding: 5px 12px;
-    background-color: #ff0000e3;
-}
-
-.btn-cart-remove:hover {
-    background-color: #cf0609
+    color: #e00b0b !important;
 }
 
 .cart-left-items {
@@ -207,6 +204,7 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 10px;
+    font-weight: 700;
 }
 
 .cart-total-price h3 {

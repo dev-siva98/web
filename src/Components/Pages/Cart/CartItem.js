@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillMinusSquare, AiFillPlusSquare } from 'react-icons/ai'
+import { MdDelete } from 'react-icons/md'
+import { IconButton } from '@mui/material'
+import { Delete } from '@mui/icons-material'
 import { useCart, useDispatchCart } from '../../Cart/CartProvider'
 import axios from '../../../axios'
 import './Cart.css'
@@ -109,7 +112,11 @@ function CartItem({ product }) {
                     <h2>&#8377;{item * product.price}</h2>
                 </div>
                 <div className="cart-left-button">
-                    <button className="btn btn-cart-remove" onClick={() => handleRemove(product)}>Remove</button>
+                    <IconButton
+                        className='btn-cart-remove'
+                        onClick={() => handleRemove(product)}>
+                        <Delete />
+                    </IconButton>
                 </div>
             </div>
             <hr className='cart-item-seperation' />

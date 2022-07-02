@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 import { AppContext } from '../../AppContext'
 import { useCart } from '../Cart/CartProvider'
+import { FaShoppingCart } from 'react-icons/fa'
 
 
 
@@ -34,7 +35,7 @@ function Navbar(props) {
     }
 
     const ref = useRef()
-    
+
     useEffect(() => {
         const detectClick = e => {
             if (click && ref.current && !ref.current.contains(e.target)) {
@@ -80,11 +81,6 @@ function Navbar(props) {
                                     Shop
                                 </li>
                             </Link>
-                            <Link to='/cart' className="nav-items">
-                                <li className="nav-link" onClick={handleClick} >
-                                    Cart {cart.items?.length > 0 ? cart.items.length : undefined}
-                                </li>
-                            </Link>
                             <Link to='/orders' className="nav-items">
                                 <li className="nav-link" onClick={handleClick} >
                                     Orders
@@ -93,6 +89,12 @@ function Navbar(props) {
                             <Link to='/about' className="nav-items about-us">
                                 <li className="nav-link" onClick={handleClick} >
                                     About Us
+                                </li>
+                            </Link>
+                            <Link to='/cart' className="nav-items cart">
+                                <li className="nav-link" onClick={handleClick} >
+                                    <FaShoppingCart />
+                                    <div className='nav-cart-count'>{cart.items.length}</div>
                                 </li>
                             </Link>
                             <li className='nav-items profile-mobile'>

@@ -202,7 +202,12 @@ function Checkout() {
                     dispatch({
                         type: 'CLEAR_CART'
                     })
-                    console.log("haii this", res.data)
+                    axios.get('clearcart', {
+                        headers: { "Authorization": localStorage.getItem('token') }
+                    })
+                        .catch(err => {
+                            alert('' + err)
+                        })
                     alert('Order Placed')
                     navigate('/confirmation', { state: res.data })
                     setLoading(false)

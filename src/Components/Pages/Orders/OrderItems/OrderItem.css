@@ -36,19 +36,19 @@
 }
 
 .delivered {
-    color: #1266F1;
+    color: #1266F1 !important;
 }
 
-.placed {
-    color: #00B74A;
+.placed, .success {
+    color: #00B74A !important;
 }
 
 .pending {
-    color: #FFA900;
+    color: #FFA900 !important;
 }
 
 .failed {
-    color: #F93154;
+    color: #F93154 !important;
 }
 
 @media (max-width: 960px) {

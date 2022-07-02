@@ -4,8 +4,6 @@ import { Backdrop } from '@mui/material'
 import { Close } from '@mui/icons-material'
 
 
-
-
 function OrderDetails({ data, handleShow }) {
 
     const createdAt = new Date(data.createdAt)
@@ -33,17 +31,23 @@ function OrderDetails({ data, handleShow }) {
                         <span>Order Date</span><span>{createdAt}</span>
                     </div>
                     <div className="order-details-item">
-                        <span>User Name</span><span>{data.userName}</span>
+                        <span>Name</span><span>{data.userName}</span>
                     </div>
                     <div className="order-details-item">
-                        <span>Cart Total</span><span>&#8377; {data.cartTotal}</span>
+                        <span>Items Total</span><span>&#8377; {data.cartTotal}</span>
                     </div>
-                    <div className="order-details-item">
-                        <span>Coupon Applied</span><span>{data.couponApplied}</span>
-                    </div>
-                    <div className="order-details-item">
-                        <span>Discount</span><span>&#8377; {data.discount}</span>
-                    </div>
+                    {
+                        data.couponApplied &&
+                        <div className="order-details-item">
+                            <span>Coupon Applied</span><span>{data.couponApplied}</span>
+                        </div>
+                    }
+                    {
+                        data.discount > 0 &&
+                        <div className="order-details-item">
+                            <span>Discount</span><span>&#8377; {data.discount}</span>
+                        </div>
+                    }
                     <div className="order-details-item">
                         <span>Shipping</span><span>&#8377; {data.shipping}</span>
                     </div>
@@ -54,10 +58,10 @@ function OrderDetails({ data, handleShow }) {
                         <span>Payment Mode</span><span>{data.paymentMode}</span>
                     </div>
                     <div className="order-details-item">
-                        <span>Order Status</span><span>{data.orderStatus}</span>
+                        <span>Order Status</span><span className={data.orderStatus} >{data.orderStatus}</span>
                     </div>
                     <div className="order-details-item">
-                        <span>Payment Status</span><span>{data.paymentStatus}</span>
+                        <span>Payment Status</span><span className={data.paymentStatus} >{data.paymentStatus}</span>
                     </div>
                     <div className="order-details-item">
                         <span>Delivery Date</span><span>{delivery}</span>

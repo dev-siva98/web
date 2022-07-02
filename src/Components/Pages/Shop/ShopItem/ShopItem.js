@@ -12,7 +12,7 @@ function ShopItem(props) {
     const [cartItem, setCartItem] = useState(false)
 
     useEffect(() => {
-        cart.items.map((product) => {
+        cart.items.forEach((product) => {
             if (product.proId === props.details.proId) {    //to show remove button
                 setFlag(true)
                 setCartItem(product)

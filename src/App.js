@@ -8,7 +8,6 @@ import Home from "./Components/Pages/Home/Home";
 import Orders from "./Components/Pages/Orders/Orders";
 import Shop from "./Components/Pages/Shop/Shop";
 import UserLogin from "./Components/Pages/UserLogin/UserLogin";
-import AddProduct from './Components/Admin/AddProduct'
 import axios from "./axios";
 import { AppContext, LoadingContext } from './AppContext'
 import CartProvider from "./Components/Cart/CartProvider";

@@ -22,15 +22,11 @@ function Navbar(props) {
         const confirmBox = window.confirm(
             "Do you really want to Logout?"
         )
-        if (confirmBox === true) {
-            setDrop(!drop)
-            localStorage.removeItem('token')
-            localStorage.removeItem('user')
-            localStorage.removeItem('id')
-            // dispatch({
-            //     type: 'CLEAR_CART'
-            // })
-        }
+        if (!confirmBox) return
+        setDrop(!drop)
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        localStorage.removeItem('id')
         navigate('/login')
     }
 

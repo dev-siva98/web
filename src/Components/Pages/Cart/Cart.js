@@ -5,6 +5,9 @@ import { useCart, useDispatchCart } from '../../Cart/CartProvider'
 import Authentication from '../../../Authentication'
 import axios from '../../../axios'
 import { Link } from 'react-router-dom'
+import { BsFillCartXFill } from 'react-icons/bs'
+import { IconButton, Tooltip } from '@mui/material'
+import { ShoppingCartCheckout } from '@mui/icons-material'
 
 function Cart() {
 
@@ -28,6 +31,10 @@ function Cart() {
     }
 
     const handleClearCart = () => {
+        const confirmBox = window.confirm(
+            "Do you really want to Logout?"
+        )
+        if (!confirmBox) return
         dispatch({
             type: 'CLEAR_CART'
         })
@@ -51,18 +58,22 @@ function Cart() {
                             <h3>QTY</h3>
                             <h3>PRICE</h3>
                             <div className="cart-left-buttons-container">
-                                <button onClick={handleScroll}
-                                    className="btn btn-cart-proceed-mobile"
-                                    disabled={cart.total === 0}
-                                >
-                                    Proceed to Checkout
-                                </button>
-                                <button onClick={handleClearCart}
-                                    className="btn btn-clear-cart"
-                                    disabled={cart.total === 0}
-                                >
-                                    Clear Cart
-                                </button>
+                                <Tooltip title='Proceed to Checkout'>
+                                    <IconButton onClick={handleScroll}
+                                        className="btn-cart-proceed-mobile"
+                                        disabled={cart.total === 0}
+                                    >
+                                        <ShoppingCartCheckout />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title='Clear Cart'>
+                                    <IconButton onClick={handleClearCart}
+                                        className="btn-clear-cart"
+                                        disabled={cart.total === 0}
+                                    >
+                                        <BsFillCartXFill />
+                                    </IconButton>
+                                </Tooltip>
                             </div>
                         </div>
                         <div className="cart-left-items">

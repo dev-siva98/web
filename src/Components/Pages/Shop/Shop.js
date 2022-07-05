@@ -5,30 +5,24 @@ import ShopCategory from './ShopCategory/ShopCategory'
 
 function Shop() {
 
-    const titleData = [
-        'Custom Cakes',
-        'Jar Cakes',
-        'Pastries'
-    ]
-
     Authentication()
 
     return (
-            <div className="shop-section">
-                <div className="shop-section-container">
-                    <div className="shop-section-main">
-                        <ShopCategory 
-                        title={titleData[0]}
+        <div className="shop-section">
+            <div className="shop-section-container">
+                <div className="shop-section-main">
+                    <ShopCategory
+                        title='Custom Cakes'
                         url='products' />
-                        <hr className='shop-partition' />
-                        {/* <ShopCategory
+                    <hr className='shop-partition' />
+                    {/* <ShopCategory
                         title={titleData[1]}/>
                         <hr className='shop-partition' />
                         <ShopCategory
                         title={titleData[2]}/> */}
-                    </div>
                 </div>
             </div>
+        </div>
     )
 }
 

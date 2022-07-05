@@ -205,16 +205,18 @@ function Checkout() {
                     axios.get('clearcart', {
                         headers: { "Authorization": localStorage.getItem('token') }
                     })
-                        .catch(err => {
-                            alert('' + err)
+                        .then(() => {
+                            alert('Order Placed')
+                            navigate('/confirmation', { state: res.data })
+                            setLoading(false)
                         })
-                    alert('Order Placed')
-                    navigate('/confirmation', { state: res.data })
-                    setLoading(false)
+                        .catch(err => {
+                            throw err
+                        })
                 }
             }
         }).catch(err => {
-            alert(err.message)
+            alert('' + err)
             setLoading(false)
         })
     }

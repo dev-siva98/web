@@ -4,6 +4,7 @@
     height: 50vh;
     width: 100%;
     text-align: center;
+    padding: 0 20px;
 }
 
 .error-page-content {
@@ -28,6 +29,7 @@
 }
 
 .error-page-sub {
+    margin-top: 20px;
     text-align: center;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 1rem;

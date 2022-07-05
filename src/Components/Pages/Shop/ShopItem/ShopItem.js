@@ -79,7 +79,9 @@ function ShopItem(props) {
                 <h3 className="shop-item-weight">
                     {props.details.weight}
                 </h3>
-                <h2>&#8377;{props.details.price}</h2>
+                <h2 className='shop-item-price'>
+                    &#8377; {props.details.price}
+                </h2>
                 {
                     flag ?
                         <Button onClick={() => removeFromCart(cartItem)} className='shop-item-button shop-item-remove'>

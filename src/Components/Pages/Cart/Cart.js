@@ -16,13 +16,13 @@ function Cart() {
     const cart = useCart()
     const dispatch = useDispatchCart()
     const scrollRef = useRef(null)
-    const [checkout, setCheckout] = useState(false)
+    const [checkout, setCheckout] = useState(true)
 
     useEffect(() => {
         if (cart.cartTotal > 0) {
-            setCheckout(true)
-        } else {
             setCheckout(false)
+        } else {
+            setCheckout(true)
         }
     }, [cart])
 
@@ -135,7 +135,7 @@ function Cart() {
                                 <hr className='cart-total-partition' />
                                 <div className="cart-submit-button">
                                     <Link to='/checkout' >
-                                        <button type="submit" className="btn btn-cart-submit" disabled={!checkout}>
+                                        <button type="submit" className="btn btn-cart-submit" disabled={checkout}>
                                             Checkout
                                         </button>
                                     </Link>

@@ -20,8 +20,9 @@ function ShopCategory(props) {
                     setLoading(false)
                 }
             }).catch(err => {
-                console.log(err.message);
+                console.log(err);
                 alert(err.message)
+                setCakes([])
                 setLoading(false)
             })
         return () => {

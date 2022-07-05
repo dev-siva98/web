@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './ShopItem.css'
 import { useCart, useDispatchCart } from '../../../Cart/CartProvider'
 import axios from '../../../../axios'
+import { Button } from '@mui/material'
+import { AddShoppingCart, RemoveShoppingCart } from '@mui/icons-material'
 
 
 function ShopItem(props) {
@@ -74,15 +76,19 @@ function ShopItem(props) {
                 <h2 className="shop-item-name">
                     {props.details.pname}
                 </h2>
-                <div className="shop-select-container">
+                <h3 className="shop-item-weight">
                     {props.details.weight}
-                </div>
+                </h3>
                 <h2>&#8377;{props.details.price}</h2>
                 {
                     flag ?
-                        <button onClick={() => removeFromCart(cartItem)} className='btn btn-shop shop-remove'>Remove item</button>
+                        <Button onClick={() => removeFromCart(cartItem)} className='shop-item-button shop-item-remove'>
+                            Remove <RemoveShoppingCart />
+                        </Button>
                         :
-                        <button onClick={() => addToCart(props.details)} className='btn btn-shop'>Add to Cart</button>
+                        <Button onClick={() => addToCart(props.details)} className='shop-item-button shop-item-add'>
+                            Add <AddShoppingCart />
+                        </Button>
                 }
             </div>
         </div>

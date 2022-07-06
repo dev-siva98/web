@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './OrderDetails.css'
-import { Backdrop } from '@mui/material'
+import { Backdrop, Button } from '@mui/material'
 import { Close } from '@mui/icons-material'
+import MoreDetails from './MoreDetails'
 
 
 function OrderDetails({ data, handleShow }) {
+
+    const [show, setShow] = useState(false)
 
     const createdAt = new Date(data.createdAt)
         .toLocaleString('en-IN',
@@ -14,11 +17,18 @@ function OrderDetails({ data, handleShow }) {
         .toLocaleDateString('en-IN',
             { dateStyle: 'medium' })
 
+    const handleDetails = () => {
+        setShow(!show)
+    }
+
     return (
         <Backdrop
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={true}
         >
+            {
+                show && <MoreDetails data={data} handleDetails={handleDetails} />
+            }
             <div className='order-details'>
                 <Close
                     onClick={handleShow}
@@ -69,6 +79,9 @@ function OrderDetails({ data, handleShow }) {
                     <div className="order-details-item">
                         <span>Write on Cake</span><span>{data.write}</span>
                     </div>
+                    <Button onClick={handleDetails} >
+                        View more details
+                    </Button>
                 </div>
             </div>
         </Backdrop>

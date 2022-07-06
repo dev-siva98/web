@@ -34,34 +34,32 @@ function Orders() {
     }, [])
 
     return (
-        <div>
-            <div className="order-section">
-                <div className="order-section-container">
-                    <h1 className='order-section-header'>My Orders</h1>
-                    <div className="order-section-items">
-                        {
-                            loggedIn ? (
-                                orders.length > 0 ?
-                                    orders.map((order) =>
-                                        <OrderItem
-                                            key={order._id}
-                                            order={order} />
-                                    ) :
-                                    <div className='order-section-warning shop'>
-                                        You have not ordered anything yet ! <br />
-                                        <Link className='order-section-warning-link shop' to={'/shop'}>
-                                            Shop
-                                        </Link>
-                                    </div>
-                            ) :
-                                <div className='order-section-warning'>
-                                    <Link className='order-section-warning-link' to={'/login'}>
-                                        Login
+        <div className="order-section">
+            <div className="order-section-container">
+                <h1 className='order-section-header'>My Orders</h1>
+                <div className="order-section-items">
+                    {
+                        loggedIn ? (
+                            orders.length > 0 ?
+                                orders.map((order) =>
+                                    <OrderItem
+                                        key={order._id}
+                                        order={order} />
+                                ) :
+                                <div className='order-section-warning shop'>
+                                    You have not ordered anything yet ! <br />
+                                    <Link className='order-section-warning-link shop' to={'/shop'}>
+                                        Shop
                                     </Link>
-                                    to see orders
                                 </div>
-                        }
-                    </div>
+                        ) :
+                            <div className='order-section-warning'>
+                                <Link className='order-section-warning-link' to={'/login'}>
+                                    Login
+                                </Link>
+                                to see orders
+                            </div>
+                    }
                 </div>
             </div>
         </div>

@@ -56,8 +56,6 @@ function Checkout() {
             dispatch({
                 type: 'CLEAR_CART'
             })
-            console.log("haii this", res.data)
-            alert('Order Placed')
             setLoading(false)
             navigate('/confirmation', { state: res.data })
         }).catch(err => {
@@ -80,7 +78,6 @@ function Checkout() {
             dispatch({
                 type: 'CLEAR_CART'
             })
-            console.log("haii this", res.data)
             setLoading(false)
             CapturePayment({ payment: details.error.metadata.payment_id, order: order })
             navigate('/orders')
@@ -193,8 +190,8 @@ function Checkout() {
             headers: { "Authorization": localStorage.getItem('token') }
         }).then(res => {
             if (res.data.error) {
-                alert(res.data.message)
                 setLoading(false)
+                throw res.data.message
             } else {
                 if (data.payment === 'online') {
                     displayRazorpay(res.data, payload)
@@ -206,7 +203,6 @@ function Checkout() {
                         headers: { "Authorization": localStorage.getItem('token') }
                     })
                         .then(() => {
-                            alert('Order Placed')
                             navigate('/confirmation', { state: res.data })
                             setLoading(false)
                         })
@@ -251,8 +247,6 @@ function Checkout() {
         }
     }, [verify])
 
-
-
     return (
         <div className="checkout-section">
             <div className="checkout-section-container">
@@ -283,6 +277,7 @@ function Checkout() {
                                         <div className="checkout-form-section-full checkout-form-input-delivery">
                                             <h4>Delivery date expected : </h4>
                                             <input type="date" {...register('delivery', { required: true })}
+                                                min={new Date().toISOString().split('T')[0]}
                                                 className={`checkout-form-input checkout-input-date ${errors.delivery && 'checkout-input-error'}`} />
                                         </div>
                                         <h3 className='checkout-form-section-headers'>Address</h3>

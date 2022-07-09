@@ -1,9 +1,6 @@
 import React from 'react'
-import Testimonial from '../../Testimonial/Testimonial'
+import Testimonial from './Testimonial/Testimonial'
 import './About.css'
-// import axios from '../../../axios';
-// import { AppContext } from '../../../AppContext'
-import Loader from '../../Loader/Loader';
 import Authentication from '../../../Authentication';
 
 
@@ -40,7 +37,6 @@ function About() {
                     </div>
                     <div className="testimonial">
                         <Testimonial />
-                        <Loader/>
                     </div>
                     <div className="meet-team">
                         <h2>Meet Our Team</h2>

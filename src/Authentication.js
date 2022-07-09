@@ -15,7 +15,6 @@ function Authentication(){
             }
         })
         .catch(err => {
-            console.log(err)
             setLoggedIn(false)
         })
     },[])

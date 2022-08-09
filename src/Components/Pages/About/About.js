@@ -21,7 +21,7 @@ function About() {
                             </p>
                         </div>
                         <div className="about-part-image">
-                            <img className='about-part-img large' src="images/celeb-cake.svg" alt="part" />
+                            <img className='about-part-img' src="images/celeb-cake.svg" alt="part" />
                         </div>
                     </div>
                     <div className="about-part part-second">

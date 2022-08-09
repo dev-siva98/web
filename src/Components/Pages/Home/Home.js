@@ -23,7 +23,7 @@ function Home() {
                             </p>
                         </div>
                         <div className="home-section-main-image">
-                            <img className='home-main-svg' src="images/birthday.svg" alt="Hey" />
+                            <img className='home-main-svg' src="images/home-cake.png" alt="home" />
                         </div>
                     </div>
                     <div className="home-section-explore">

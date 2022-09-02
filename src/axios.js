@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL : 'http://192.168.43.105:9000'
+    baseURL : 'https://makemycake-backend.herokuapp.com'
 })
 
 export default instance;

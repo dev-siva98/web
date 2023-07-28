@@ -15,7 +15,7 @@ function Error() {
                         Let's go
                         <Link to='/' >
                             <span className='error-page-link'>
-                                home
+                                home 1
                             </span>
                         </Link>
                         and try from there.

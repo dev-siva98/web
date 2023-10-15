@@ -38,19 +38,6 @@ function About() {
                     <div className="testimonial">
                         <Testimonial />
                     </div>
-                    <div className="meet-team">
-                        <h2>Meet Our Team</h2>
-                        <div className="meet-team-container">
-                            <div className='team-part'>
-                                <img className='team-image' src="images/anagha.jpg" alt="" />
-                                <h3 className='team-name'>Anagha</h3>
-                            </div>
-                            <div className='team-part'>
-                                <img className='team-image' src="images/rakendu.jpg" alt="" />
-                                <h3 className='team-name'>Rakendu</h3>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

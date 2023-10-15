@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL : 'https://makemycake-backend.herokuapp.com'
+    baseURL : 'https://mmc-server.onrender.com'
 })
 
 export default instance;
